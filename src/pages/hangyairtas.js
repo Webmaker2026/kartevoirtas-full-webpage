@@ -16,6 +16,7 @@ function render() {
       ],
       tagBoxLeft: 'Fészek beazonosítása',
       tagBoxRight: 'Tartós megoldás',
+      mediaKey: 'hangyairtas',
     },
     sections: [
       {

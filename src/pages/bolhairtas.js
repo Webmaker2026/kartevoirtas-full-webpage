@@ -16,6 +16,7 @@ function render() {
       ],
       tagBoxLeft: 'Textil- és kertfelmérés',
       tagBoxRight: 'Célzott kezelés',
+      mediaKey: 'bolhairtas',
     },
     sections: [
       {

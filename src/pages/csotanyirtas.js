@@ -17,6 +17,7 @@ function render() {
       ],
       tagBoxLeft: 'Rejtekhely-térkép',
       tagBoxRight: 'Tartós hatás',
+      mediaKey: 'csotanyirtas',
     },
     sections: [
       {

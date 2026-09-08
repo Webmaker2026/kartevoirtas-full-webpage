@@ -17,6 +17,7 @@ function render() {
       ],
       tagBoxLeft: 'Fészek felmérése',
       tagBoxRight: 'Biztonságos eltávolítás',
+      mediaKey: 'darazsirtas',
     },
     sections: [
       {

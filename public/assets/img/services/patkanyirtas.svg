@@ -1,0 +1,46 @@
+<svg viewBox="0 0 480 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="">
+  <defs>
+    <linearGradient id="bg-patkanyirtas" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1d2126"/>
+      <stop offset="60%" stop-color="#141619"/>
+      <stop offset="100%" stop-color="#0c0d0f"/>
+    </linearGradient>
+    <radialGradient id="glow-patkanyirtas" cx="40%" cy="65%" r="65%">
+      <stop offset="0%" stop-color="#F28C28" stop-opacity=".28"/>
+      <stop offset="55%" stop-color="#F28C28" stop-opacity=".07"/>
+      <stop offset="100%" stop-color="#F28C28" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vig-patkanyirtas" cx="50%" cy="46%" r="75%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity=".45"/>
+    </radialGradient>
+    <filter id="grain-patkanyirtas">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .05 0"/>
+    </filter>
+  </defs>
+  <rect width="480" height="600" fill="url(#bg-patkanyirtas)"/>
+  <rect width="480" height="600" fill="url(#glow-patkanyirtas)"/>
+  <circle cx="240" cy="276" r="205" fill="none" stroke="#F28C28" stroke-width="1.5" stroke-dasharray="3 11" opacity=".35"/>
+  <g>
+      <rect x="0" y="430" width="480" height="60" fill="#191c20"/>
+      <rect x="-20" y="400" width="520" height="34" rx="17" fill="#22262c" stroke="#F3F1EA" stroke-width="4"/>
+      <g transform="translate(70,340)">
+        <rect x="0" y="0" width="90" height="60" rx="10" fill="#20242a" stroke="#F28C28" stroke-width="5"/>
+        <circle cx="45" cy="30" r="12" fill="#0c0d0f"/>
+      </g>
+      <g transform="translate(230,300)">
+        <ellipse cx="70" cy="90" rx="72" ry="46" fill="#241b12" stroke="#F28C28" stroke-width="5"/>
+        <circle cx="10" cy="60" r="26" fill="#241b12" stroke="#F28C28" stroke-width="5"/>
+        <path d="M-14 42 -46 26" stroke="#F28C28" stroke-width="5" stroke-linecap="round"/>
+        <path d="M-2 40 -10 20" stroke="#F3F1EA" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="0" cy="52" r="3" fill="#F3F1EA"/>
+        <path d="M130 96 C180 92 210 60 208 20" fill="none" stroke="#F28C28" stroke-width="6" stroke-linecap="round"/>
+        <g stroke="#F3F1EA" stroke-width="4" stroke-linecap="round">
+          <path d="M40 128 30 150M60 132 55 155M85 130 88 153M108 122 118 143"/>
+        </g>
+      </g>
+    </g>
+  <rect width="480" height="600" fill="url(#vig-patkanyirtas)"/>
+  <rect width="480" height="600" filter="url(#grain-patkanyirtas)"/>
+</svg>

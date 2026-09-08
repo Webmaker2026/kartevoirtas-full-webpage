@@ -16,6 +16,7 @@ function render() {
       ],
       tagBoxLeft: 'Bejárat-felmérés',
       tagBoxRight: 'Tartós mentesítés',
+      mediaKey: 'egerirtas',
     },
     sections: [
       {

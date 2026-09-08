@@ -49,9 +49,10 @@
         <ul>
           <li><a class="navlink" href="/" aria-current="page">Főoldal</a></li>
           <li class="has-dropdown">
-            <a class="navlink" href="/#szolgaltatasok" aria-haspopup="true">Szolgáltatások <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+            <a class="navlink" href="/#szolgaltatasok" aria-haspopup="true" aria-expanded="false" data-dropdown-trigger>Szolgáltatások <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
             <div class="dropdown">
-              <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
+              <div class="dropdown__panel">
+                <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
               <a href="/csotanyirtas/">Csótányirtás</a>
               <a href="/darazsirtas/">Darázsirtás</a>
               <a href="/hangyairtas/">Hangyairtás</a>
@@ -59,6 +60,7 @@
               <a href="/egerirtas/">Egérirtás</a>
               <a href="/bolhairtas/">Bolhairtás</a>
               <a href="/egyeb-kartevok/">Egyéb kártevők</a>
+              </div>
             </div>
           </li>
           <li><a class="navlink" href="/arak/">Árak</a></li>
@@ -134,15 +136,8 @@
           <span class="hero__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.4 3.2 7.6 7.5 9 4.3-1.4 7.5-4.6 7.5-9V6L12 3Z"/><path d="m9 12 2 2 4-4.5"/></svg> Lakossági és üzleti ügyfeleknek</span>
         </div>
       </div>
-      <div class="hero__visual" aria-hidden="true">
-        <svg viewBox="0 0 400 400" fill="none">
-          <circle cx="200" cy="200" r="176" stroke="#2a2e33" stroke-width="1.5"/>
-          <circle cx="200" cy="200" r="140" stroke="#F28C28" stroke-width="1.5" stroke-dasharray="4 10"/>
-          <circle cx="200" cy="200" r="98" fill="#1A1D21" stroke="#2a2e33"/>
-          <circle cx="200" cy="200" r="46" fill="#F28C28" opacity=".14"/>
-          <circle cx="200" cy="200" r="46" stroke="#F28C28" stroke-width="2"/>
-          <circle cx="200" cy="200" r="10" fill="#F28C28"/>
-        </svg>
+      <div class="hero__visual">
+        <div class="media-photo"><img class="media-photo__img" src="/assets/img/services/homepage.svg" alt="Szakszerű kártevőirtás — technikus célzott kezelést végez" width="480" height="600" decoding="async"></div>
         <div class="hero__tag hero__tag--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg> Célzott felmérés</div>
         <div class="hero__tag hero__tag--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Szakszerű kezelés</div>
       </div>
@@ -300,12 +295,15 @@
         </p>
         <a class="btn btn--outline" style="margin-top:1.3rem" href="/kapcsolat/" data-track="quote-cta" data-location="b2b-teaser">Üzleti ajánlatot kérek</a>
       </div>
-      <ul class="b2b-grid">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><rect x="14" y="9" width="6" height="12"/><path d="M7 7h1M7 11h1M7 15h1M10 7h1M10 11h1M10 15h1"/></svg> Társasházak, lépcsőházak</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><rect x="14" y="9" width="6" height="12"/><path d="M7 7h1M7 11h1M7 15h1M10 7h1M10 11h1M10 15h1"/></svg> Éttermek, vendéglátóipari egységek</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><rect x="14" y="9" width="6" height="12"/><path d="M7 7h1M7 11h1M7 15h1M10 7h1M10 11h1M10 15h1"/></svg> Üzletek, irodák</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><rect x="14" y="9" width="6" height="12"/><path d="M7 7h1M7 11h1M7 15h1M10 7h1M10 11h1M10 15h1"/></svg> Raktárak, gazdasági épületek</li>
-      </ul>
+      <div class="stack">
+        <div class="media-photo media-photo--wide"><img class="media-photo__img" src="/assets/img/services/commercial.svg" alt="Kártevőirtás cégeknek — társasházak, éttermek, üzletek, raktárak" width="480" height="600" loading="lazy" decoding="async"></div>
+        <ul class="b2b-grid">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><rect x="14" y="9" width="6" height="12"/><path d="M7 7h1M7 11h1M7 15h1M10 7h1M10 11h1M10 15h1"/></svg> Társasházak, lépcsőházak</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><rect x="14" y="9" width="6" height="12"/><path d="M7 7h1M7 11h1M7 15h1M10 7h1M10 11h1M10 15h1"/></svg> Éttermek, vendéglátóipari egységek</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><rect x="14" y="9" width="6" height="12"/><path d="M7 7h1M7 11h1M7 15h1M10 7h1M10 11h1M10 15h1"/></svg> Üzletek, irodák</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><rect x="14" y="9" width="6" height="12"/><path d="M7 7h1M7 11h1M7 15h1M10 7h1M10 11h1M10 15h1"/></svg> Raktárak, gazdasági épületek</li>
+        </ul>
+      </div>
     </div>
   </section>
 

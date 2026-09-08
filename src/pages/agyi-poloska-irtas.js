@@ -17,6 +17,7 @@ function render() {
       ],
       tagBoxLeft: 'Rejtekhely-felmérés',
       tagBoxRight: 'Célzott kezelés',
+      mediaKey: 'agyi-poloska-irtas',
     },
     sections: [
       {

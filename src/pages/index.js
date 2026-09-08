@@ -2,6 +2,7 @@
 const { SITE } = require('../config');
 const { icons } = require('../partials/icons');
 const { SERVICES } = require('../data/services');
+const { renderMedia } = require('../partials/media');
 const { renderSteps, renderTrustGrid, renderCtaBand } = require('../partials/components');
 
 function render() {
@@ -48,15 +49,8 @@ function render() {
           <span class="hero__badge">${icons.shield} Lakossági és üzleti ügyfeleknek</span>
         </div>
       </div>
-      <div class="hero__visual" aria-hidden="true">
-        <svg viewBox="0 0 400 400" fill="none">
-          <circle cx="200" cy="200" r="176" stroke="#2a2e33" stroke-width="1.5"/>
-          <circle cx="200" cy="200" r="140" stroke="#F28C28" stroke-width="1.5" stroke-dasharray="4 10"/>
-          <circle cx="200" cy="200" r="98" fill="#1A1D21" stroke="#2a2e33"/>
-          <circle cx="200" cy="200" r="46" fill="#F28C28" opacity=".14"/>
-          <circle cx="200" cy="200" r="46" stroke="#F28C28" stroke-width="2"/>
-          <circle cx="200" cy="200" r="10" fill="#F28C28"/>
-        </svg>
+      <div class="hero__visual">
+        <div class="media-photo">${renderMedia('homepage', { eager: true })}</div>
         <div class="hero__tag hero__tag--1">${icons.target} Célzott felmérés</div>
         <div class="hero__tag hero__tag--2">${icons.check} Szakszerű kezelés</div>
       </div>
@@ -113,12 +107,15 @@ function render() {
         </p>
         <a class="btn btn--outline" style="margin-top:1.3rem" href="/kapcsolat/" data-track="quote-cta" data-location="b2b-teaser">Üzleti ajánlatot kérek</a>
       </div>
-      <ul class="b2b-grid">
-        <li>${icons.building} Társasházak, lépcsőházak</li>
-        <li>${icons.building} Éttermek, vendéglátóipari egységek</li>
-        <li>${icons.building} Üzletek, irodák</li>
-        <li>${icons.building} Raktárak, gazdasági épületek</li>
-      </ul>
+      <div class="stack">
+        <div class="media-photo media-photo--wide">${renderMedia('commercial')}</div>
+        <ul class="b2b-grid">
+          <li>${icons.building} Társasházak, lépcsőházak</li>
+          <li>${icons.building} Éttermek, vendéglátóipari egységek</li>
+          <li>${icons.building} Üzletek, irodák</li>
+          <li>${icons.building} Raktárak, gazdasági épületek</li>
+        </ul>
+      </div>
     </div>
   </section>
 
