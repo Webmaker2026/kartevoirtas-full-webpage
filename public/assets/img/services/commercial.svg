@@ -1,0 +1,49 @@
+<svg viewBox="0 0 480 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="">
+  <defs>
+    <linearGradient id="bg-commercial" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1d2126"/>
+      <stop offset="60%" stop-color="#141619"/>
+      <stop offset="100%" stop-color="#0c0d0f"/>
+    </linearGradient>
+    <radialGradient id="glow-commercial" cx="60%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#F28C28" stop-opacity=".28"/>
+      <stop offset="55%" stop-color="#F28C28" stop-opacity=".07"/>
+      <stop offset="100%" stop-color="#F28C28" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vig-commercial" cx="50%" cy="46%" r="75%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity=".45"/>
+    </radialGradient>
+    <filter id="grain-commercial">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .05 0"/>
+    </filter>
+  </defs>
+  <rect width="480" height="600" fill="url(#bg-commercial)"/>
+  <rect width="480" height="600" fill="url(#glow-commercial)"/>
+  <circle cx="240" cy="276" r="205" fill="none" stroke="#F28C28" stroke-width="1.5" stroke-dasharray="3 11" opacity=".35"/>
+  <g>
+      <g transform="translate(230,120)">
+        <rect x="0" y="0" width="200" height="380" fill="#1c2024" stroke="#F3F1EA" stroke-width="4"/>
+        <g fill="#F28C28" opacity=".5">
+          <rect x="20" y="26" width="26" height="30"/><rect x="60" y="26" width="26" height="30"/>
+          <rect x="100" y="26" width="26" height="30"/><rect x="140" y="26" width="26" height="30"/>
+          <rect x="20" y="70" width="26" height="30"/><rect x="60" y="70" width="26" height="30"/>
+          <rect x="100" y="70" width="26" height="30"/><rect x="140" y="70" width="26" height="30"/>
+          <rect x="20" y="114" width="26" height="30"/><rect x="60" y="114" width="26" height="30"/>
+          <rect x="100" y="114" width="26" height="30"/><rect x="140" y="114" width="26" height="30"/>
+        </g>
+        <rect x="70" y="300" width="60" height="80" fill="#0c0d0f" stroke="#F3F1EA" stroke-width="3"/>
+      </g>
+      <g transform="translate(70,260)">
+        <circle cx="46" cy="30" r="26" fill="#20242a" stroke="#F3F1EA" stroke-width="4"/>
+        <path d="M20 100 C20 66 30 56 46 56 C62 56 72 66 72 100 L78 190 L52 190 L48 130 L44 190 L18 190 Z" fill="#20242a" stroke="#F3F1EA" stroke-width="4" stroke-linejoin="round"/>
+        <rect x="72" y="90" width="46" height="60" rx="4" fill="#F28C28" opacity=".14" stroke="#F28C28" stroke-width="3.5"/>
+        <g stroke="#F28C28" stroke-width="3" stroke-linecap="round">
+          <path d="M80 104h30M80 116h30M80 128h22"/>
+        </g>
+      </g>
+    </g>
+  <rect width="480" height="600" fill="url(#vig-commercial)"/>
+  <rect width="480" height="600" filter="url(#grain-commercial)"/>
+</svg>

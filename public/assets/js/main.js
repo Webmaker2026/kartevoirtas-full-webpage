@@ -93,6 +93,47 @@
   }
 
   /* ============================================================
+     Asztali "Szolgáltatások" legördülő menü
+     - CSS-hover/focus-within nyitja-zárja a menüt, ez a blokk csak
+       az aria-expanded állapotot és az Escape-kilépést kezeli
+     ============================================================ */
+  function initDesktopDropdowns() {
+    document.querySelectorAll('.has-dropdown').forEach(function (li) {
+      var trigger = li.querySelector('[data-dropdown-trigger]');
+      if (!trigger) return;
+      var suppressReopen = false;
+
+      function setExpanded(open) {
+        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+
+      li.addEventListener('mouseenter', function () {
+        li.removeAttribute('data-closed');
+        setExpanded(true);
+      });
+      li.addEventListener('mouseleave', function () { setExpanded(false); });
+      li.addEventListener('focusin', function () {
+        // Escape után a trigger.focus() is 'focusin'-t vált ki — ezt az
+        // egy alkalmat kihagyjuk, különben azonnal újranyitná a menüt.
+        if (suppressReopen) { suppressReopen = false; return; }
+        li.removeAttribute('data-closed');
+        setExpanded(true);
+      });
+      li.addEventListener('focusout', function (e) {
+        if (!li.contains(e.relatedTarget)) setExpanded(false);
+      });
+      li.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          li.setAttribute('data-closed', 'true');
+          setExpanded(false);
+          suppressReopen = true;
+          trigger.focus();
+        }
+      });
+    });
+  }
+
+  /* ============================================================
      Cookie consent banner + preferencia modal
      ============================================================ */
   function initConsent() {
@@ -265,6 +306,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initMobileNav();
+    initDesktopDropdowns();
     initConsent();
     initQuoteForm();
     initMicroConversions();

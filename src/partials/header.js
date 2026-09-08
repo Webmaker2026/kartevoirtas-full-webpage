@@ -28,9 +28,11 @@ function renderHeader(activePath) {
         <ul>
           <li><a class="navlink" href="/"${isActive('/', activePath)}>Főoldal</a></li>
           <li class="has-dropdown">
-            <a class="navlink" href="/#szolgaltatasok" aria-haspopup="true">Szolgáltatások ${icons.chevronDown}</a>
+            <a class="navlink" href="/#szolgaltatasok" aria-haspopup="true" aria-expanded="false" data-dropdown-trigger>Szolgáltatások ${icons.chevronDown}</a>
             <div class="dropdown">
-              ${serviceLinks}
+              <div class="dropdown__panel">
+                ${serviceLinks}
+              </div>
             </div>
           </li>
           <li><a class="navlink" href="/arak/"${isActive('/arak/', activePath)}>Árak</a></li>

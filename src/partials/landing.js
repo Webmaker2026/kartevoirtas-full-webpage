@@ -2,6 +2,7 @@
 const { SITE } = require('../config');
 const { icons } = require('./icons');
 const { renderBreadcrumb } = require('./breadcrumb');
+const { renderMedia } = require('./media');
 const { renderPriceTable, renderFaq, renderFaqJsonLd, renderSteps, renderSigns, renderTrustGrid, renderCtaBand } = require('./components');
 
 function sectionClass(bg) {
@@ -31,14 +32,8 @@ function renderHeroService(h) {
             ${badges}
           </div>
         </div>
-        <div class="hero__visual" aria-hidden="true">
-          <svg viewBox="0 0 400 400" fill="none">
-            <circle cx="200" cy="200" r="176" stroke="#2a2e33" stroke-width="1.5"/>
-            <circle cx="200" cy="200" r="132" stroke="#F28C28" stroke-width="1.5" stroke-dasharray="4 10"/>
-            <circle cx="200" cy="200" r="92" fill="#1A1D21" stroke="#2a2e33"/>
-            <path d="M200 140v40M200 260v-40M140 200h40M260 200h-40" stroke="#F28C28" stroke-width="2"/>
-            <circle cx="200" cy="200" r="14" fill="#F28C28"/>
-          </svg>
+        <div class="hero__visual">
+          <div class="media-photo">${renderMedia(h.mediaKey, { alt: h.mediaAlt, eager: true })}</div>
           <div class="hero__tag hero__tag--1">${icons.target} ${h.tagBoxLeft || 'Pontos beazonosítás'}</div>
           <div class="hero__tag hero__tag--2">${icons.check} ${h.tagBoxRight || 'Célzott kezelés'}</div>
         </div>

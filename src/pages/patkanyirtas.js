@@ -17,6 +17,7 @@ function render() {
       ],
       tagBoxLeft: 'Bejárat-felmérés',
       tagBoxRight: 'Biztonságos mentesítés',
+      mediaKey: 'patkanyirtas',
     },
     sections: [
       {

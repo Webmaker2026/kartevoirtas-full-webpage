@@ -4,7 +4,7 @@
   "private": true,
   "description": "Kártevőirtó vállalkozás weboldala — statikus HTML/CSS/JS + PHP ajánlatkérő űrlap. A src/ mappa a fejlesztési (build-time) forrás, a public/ a végleges, FTP-re tölthető és Vercelen previewzhető statikus kimenet.",
   "scripts": {
-    "build": "node src/build.js && node scripts/generate-icons.js && node scripts/generate-og-image.js",
+    "build": "node src/build.js && node scripts/generate-icons.js && node scripts/generate-og-image.js && node scripts/generate-service-art.js",
     "build:pages": "node src/build.js"
   },
   "engines": {

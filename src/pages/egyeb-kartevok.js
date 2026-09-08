@@ -16,6 +16,7 @@ function render() {
       ],
       tagBoxLeft: 'Egyedi felmérés',
       tagBoxRight: 'Célzott megoldás',
+      mediaKey: 'general',
     },
     sections: [
       {

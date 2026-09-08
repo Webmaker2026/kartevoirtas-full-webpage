@@ -49,9 +49,10 @@
         <ul>
           <li><a class="navlink" href="/">Főoldal</a></li>
           <li class="has-dropdown">
-            <a class="navlink" href="/#szolgaltatasok" aria-haspopup="true">Szolgáltatások <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+            <a class="navlink" href="/#szolgaltatasok" aria-haspopup="true" aria-expanded="false" data-dropdown-trigger>Szolgáltatások <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
             <div class="dropdown">
-              <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
+              <div class="dropdown__panel">
+                <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
               <a href="/csotanyirtas/">Csótányirtás</a>
               <a href="/darazsirtas/">Darázsirtás</a>
               <a href="/hangyairtas/">Hangyairtás</a>
@@ -59,6 +60,7 @@
               <a href="/egerirtas/">Egérirtás</a>
               <a href="/bolhairtas/">Bolhairtás</a>
               <a href="/egyeb-kartevok/">Egyéb kártevők</a>
+              </div>
             </div>
           </li>
           <li><a class="navlink" href="/arak/">Árak</a></li>
@@ -134,14 +136,8 @@
           <span class="hero__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg> [SZOLGÁLTATÁSI TERÜLET]</span>
           </div>
         </div>
-        <div class="hero__visual" aria-hidden="true">
-          <svg viewBox="0 0 400 400" fill="none">
-            <circle cx="200" cy="200" r="176" stroke="#2a2e33" stroke-width="1.5"/>
-            <circle cx="200" cy="200" r="132" stroke="#F28C28" stroke-width="1.5" stroke-dasharray="4 10"/>
-            <circle cx="200" cy="200" r="92" fill="#1A1D21" stroke="#2a2e33"/>
-            <path d="M200 140v40M200 260v-40M140 200h40M260 200h-40" stroke="#F28C28" stroke-width="2"/>
-            <circle cx="200" cy="200" r="14" fill="#F28C28"/>
-          </svg>
+        <div class="hero__visual">
+          <div class="media-photo"><img class="media-photo__img" src="/assets/img/services/general.svg" alt="Egyéb kártevők — egyedi felmérés alapján kínált megoldás" width="480" height="600" decoding="async"></div>
           <div class="hero__tag hero__tag--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg> Egyedi felmérés</div>
           <div class="hero__tag hero__tag--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Célzott megoldás</div>
         </div>
