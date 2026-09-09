@@ -10,13 +10,15 @@ const { MEDIA } = require('../data/media');
  * @param {Object} [opts]
  * @param {string} [opts.alt] - felülírja a leltárban szereplő alt szöveget
  * @param {boolean} [opts.eager] - true esetén nincs loading="lazy" (pl. LCP hero kép)
+ * @param {string} [opts.className] - felülírja az alapértelmezett 'media-photo__img' osztályt
  */
 function renderMedia(key, opts = {}) {
   const entry = MEDIA[key];
   if (!entry) return '';
   const alt = opts.alt || entry.alt || '';
   const loading = opts.eager ? '' : ' loading="lazy"';
-  return `<img class="media-photo__img" src="${entry.src}" alt="${alt}" width="480" height="600"${loading} decoding="async">`;
+  const className = opts.className || 'media-photo__img';
+  return `<img class="${className}" src="${entry.src}" alt="${alt}" width="480" height="600"${loading} decoding="async">`;
 }
 
 module.exports = { renderMedia };

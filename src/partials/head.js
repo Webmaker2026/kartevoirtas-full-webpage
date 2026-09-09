@@ -27,7 +27,7 @@ function renderHead(opts) {
 <meta name="description" content="${description}">
 <link rel="canonical" href="${canonical}">
 <meta name="robots" content="${robots}">
-<meta name="theme-color" content="#111315">
+<meta name="theme-color" content="#201e1d">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/assets/img/icons/favicon.svg">
@@ -48,7 +48,7 @@ function renderHead(opts) {
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap">
 <link rel="stylesheet" href="/assets/css/style.css">
 
 <!-- GTM / GA4 / Google Ads: a mérési azonosítók megérkezésekor ide kerül a

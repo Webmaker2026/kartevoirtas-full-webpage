@@ -3,83 +3,84 @@ const { SITE } = require('../config');
 const { icons } = require('./icons');
 const { SERVICES } = require('../data/services');
 
+const NAV_ITEMS = [
+  { label: 'Főoldal', href: '/' },
+  { label: 'Szolgáltatások', href: '/#szolgaltatasok' },
+  { label: 'Árak', href: '/arak/' },
+  { label: 'Rólunk', href: '/rolunk/' },
+  { label: 'GYIK', href: '/gyik/' },
+  { label: 'Kapcsolat', href: '/kapcsolat/' },
+];
+
 function isActive(path, current) {
   return path === current ? ' aria-current="page"' : '';
 }
 
 function renderHeader(activePath) {
-  const serviceLinks = SERVICES.map(
-    (s) => `<a href="${s.path}">${s.label}</a>`
-  ).join('\n              ');
+  const navLinks = NAV_ITEMS.map(
+    (item) => `<a class="navlink" href="${item.href}"${isActive(item.href, activePath)}>${item.label}</a>`
+  ).join('\n          ');
 
-  const mobileServiceLinks = SERVICES.map(
-    (s) => `<a class="navlink" style="font-weight:600;font-size:.95rem;border-bottom:none;padding:.5rem .25rem" href="${s.path}">${s.label}</a>`
-  ).join('\n            ');
+  const mobileNavLinks = NAV_ITEMS.map(
+    (item) => `<a class="navlink" href="${item.href}"${isActive(item.href, activePath)}>${item.label}</a>`
+  ).join('\n        ');
+
+  const mobileServiceLinks = SERVICES.map((s) => `<a href="${s.path}">${s.label}</a>`).join('\n          ');
 
   return `<a class="skip-link" href="#main">Ugrás a tartalomhoz</a>
+
+  <div class="topbar">
+    <div class="container">
+      <span class="topbar__item">${icons.pin} ${SITE.serviceArea}</span>
+      <span class="topbar__item">${icons.clock} ${SITE.openingHours}</span>
+      <span class="topbar__dispatch">Kiszállás: ${SITE.dispatchTime}</span>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="container site-header__bar">
       <a class="brand" href="/">
-        <span class="brand__mark">${icons.logoMark}</span>
-        <span class="brand__name">${SITE.companyName}</span>
+        <span class="brand__mark">K</span>
+        <span class="brand__name-wrap">
+          <span class="brand__name">${SITE.companyName}</span>
+          <span class="brand__sub">Kártevőirtás</span>
+        </span>
       </a>
 
       <nav class="nav-desktop" aria-label="Fő navigáció">
-        <ul>
-          <li><a class="navlink" href="/"${isActive('/', activePath)}>Főoldal</a></li>
-          <li class="has-dropdown">
-            <a class="navlink" href="/#szolgaltatasok" aria-haspopup="true" aria-expanded="false" data-dropdown-trigger>Szolgáltatások ${icons.chevronDown}</a>
-            <div class="dropdown">
-              <div class="dropdown__panel">
-                ${serviceLinks}
-              </div>
-            </div>
-          </li>
-          <li><a class="navlink" href="/arak/"${isActive('/arak/', activePath)}>Árak</a></li>
-          <li><a class="navlink" href="/rolunk/"${isActive('/rolunk/', activePath)}>Rólunk</a></li>
-          <li><a class="navlink" href="/gyik/"${isActive('/gyik/', activePath)}>GYIK</a></li>
-          <li><a class="navlink" href="/kapcsolat/"${isActive('/kapcsolat/', activePath)}>Kapcsolat</a></li>
-        </ul>
+        ${navLinks}
       </nav>
 
       <div class="header-cta">
         <a class="header-phone" href="${SITE.phoneHref}" data-track="call" data-location="header">
-          ${icons.phone} ${SITE.phoneDisplay}
+          <span class="header-phone__label">Hívjon most</span>
+          <span class="header-phone__num">${SITE.phoneDisplay}</span>
         </a>
         <a class="btn btn--primary btn--sm" href="/kapcsolat/" data-track="quote-cta" data-location="header">Ajánlatkérés</a>
       </div>
 
-      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü megnyitása">
-        ${icons.menu}
-      </button>
+      <div class="header-mobile-actions">
+        <a class="icon-btn icon-btn--call" href="${SITE.phoneHref}" data-track="call" data-location="header-mobile" aria-label="Hívás: ${SITE.phoneDisplay}">${icons.phone}</a>
+        <button class="icon-btn icon-btn--menu" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü megnyitása">
+          ${icons.menu}
+        </button>
+      </div>
     </div>
   </header>
 
   <div class="mobile-nav" id="mobile-nav" data-mobile-nav data-open="false">
-    <div class="mobile-nav__scrim" data-nav-scrim></div>
     <nav class="mobile-nav__panel" aria-label="Mobil navigáció">
-      <div class="mobile-nav__top">
-        <a class="brand" href="/">
-          <span class="brand__mark">${icons.logoMark}</span>
-          <span class="brand__name">${SITE.companyName}</span>
-        </a>
-        <button class="mobile-nav__close" type="button" data-nav-close aria-label="Menü bezárása">${icons.close}</button>
+      ${mobileNavLinks}
+      <div class="mobile-nav__sub">
+        <span class="eyebrow">Szolgáltatások</span>
+        ${mobileServiceLinks}
       </div>
-      <div>
-        <a class="navlink" href="/"${isActive('/', activePath)}>Főoldal</a>
-        <div class="mobile-nav__sub">
-          <div class="eyebrow" style="margin:.6rem 0">Szolgáltatások</div>
-          ${mobileServiceLinks}
-        </div>
-        <a class="navlink" href="/arak/"${isActive('/arak/', activePath)}>Árak</a>
-        <a class="navlink" href="/rolunk/"${isActive('/rolunk/', activePath)}>Rólunk</a>
-        <a class="navlink" href="/gyik/"${isActive('/gyik/', activePath)}>GYIK</a>
-        <a class="navlink" href="/kapcsolat/"${isActive('/kapcsolat/', activePath)}>Kapcsolat</a>
+      <div class="mobile-nav__actions">
+        <a class="btn btn--primary" href="${SITE.phoneHref}" data-track="call" data-location="mobile-menu">${icons.phone} Hívás: ${SITE.phoneDisplay}</a>
+        <a class="btn btn--outline" href="/kapcsolat/" data-track="quote-cta" data-location="mobile-menu">Ajánlatkérés</a>
       </div>
-      <a class="btn btn--primary btn--block" href="${SITE.phoneHref}" data-track="call" data-location="mobile-menu">${icons.phone} Hívás: ${SITE.phoneDisplay}</a>
-      <a class="btn btn--outline btn--block" href="/kapcsolat/" data-track="quote-cta" data-location="mobile-menu">Ajánlatkérés</a>
     </nav>
   </div>`;
 }
 
-module.exports = { renderHeader };
+module.exports = { renderHeader, NAV_ITEMS };

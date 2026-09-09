@@ -12,7 +12,7 @@ function renderBreadcrumb(items) {
     const sep = i > 0 ? '<span aria-hidden="true">/</span>' : '';
     return `${sep}${inner}`;
   });
-  return `<nav class="breadcrumb" aria-label="Morzsamenü">${parts.join('\n    ')}</nav>`;
+  return `<nav class="breadcrumb" aria-label="Morzsamenü">${parts.join('')}</nav>`;
 }
 
 module.exports = { renderBreadcrumb };

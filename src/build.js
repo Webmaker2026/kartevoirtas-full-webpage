@@ -202,8 +202,8 @@ function buildManifest() {
     short_name: SITE.companyName.length > 20 ? 'Kártevőirtás' : SITE.companyName,
     start_url: '/',
     display: 'standalone',
-    background_color: '#111315',
-    theme_color: '#111315',
+    background_color: '#201e1d',
+    theme_color: '#201e1d',
     icons: [
       { src: '/assets/img/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
       { src: '/assets/img/icons/icon-512.png', sizes: '512x512', type: 'image/png' },

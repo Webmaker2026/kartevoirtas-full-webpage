@@ -1,7 +1,8 @@
 'use strict';
 const { SITE } = require('../config');
+const { icons } = require('../partials/icons');
 const { renderBreadcrumb } = require('../partials/breadcrumb');
-const { renderFaq, renderFaqJsonLd, renderCtaBand } = require('../partials/components');
+const { renderFaq, renderFaqJsonLd } = require('../partials/components');
 const { SERVICES } = require('../data/services');
 
 function render() {
@@ -17,34 +18,23 @@ function render() {
   ];
 
   return `
-  <section class="section--dark">
-    <div class="container">
+  <section class="hero hero--page" style="background:var(--color-text)">
+    <div class="container hero__inner">
       ${renderBreadcrumb([{ label: 'Főoldal', path: '/' }, { label: 'GYIK' }])}
       <span class="eyebrow">Gyakori kérdések</span>
-      <h1 style="margin-top:.6rem">Kérdések és válaszok</h1>
-      <p class="lead" style="margin-top:1rem;max-width:44rem">
-        Az alábbiakban az általános, minden szolgáltatásra jellemző kérdéseket gyűjtöttük össze. Kártevő-specifikus
-        kérdéseket az adott szolgáltatási oldal GYIK szekciójában talál.
-      </p>
-      <div class="table-of-contents" style="margin-top:1.3rem">
-        ${SERVICES.map((s) => `<a href="${s.path}">${s.label}</a>`).join('\n        ')}
-      </div>
+      <h1 style="margin-top:16px;max-width:840px">Amit a kártevőirtásról tudni érdemes</h1>
     </div>
   </section>
 
   <section class="section--light">
-    <div class="container" style="max-width:52rem">
+    <div class="container container--narrow">
       ${renderFaq(generalFaq, 'gyik')}
+      <div class="faq-callout">
+        <h2>Nem találta a választ?</h2>
+        <p>Hívjon minket, és elmondjuk, mire számítson a konkrét helyzetében.</p>
+        <a class="btn btn--primary" style="margin-top:20px" href="${SITE.phoneHref}" data-track="call" data-location="gyik-final-cta">${SITE.phoneDisplay}</a>
+      </div>
     </div>
-  </section>
-
-  <section class="section--alt">
-    ${renderCtaBand({
-      eyebrow: 'Nem találta a választ?',
-      title: 'Kérdezzen tőlünk közvetlenül',
-      body: 'Írjon üzenetet az ajánlatkérő űrlapon, vagy hívjon minket telefonon.',
-      location: 'gyik-final-cta',
-    })}
   </section>
   ${renderFaqJsonLd(generalFaq)}
   `;
