@@ -1,91 +1,69 @@
 'use strict';
 const { SITE } = require('../config');
-const { icons } = require('../partials/icons');
 const { renderBreadcrumb } = require('../partials/breadcrumb');
+const { renderMedia } = require('../partials/media');
 const { renderTrustGrid, renderCtaBand } = require('../partials/components');
 
 function render() {
-  const values = [
-    { icon: 'target', title: 'A probléma okára fókuszálunk', body: 'Nem a tünetet, hanem a fertőzöttség forrását és a visszatérés okát igyekszünk megszüntetni.' },
-    { icon: 'doc', title: 'Érthető kommunikáció', body: 'Elmondjuk, mit és miért csinálunk, mire számítson a kezelés előtt, alatt és után.' },
-    { icon: 'shield', title: 'Biztonságos megoldások', body: 'A háztartás vagy a helyszín adottságaihoz (gyerek, háziállat, élelmiszer közelség) igazítjuk a módszert.' },
-    { icon: 'building', title: 'Lakossági és üzleti ügyfelek', body: 'Magánlakásoktól a társasházakon át a vendéglátóipari egységekig dolgozunk.' },
+  const proof = [
+    { big: SITE.dispatchTime, small: 'kiszállás sürgős bejelentés esetén' },
+    { big: 'Nincs rejtett költség', small: 'a felmérés után kap pontos árajánlatot' },
+    { big: 'Lakossági és üzleti', small: 'ügyfeleknek egyaránt dolgozunk' },
+    { big: SITE.serviceArea, small: 'kártevőirtás a szolgáltatási területünkön' },
+  ];
+
+  const trustItems = [
+    { title: 'Célzott, nem sablon kezelés', body: 'A kártevő fajtájához és a helyszín adottságaihoz igazított módszert alkalmazunk, nem egy általános eljárást mindenre.' },
+    { title: 'Érthető ajánlat, világos folyamat', body: 'Felmérés után pontosan tudja, mi történik, mennyi idő alatt és mi a teendője a kezelés előtt és után.' },
+    { title: 'Lakossági és üzleti ügyfeleknek', body: 'Magánlakástól a társasházon át a vendéglátóipari egységig kezeljük a jellemző kártevőproblémákat.' },
+    { title: 'Rugalmas időpontok', body: 'A bejelentett probléma sürgősségéhez igazodó időpontot egyeztetünk telefonos vagy online ajánlatkérés után.' },
   ];
 
   return `
-  <section class="section--dark">
-    <div class="container">
+  <section class="hero">
+    ${renderMedia('rolunk-hero', { eager: true, className: 'hero__bg grayscale' })}
+    <div class="hero__scrim"></div>
+    <div class="container hero__inner">
       ${renderBreadcrumb([{ label: 'Főoldal', path: '/' }, { label: 'Rólunk' }])}
-      <span class="eyebrow">Rólunk</span>
-      <h1 style="margin-top:.6rem">${SITE.companyName}</h1>
-      <p class="lead" style="margin-top:1rem;max-width:44rem">
-        Kártevőirtással foglalkozunk ${SITE.serviceArea} — a cél minden esetben ugyanaz: pontosan beazonosítani a
-        problémát, és a helyzethez illő, tartós megoldást adni rá, nem csak egy általános, mindenre alkalmazott kezelést.
-      </p>
-    </div>
-  </section>
-
-  <section class="section--light">
-    <div class="container grid grid--2" style="align-items:center">
-      <div>
-        <span class="eyebrow">Szemléletünk</span>
-        <h2 style="margin-top:.6rem">Miért fontos a felmérés minden munka elején</h2>
-        <p class="muted" style="margin-top:.9rem">
-          A legtöbb kártevőprobléma nem azért tér vissza, mert a kezelés rossz volt, hanem mert a fertőzöttség forrása
-          — egy rejtekhely, egy bejutási pont, egy fészek — nem lett teljesen felszámolva. Ezért minden munkát alapos
-          felméréssel kezdünk, és csak ez után adunk pontos árajánlatot és javaslatot a kezelés módjára.
-        </p>
-        <p class="muted" style="margin-top:.9rem">
-          Fontosnak tartjuk, hogy Ön is értse, mi történik a lakásában vagy az ingatlanján: elmagyarázzuk a kezelés
-          menetét, az előkészületeket és az utólagos teendőket is.
-        </p>
-      </div>
-      <div class="card">
-        <h3>${icons.pin} Szolgáltatási terület</h3>
-        <p class="muted" style="margin-top:.8rem">${SITE.serviceArea}</p>
-        <hr class="divider">
-        <h3>${icons.clock} Elérhetőség</h3>
-        <p class="muted" style="margin-top:.8rem">${SITE.openingHours}</p>
+      <div class="hero__content">
+        <span class="eyebrow">Rólunk</span>
+        <h1 style="margin-top:16px;max-width:860px">A kártevőirtás nem permetezés — hanem felmérés, döntés és utókövetés</h1>
+        <p class="lead hero__lead">${SITE.companyName} magánszemélyeknek és cégeknek dolgozik ${SITE.serviceArea} területén. Minden munkánk ugyanazzal kezdődik: megnézzük, mi okozza a problémát.</p>
       </div>
     </div>
   </section>
 
-  <section class="section--dark">
+  <section class="proof-strip">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Amit fontosnak tartunk</span>
-        <h2 style="margin-top:.6rem">Így dolgozunk</h2>
-      </div>
-      <div class="grid grid--2">
-        ${renderTrustGrid(values)}
+      <div class="grid">
+        ${proof.map((p) => `<div class="proof-strip__item"><div class="proof-strip__big">${p.big}</div><div class="proof-strip__small">${p.small}</div></div>`).join('\n        ')}
       </div>
     </div>
   </section>
 
   <section class="section--light">
-    <div class="container grid grid--2" style="align-items:center">
+    <div class="container grid grid--2" style="gap:clamp(32px,4vw,64px)">
       <div>
-        <span class="eyebrow">Üzleti ügyfeleknek</span>
-        <h2 style="margin-top:.6rem">Társasházak, éttermek, üzletek, raktárak</h2>
-        <p class="muted" style="margin-top:.9rem">
-          Kereskedelmi és intézményi ügyfeleink esetében is a helyszíni felmérés az első lépés — az igényt, az
-          ingatlan típusát és a nyitvatartási szempontokat figyelembe véve adunk egyedi ajánlatot.
-        </p>
+        <h2>Ahogyan dolgozunk</h2>
+        <p style="margin-top:18px;line-height:1.68">Nem sablonkezelést adunk el. A kártevő fajtájához és a helyszín adottságaihoz igazított módszert alkalmazunk, és elmondjuk azt is, ha valamit Önnek kell megcsinálnia ahhoz, hogy a kezelés tartós legyen.</p>
+        <p style="margin-top:14px;line-height:1.68">Lakossági és üzleti ügyfeleket egyaránt kiszolgálunk: magánlakástól a társasházon át a vendéglátóipari egységig.</p>
+        <div class="trust-row-grid" style="margin-top:28px">
+          ${renderTrustGrid(trustItems)}
+        </div>
       </div>
-      <ul class="b2b-grid">
-        <li>${icons.building} Társasházak, lépcsőházak</li>
-        <li>${icons.building} Éttermek, vendéglátóipari egységek</li>
-        <li>${icons.building} Üzletek, irodák</li>
-        <li>${icons.building} Raktárak, gazdasági épületek</li>
-      </ul>
+      <div class="stack">
+        <div class="media-photo media-photo--tall">${renderMedia('rolunk-main', { className: 'grayscale' })}</div>
+        <div class="grid grid--2">
+          <div class="media-photo media-photo--square">${renderMedia('rolunk-side-1', { className: 'grayscale' })}</div>
+          <div class="media-photo media-photo--square">${renderMedia('rolunk-side-2', { className: 'grayscale' })}</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section--alt">
+  <section class="section--accent">
     ${renderCtaBand({
-      eyebrow: 'Beszéljünk a problémáról',
-      title: 'Írja le, milyen kártevővel áll szemben',
-      body: 'Ajánlatkérés vagy telefonhívás után rövid időn belül visszajelzünk.',
+      title: 'Beszéljünk arról, mit észlelt',
       location: 'rolunk-final-cta',
     })}
   </section>

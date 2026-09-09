@@ -7,7 +7,7 @@
 <meta name="description" content="Molylepke, pincebogár, atka és más kártevők kezelése egyedi felmérés alapján. Kérjen ajánlatot, ha nem találja a problémájának megfelelő oldalt.">
 <link rel="canonical" href="https://[DOMAIN]/egyeb-kartevok/">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#111315">
+<meta name="theme-color" content="#201e1d">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/assets/img/icons/favicon.svg">
@@ -28,7 +28,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap">
 <link rel="stylesheet" href="/assets/css/style.css">
 
 <!-- GTM / GA4 / Google Ads: a mérési azonosítók megérkezésekor ide kerül a
@@ -38,212 +38,193 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Ugrás a tartalomhoz</a>
+
+  <div class="topbar">
+    <div class="container">
+      <span class="topbar__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg> [SZOLGÁLTATÁSI TERÜLET]</span>
+      <span class="topbar__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> [NYITVATARTÁS / ELÉRHETŐSÉG]</span>
+      <span class="topbar__dispatch">Kiszállás: [KISZÁLLÁSI IDŐ]</span>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="container site-header__bar">
       <a class="brand" href="/">
-        <span class="brand__mark"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="10" fill="#111315" stroke="#F28C28" stroke-width="1.5"/><circle cx="20" cy="20" r="10.5" stroke="#F28C28" stroke-width="2"/><circle cx="20" cy="20" r="5.5" stroke="#F28C28" stroke-width="2"/><circle cx="20" cy="20" r="1.6" fill="#F28C28"/></svg></span>
-        <span class="brand__name">[CÉGNÉV]</span>
+        <span class="brand__mark">K</span>
+        <span class="brand__name-wrap">
+          <span class="brand__name">[CÉGNÉV]</span>
+          <span class="brand__sub">Kártevőirtás</span>
+        </span>
       </a>
 
       <nav class="nav-desktop" aria-label="Fő navigáció">
-        <ul>
-          <li><a class="navlink" href="/">Főoldal</a></li>
-          <li class="has-dropdown">
-            <a class="navlink" href="/#szolgaltatasok" aria-haspopup="true" aria-expanded="false" data-dropdown-trigger>Szolgáltatások <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
-            <div class="dropdown">
-              <div class="dropdown__panel">
-                <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
-              <a href="/csotanyirtas/">Csótányirtás</a>
-              <a href="/darazsirtas/">Darázsirtás</a>
-              <a href="/hangyairtas/">Hangyairtás</a>
-              <a href="/patkanyirtas/">Patkányirtás</a>
-              <a href="/egerirtas/">Egérirtás</a>
-              <a href="/bolhairtas/">Bolhairtás</a>
-              <a href="/egyeb-kartevok/">Egyéb kártevők</a>
-              </div>
-            </div>
-          </li>
-          <li><a class="navlink" href="/arak/">Árak</a></li>
-          <li><a class="navlink" href="/rolunk/">Rólunk</a></li>
-          <li><a class="navlink" href="/gyik/">GYIK</a></li>
-          <li><a class="navlink" href="/kapcsolat/">Kapcsolat</a></li>
-        </ul>
+        <a class="navlink" href="/">Főoldal</a>
+          <a class="navlink" href="/#szolgaltatasok">Szolgáltatások</a>
+          <a class="navlink" href="/arak/">Árak</a>
+          <a class="navlink" href="/rolunk/">Rólunk</a>
+          <a class="navlink" href="/gyik/">GYIK</a>
+          <a class="navlink" href="/kapcsolat/">Kapcsolat</a>
       </nav>
 
       <div class="header-cta">
         <a class="header-phone" href="tel:[TELEFONSZÁM]" data-track="call" data-location="header">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> [TELEFONSZÁM]
+          <span class="header-phone__label">Hívjon most</span>
+          <span class="header-phone__num">[TELEFONSZÁM]</span>
         </a>
         <a class="btn btn--primary btn--sm" href="/kapcsolat/" data-track="quote-cta" data-location="header">Ajánlatkérés</a>
       </div>
 
-      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü megnyitása">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
+      <div class="header-mobile-actions">
+        <a class="icon-btn icon-btn--call" href="tel:[TELEFONSZÁM]" data-track="call" data-location="header-mobile" aria-label="Hívás: [TELEFONSZÁM]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg></a>
+        <button class="icon-btn icon-btn--menu" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü megnyitása">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
   <div class="mobile-nav" id="mobile-nav" data-mobile-nav data-open="false">
-    <div class="mobile-nav__scrim" data-nav-scrim></div>
     <nav class="mobile-nav__panel" aria-label="Mobil navigáció">
-      <div class="mobile-nav__top">
-        <a class="brand" href="/">
-          <span class="brand__mark"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="10" fill="#111315" stroke="#F28C28" stroke-width="1.5"/><circle cx="20" cy="20" r="10.5" stroke="#F28C28" stroke-width="2"/><circle cx="20" cy="20" r="5.5" stroke="#F28C28" stroke-width="2"/><circle cx="20" cy="20" r="1.6" fill="#F28C28"/></svg></span>
-          <span class="brand__name">[CÉGNÉV]</span>
-        </a>
-        <button class="mobile-nav__close" type="button" data-nav-close aria-label="Menü bezárása"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-      </div>
-      <div>
-        <a class="navlink" href="/">Főoldal</a>
-        <div class="mobile-nav__sub">
-          <div class="eyebrow" style="margin:.6rem 0">Szolgáltatások</div>
-          <a class="navlink" style="font-weight:600;font-size:.95rem;border-bottom:none;padding:.5rem .25rem" href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
-            <a class="navlink" style="font-weight:600;font-size:.95rem;border-bottom:none;padding:.5rem .25rem" href="/csotanyirtas/">Csótányirtás</a>
-            <a class="navlink" style="font-weight:600;font-size:.95rem;border-bottom:none;padding:.5rem .25rem" href="/darazsirtas/">Darázsirtás</a>
-            <a class="navlink" style="font-weight:600;font-size:.95rem;border-bottom:none;padding:.5rem .25rem" href="/hangyairtas/">Hangyairtás</a>
-            <a class="navlink" style="font-weight:600;font-size:.95rem;border-bottom:none;padding:.5rem .25rem" href="/patkanyirtas/">Patkányirtás</a>
-            <a class="navlink" style="font-weight:600;font-size:.95rem;border-bottom:none;padding:.5rem .25rem" href="/egerirtas/">Egérirtás</a>
-            <a class="navlink" style="font-weight:600;font-size:.95rem;border-bottom:none;padding:.5rem .25rem" href="/bolhairtas/">Bolhairtás</a>
-            <a class="navlink" style="font-weight:600;font-size:.95rem;border-bottom:none;padding:.5rem .25rem" href="/egyeb-kartevok/">Egyéb kártevők</a>
-        </div>
+      <a class="navlink" href="/">Főoldal</a>
+        <a class="navlink" href="/#szolgaltatasok">Szolgáltatások</a>
         <a class="navlink" href="/arak/">Árak</a>
         <a class="navlink" href="/rolunk/">Rólunk</a>
         <a class="navlink" href="/gyik/">GYIK</a>
         <a class="navlink" href="/kapcsolat/">Kapcsolat</a>
+      <div class="mobile-nav__sub">
+        <span class="eyebrow">Szolgáltatások</span>
+        <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
+          <a href="/csotanyirtas/">Csótányirtás</a>
+          <a href="/darazsirtas/">Darázsirtás</a>
+          <a href="/hangyairtas/">Hangyairtás</a>
+          <a href="/patkanyirtas/">Patkányirtás</a>
+          <a href="/egerirtas/">Egérirtás</a>
+          <a href="/bolhairtas/">Bolhairtás</a>
+          <a href="/egyeb-kartevok/">Egyéb kártevők</a>
       </div>
-      <a class="btn btn--primary btn--block" href="tel:[TELEFONSZÁM]" data-track="call" data-location="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívás: [TELEFONSZÁM]</a>
-      <a class="btn btn--outline btn--block" href="/kapcsolat/" data-track="quote-cta" data-location="mobile-menu">Ajánlatkérés</a>
+      <div class="mobile-nav__actions">
+        <a class="btn btn--primary" href="tel:[TELEFONSZÁM]" data-track="call" data-location="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívás: [TELEFONSZÁM]</a>
+        <a class="btn btn--outline" href="/kapcsolat/" data-track="quote-cta" data-location="mobile-menu">Ajánlatkérés</a>
+      </div>
     </nav>
   </div>
 <main id="main">
-<section class="hero section--dark">
-    <div class="container">
-      <nav class="breadcrumb" aria-label="Morzsamenü"><a href="/">Főoldal</a>
-    <span aria-hidden="true">/</span><span aria-current="page">Egyéb kártevők</span></nav>
-      <div class="hero__grid">
-        <div>
-          
-          <span class="eyebrow">Egyéb kártevők</span>
-          <h1 style="margin-top:.6rem">Egyéb kártevők irtása — egyedi felmérés alapján</h1>
-          <p class="lead" style="margin-top:1.1rem">Molylepke a szekrényben, pincebogár a fürdőszobában, atkafertőzöttség vagy más, kevésbé gyakori kártevő? Ha nem találja a problémájának megfelelő oldalt, írja le a tapasztalt jeleket — egyedi felmérés alapján javaslunk megoldást.</p>
-          <div class="hero__actions">
-            <a class="btn btn--primary" href="#ajanlatkeres" data-track="quote-cta" data-location="service-hero">Ingyenes ajánlatot kérek</a>
-            <a class="btn btn--outline" href="tel:[TELEFONSZÁM]" data-track="call" data-location="service-hero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> [TELEFONSZÁM]</a>
-          </div>
-          <div class="hero__badges">
-            <span class="hero__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.4 3.2 7.6 7.5 9 4.3-1.4 7.5-4.6 7.5-9V6L12 3Z"/><path d="m9 12 2 2 4-4.5"/></svg> Egyedi felmérés minden esethez</span>
-          <span class="hero__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> Rugalmas időpont-egyeztetés</span>
-          <span class="hero__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg> [SZOLGÁLTATÁSI TERÜLET]</span>
-          </div>
+<section class="hero hero--page">
+    <img class="hero__bg grayscale" src="/assets/img/services/general.svg" alt="Egyéb kártevők — egyedi felmérés alapján kínált megoldás" width="480" height="600" decoding="async">
+    <div class="hero__scrim"></div>
+    <div class="container hero__inner">
+      <nav class="breadcrumb" aria-label="Morzsamenü"><a href="/">Főoldal</a><span aria-hidden="true">/</span><span aria-current="page">Egyéb kártevők</span></nav>
+      <div class="hero__content">
+        
+        <h1>Egyéb kártevők irtása — egyedi felmérés alapján</h1>
+        <p class="lead hero__lead">Molylepke a szekrényben, pincebogár a fürdőszobában, atkafertőzöttség vagy más, kevésbé gyakori kártevő? Ha nem találja a problémájának megfelelő oldalt, írja le a tapasztalt jeleket — egyedi felmérés alapján javaslunk megoldást.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="tel:[TELEFONSZÁM]" data-track="call" data-location="service-hero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívás: [TELEFONSZÁM]</a>
+          <a class="btn btn--outline" href="#ajanlatkeres" data-track="quote-cta" data-location="service-hero">Ingyenes ajánlatot kérek</a>
         </div>
-        <div class="hero__visual">
-          <div class="media-photo"><img class="media-photo__img" src="/assets/img/services/general.svg" alt="Egyéb kártevők — egyedi felmérés alapján kínált megoldás" width="480" height="600" decoding="async"></div>
-          <div class="hero__tag hero__tag--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg> Egyedi felmérés</div>
-          <div class="hero__tag hero__tag--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Célzott megoldás</div>
-        </div>
+      </div>
+    </div>
+    <div class="hero__badges">
+      <div class="container">
+        <span class="hero__badge">Egyedi felmérés minden esethez</span>
+          <span class="hero__badge">Rugalmas időpont-egyeztetés</span>
+          <span class="hero__badge">[SZOLGÁLTATÁSI TERÜLET]</span>
       </div>
     </div>
   </section>
 
-  <section class="section--light">
-    <div class="container grid grid--2" style="align-items:center">
+  <section class="other-services">
+    <div class="container">
+      <span class="other-services__label">Másik kártevő?</span>
+      <div class="other-services__list">
+        <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
+        <a href="/csotanyirtas/">Csótányirtás</a>
+        <a href="/darazsirtas/">Darázsirtás</a>
+        <a href="/hangyairtas/">Hangyairtás</a>
+        <a href="/patkanyirtas/">Patkányirtás</a>
+        <a href="/egerirtas/">Egérirtás</a>
+        <a href="/bolhairtas/">Bolhairtás</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--dark">
+    <div class="container grid grid--2" style="gap:clamp(32px,4vw,64px)">
     <div>
-      <div class="section-head">
       <span class="eyebrow">Milyen kártevőkkel foglalkozunk itt</span>
-      <h2 style="margin-top:.6rem">Ha a nyolc fő kategóriába nem illik a probléma</h2>
-      
+      <h2 style="margin-top:14px">Ha a nyolc fő kategóriába nem illik a probléma</h2>
+      <p style="font-size:15.5px;line-height:1.68;color:var(--color-neutral-500);margin-top:20px">A leggyakoribb kártevőknek (ágyi poloska, csótány, darázs, hangya, patkány, egér, bolha) külön oldalt készítettünk, mert ezekhez tartozik a legtöbb, jellemzően pontosan beazonosítható probléma.</p>
+      <p style="font-size:15.5px;line-height:1.68;color:var(--color-neutral-500);margin-top:20px">Ha az Ön esete ezek egyikébe sem illik pontosan — például molylepke, pincebogár, atka, ezüstös pattanó vagy más, ritkábban előforduló kártevő —, ezen az oldalon kérhet ajánlatot: a pontos megoldást minden esetben a konkrét helyzet felmérése alapján határozzuk meg.</p>
     </div>
-      <p class="muted" style="margin-top:.9rem">A leggyakoribb kártevőknek (ágyi poloska, csótány, darázs, hangya, patkány, egér, bolha) külön oldalt készítettünk, mert ezekhez tartozik a legtöbb, jellemzően pontosan beazonosítható probléma.</p>
-      <p class="muted" style="margin-top:.9rem">Ha az Ön esete ezek egyikébe sem illik pontosan — például molylepke, pincebogár, atka, ezüstös pattanó vagy más, ritkábban előforduló kártevő —, ezen az oldalon kérhet ajánlatot: a pontos megoldást minden esetben a konkrét helyzet felmérése alapján határozzuk meg.</p>
-      
-    </div>
-    <div class="card">
-      <h3>Néhány példa a kategóriára</h3>
-      <ul class="stack" style="margin-top:1rem">
-        <li class="cluster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Molylepke (textil, élelmiszer)</li>
-        <li class="cluster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Pincebogár</li>
-        <li class="cluster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Atkafertőzöttség</li>
-        <li class="cluster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Ezüstös pattanó és egyéb apró rovarok</li>
-      </ul>
+    <div>
+      <div class="media-photo" style="aspect-ratio:16/10"><img class="grayscale" src="/assets/img/services/general.svg" alt="Monitorozó csapda tartalma" width="480" height="600" loading="lazy" decoding="async"></div>
+      <h3 style="margin-top:28px;color:var(--color-bg)">Néhány példa a kategóriára</h3>
+      <div class="plain-list" style="margin-top:12px"><div>Molylepke (textil, élelmiszer)</div><div>Pincebogár</div><div>Atkafertőzöttség</div><div>Ezüstös pattanó és egyéb apró rovarok</div></div>
     </div>
   </div>
   </section>
 
-  <section class="section--dark" id="kezeles">
+  <section class="section--light" id="kezeles">
     <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Hogyan dolgozunk</span>
-      <h2 style="margin-top:.6rem">Miért fontos itt különösen a felmérés</h2>
-      
+    <span class="eyebrow">Hogyan dolgozunk</span>
+    <h2 style="margin:14px 0 0">Miért fontos itt különösen a felmérés</h2>
+    <div style="margin-bottom:34px"></div>
+    <div class="ruled-grid ruled-grid--3">
+      <div class="method-cell">
+      <div class="method-cell__n">01</div>
+      <h3>Pontos beazonosítás</h3>
+      <p>Az egyedi vagy ritkábban jelentkező kártevőknél az első lépés mindig a pontos faj és a fertőzöttség forrásának azonosítása.</p>
     </div>
-    <div class="grid grid--3">
-      <div class="card">
-      <span class="service-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg></span>
-      <h3 style="margin-top:.9rem">Pontos beazonosítás</h3>
-      <p class="muted" style="margin-top:.5rem">Az egyedi vagy ritkábban jelentkező kártevőknél az első lépés mindig a pontos faj és a fertőzöttség forrásának azonosítása.</p>
+      <div class="method-cell">
+      <div class="method-cell__n">02</div>
+      <h3>A kártevőhöz igazított kezelés</h3>
+      <p>A kezelés módját (pl. textilkezelés molylepkénél, résekre fókuszáló kezelés pincebogárnál) az azonosított kártevőhöz igazítjuk.</p>
     </div>
-      <div class="card">
-      <span class="service-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg></span>
-      <h3 style="margin-top:.9rem">A kártevőhöz igazított kezelés</h3>
-      <p class="muted" style="margin-top:.5rem">A kezelés módját (pl. textilkezelés molylepkénél, résekre fókuszáló kezelés pincebogárnál) az azonosított kártevőhöz igazítjuk.</p>
-    </div>
-      <div class="card">
-      <span class="service-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h11M4 12h16M4 17h8"/><circle cx="18" cy="7" r="1.6" fill="currentColor" stroke="none"/><circle cx="9" cy="17" r="1.6" fill="currentColor" stroke="none"/></svg></span>
-      <h3 style="margin-top:.9rem">Egyértelmű visszajelzés</h3>
-      <p class="muted" style="margin-top:.5rem">A felmérés után elmondjuk, milyen megoldást és milyen árat javaslunk az adott helyzetre.</p>
+      <div class="method-cell">
+      <div class="method-cell__n">03</div>
+      <h3>Egyértelmű visszajelzés</h3>
+      <p>A felmérés után elmondjuk, milyen megoldást és milyen árat javaslunk az adott helyzetre.</p>
     </div>
     </div>
   </div>
   </section>
 
-  <section class="section--light" id="arak">
+  <section class="section--surface" id="arak">
     <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Árak</span>
-      <h2 style="margin-top:.6rem">Egyéb kártevők — irányár kategóriák</h2>
-      <p class="lead" style="margin-top:.8rem;font-size:1rem">Mivel ez a kategória sokféle kártevőt ölel fel, a végleges árat minden esetben egyedi felmérés alapján adjuk meg.</p>
-    </div>
-    <div class="price-table-wrap">
-      <table class="price-table">
-        <thead><tr><th scope="col">Kártevő / szolgáltatás</th><th scope="col">Mit tartalmaz</th><th scope="col">Ár</th></tr></thead>
-        <tbody>
-        <tr><td>Molylepke irtás</td><td>Textil- és/vagy élelmiszer-molylepke kezelése</td><td class="price">[ÁR MEGADÁSA SZÜKSÉGES]</td></tr>
-        <tr><td>Pincebogár irtás</td><td>Nedves helyiségek célzott kezelése</td><td class="price">[ÁR MEGADÁSA SZÜKSÉGES]</td></tr>
-        <tr><td>Atkairtás</td><td>Lakótér célzott kezelése</td><td class="price">[ÁR MEGADÁSA SZÜKSÉGES]</td></tr>
-        <tr><td>Egyéb, be nem sorolt kártevő</td><td>Egyedi felmérés alapján meghatározott kezelés</td><td class="price">[ÁR MEGADÁSA SZÜKSÉGES]</td></tr>
-        </tbody>
-      </table>
+    <span class="eyebrow">Árak</span>
+    <h2 style="margin:14px 0 0">Egyéb kártevők — irányár kategóriák</h2>
+    <p class="lead" style="margin:16px 0 34px;max-width:680px;font-size:16px">Mivel ez a kategória sokféle kártevőt ölel fel, a végleges árat minden esetben egyedi felmérés alapján adjuk meg.</p>
+    <div class="price-rows" role="table">
+      <div class="price-rows__head" role="row"><span role="columnheader">Kártevő / szolgáltatás</span><span role="columnheader">Mit tartalmaz</span><span role="columnheader">Ár</span></div>
+      <div class="price-row" role="row"><span class="price-row__name" role="cell">Molylepke irtás</span><span class="price-row__incl" role="cell">Textil- és/vagy élelmiszer-molylepke kezelése</span><span class="price-row__price" role="cell">[ÁR MEGADÁSA SZÜKSÉGES]</span></div>
+        <div class="price-row" role="row"><span class="price-row__name" role="cell">Pincebogár irtás</span><span class="price-row__incl" role="cell">Nedves helyiségek célzott kezelése</span><span class="price-row__price" role="cell">[ÁR MEGADÁSA SZÜKSÉGES]</span></div>
+        <div class="price-row" role="row"><span class="price-row__name" role="cell">Atkairtás</span><span class="price-row__incl" role="cell">Lakótér célzott kezelése</span><span class="price-row__price" role="cell">[ÁR MEGADÁSA SZÜKSÉGES]</span></div>
+        <div class="price-row" role="row"><span class="price-row__name" role="cell">Egyéb, be nem sorolt kártevő</span><span class="price-row__incl" role="cell">Egyedi felmérés alapján meghatározott kezelés</span><span class="price-row__price" role="cell">[ÁR MEGADÁSA SZÜKSÉGES]</span></div>
     </div>
     <p class="price-note">Ha nem biztos benne, melyik kategóriába tartozik a problémája, írja le az űrlapon — segítünk beazonosítani.</p>
-    <div class="price-cta">
-      <a class="btn btn--primary" href="/kapcsolat/" data-track="quote-cta" data-location="service-pricing">Ajánlatot kérek</a>
-      <span class="muted">Pontos árajánlatot helyszíni vagy fotó alapú felmérés után adunk.</span>
-    </div>
+    <a class="btn btn--primary" style="margin-top:26px" href="/kapcsolat/" data-track="quote-cta" data-location="service-pricing">Ajánlatot kérek</a>
   </div>
   </section>
 
-  <section class="section--dark" id="tudnivalok">
+  <section class="section--light" id="tudnivalok">
     <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Tudnivalók</span>
-      <h2 style="margin-top:.6rem">Mit érdemes leírnia az ajánlatkéréskor</h2>
-      
-    </div>
-    <div class="grid grid--2">
-      <div class="card">
-      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5M9 13h6M9 17h6M9 9h2"/></svg> Hasznos információk</h3>
-      <ul class="stack" style="margin-top:1rem">
-        <li class="cluster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Mikor és hol észlelte először a kártevőt</li>
-        <li class="cluster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Milyen jeleket tapasztal (rágásnyom, apró rovar, folt, szag)</li>
-        <li class="cluster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Érintett-e élelmiszer, textil vagy faszerkezet</li>
+    <span class="eyebrow">Tudnivalók</span>
+    <h2 style="margin:14px 0 34px">Mit érdemes leírnia az ajánlatkéréskor</h2>
+    <div class="grid grid--2" style="gap:clamp(28px,4vw,64px)">
+      <div class="checklist-col">
+      <h3>Hasznos információk</h3>
+      <ul class="checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Mikor és hol észlelte először a kártevőt</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Milyen jeleket tapasztal (rágásnyom, apró rovar, folt, szag)</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Érintett-e élelmiszer, textil vagy faszerkezet</li>
       </ul>
     </div>
-      <div class="card">
-      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h11M4 12h16M4 17h8"/><circle cx="18" cy="7" r="1.6" fill="currentColor" stroke="none"/><circle cx="9" cy="17" r="1.6" fill="currentColor" stroke="none"/></svg> Ha van róla fotó</h3>
-      <ul class="stack" style="margin-top:1rem">
-        <li class="cluster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Egy éles fotó a tapasztalt jelről vagy a kártevőről sokat segít a beazonosításban</li>
-        <li class="cluster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> A fotót e-mailben vagy a helyszíni felmérés során is meg tudja mutatni</li>
-        <li class="cluster"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Ez alapján pontosabb előzetes tájékoztatást tudunk adni</li>
+      <div class="checklist-col">
+      <h3>Ha van róla fotó</h3>
+      <ul class="checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Egy éles fotó a tapasztalt jelről vagy a kártevőről sokat segít a beazonosításban</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> A fotót e-mailben vagy a helyszíni felmérés során is meg tudja mutatni</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Ez alapján pontosabb előzetes tájékoztatást tudunk adni</li>
       </ul>
     </div>
     </div>
@@ -251,41 +232,41 @@
   </section>
 
   <section class="section--light" id="gyik">
-    <div class="container" style="max-width:52rem">
-    <div class="section-head">
-      <span class="eyebrow">Gyakori kérdések</span>
-      <h2 style="margin-top:.6rem">Kérdések az egyéb kártevőkkel kapcsolatban</h2>
-      
-    </div>
+    <div class="container container--narrow">
+    <span class="eyebrow">Gyakori kérdések</span>
+    <h2 style="margin:14px 0 30px">Kérdések az egyéb kártevőkkel kapcsolatban</h2>
+    <div class="faq-list">
     <details class="faq-item" id="egyeb-faq-1">
-      <summary>Mi van, ha nem tudom pontosan, milyen kártevőről van szó?<span class="faq-item__icon" aria-hidden="true"></span></summary>
-      <div class="faq-item__body"><p>Nem probléma — írja le, milyen jeleket tapasztal, és ha van róla fotó, csatolja azt is. A felmérés során segítünk pontosan beazonosítani a kártevőt.</p></div>
+      <summary>Mi van, ha nem tudom pontosan, milyen kártevőről van szó?<i class="faq-item__icon" aria-hidden="true"></i></summary>
+      <p class="faq-item__body">Nem probléma — írja le, milyen jeleket tapasztal, és ha van róla fotó, csatolja azt is. A felmérés során segítünk pontosan beazonosítani a kártevőt.</p>
     </details>
     <details class="faq-item" id="egyeb-faq-2">
-      <summary>Ez az oldal ugyanazt a szolgáltatást fedi, mint a főoldali kategóriák?<span class="faq-item__icon" aria-hidden="true"></span></summary>
-      <div class="faq-item__body"><p>Nem — ez a kategória kifejezetten azokra a kártevőkre vonatkozik, amelyekhez nem készítettünk külön, részletes oldalt. A nyolc fő kártevőtípushoz saját, részletes tájékoztató és árlista tartozik.</p></div>
+      <summary>Ez az oldal ugyanazt a szolgáltatást fedi, mint a főoldali kategóriák?<i class="faq-item__icon" aria-hidden="true"></i></summary>
+      <p class="faq-item__body">Nem — ez a kategória kifejezetten azokra a kártevőkre vonatkozik, amelyekhez nem készítettünk külön, részletes oldalt. A nyolc fő kártevőtípushoz saját, részletes tájékoztató és árlista tartozik.</p>
     </details>
     <details class="faq-item" id="egyeb-faq-3">
-      <summary>Vállalnak kezelést üzleti ingatlanon is ilyen esetben?<span class="faq-item__icon" aria-hidden="true"></span></summary>
-      <div class="faq-item__body"><p>Igen, ez a kategória is elérhető magánszemélyek és üzleti ügyfelek (pl. üzletek, raktárak) számára egyaránt.</p></div>
+      <summary>Vállalnak kezelést üzleti ingatlanon is ilyen esetben?<i class="faq-item__icon" aria-hidden="true"></i></summary>
+      <p class="faq-item__body">Igen, ez a kategória is elérhető magánszemélyek és üzleti ügyfelek (pl. üzletek, raktárak) számára egyaránt.</p>
     </details>
+  </div>
   </div><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Mi van, ha nem tudom pontosan, milyen kártevőről van szó?","acceptedAnswer":{"@type":"Answer","text":"Nem probléma — írja le, milyen jeleket tapasztal, és ha van róla fotó, csatolja azt is. A felmérés során segítünk pontosan beazonosítani a kártevőt."}},{"@type":"Question","name":"Ez az oldal ugyanazt a szolgáltatást fedi, mint a főoldali kategóriák?","acceptedAnswer":{"@type":"Answer","text":"Nem — ez a kategória kifejezetten azokra a kártevőkre vonatkozik, amelyekhez nem készítettünk külön, részletes oldalt. A nyolc fő kártevőtípushoz saját, részletes tájékoztató és árlista tartozik."}},{"@type":"Question","name":"Vállalnak kezelést üzleti ingatlanon is ilyen esetben?","acceptedAnswer":{"@type":"Answer","text":"Igen, ez a kategória is elérhető magánszemélyek és üzleti ügyfelek (pl. üzletek, raktárak) számára egyaránt."}}]}</script>
   </section>
 
-  <section class="section--dark" id="ajanlatkeres">
-    <div class="container grid grid--2" style="align-items:flex-start">
+  <section class="section--surface" id="ajanlatkeres">
+    <div class="container grid grid--2" style="gap:clamp(32px,4vw,64px);align-items:start">
     <div>
-      <div class="section-head">
       <span class="eyebrow">Ajánlatkérés</span>
-      <h2 style="margin-top:.6rem">Írja le a tapasztalt problémát</h2>
-      
-    </div>
-      <div class="stack">
-        <a class="btn btn--outline btn--block" href="tel:[TELEFONSZÁM]" data-track="call" data-location="service-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívom most: [TELEFONSZÁM]</a>
-        <p class="muted">Vagy töltse ki az űrlapot, és rövid időn belül visszahívjuk / válaszolunk.</p>
+      <h2 style="margin-top:14px">Írja le a tapasztalt problémát</h2>
+      <p class="lead" style="margin-top:18px;font-size:16px">Sürgős esetben a leggyorsabb, ha telefonon keres minket — az űrlapra rövid időn belül visszajelzünk.</p>
+      <a class="btn btn--onlight" style="margin-top:24px" href="tel:[TELEFONSZÁM]" data-track="call" data-location="service-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívom most: [TELEFONSZÁM]</a>
+      <div class="info-card" style="border-top:1px solid var(--color-divider);border-bottom:0;margin-top:24px;padding-top:16px">
+        <span class="info-card__label">Szolgáltatási terület</span>
+        <p class="info-card__value--body">[SZOLGÁLTATÁSI TERÜLET]</p>
       </div>
     </div>
-    <div class="card">
+    <div class="form-panel">
+      <h3>Ajánlatkérő űrlap</h3>
+      <p class="form-panel__hint">Négy mező kötelező — a többi segít pontosabb árat adnunk.</p>
       <form class="form" id="ajanlatkeres-egyeb-kartevok" action="/send-form.php" method="POST" novalidate data-quote-form data-success-url="/koszonjuk/">
         <div class="field">
           <label for="field-nev-ajanlatkeres-egyeb-kartevok">Teljes név <span class="req">*</span></label>
@@ -345,17 +326,17 @@
   </div>
   </section>
 
-  <section class="section--alt">
+  <section class="section--accent">
     <div class="container">
-    <div class="card" style="display:flex;flex-wrap:wrap;gap:1.6rem;align-items:center;justify-content:space-between;padding:2.2rem">
-      <div style="max-width:34rem">
+    <div class="cta-band">
+      <div class="cta-band__text">
         <span class="eyebrow">Nem biztos a kártevő típusában?</span>
-        <h2 style="margin-top:.6rem">Írja le, mit észlelt — segítünk beazonosítani</h2>
-        <p class="lead" style="margin-top:.7rem;font-size:1rem">A felmérés után javaslatot adunk a megfelelő kezelésre és az árra.</p>
+        <h2 style="margin-top:16px">Írja le, mit észlelt — segítünk beazonosítani</h2>
+        <p class="lead" style="margin-top:18px;font-size:17px">A felmérés után javaslatot adunk a megfelelő kezelésre és az árra.</p>
       </div>
-      <div class="cluster">
-        <a class="btn btn--primary" href="/kapcsolat/" data-track="quote-cta" data-location="service-final-cta">Ajánlatot kérek</a>
-        <a class="btn btn--outline" href="tel:[TELEFONSZÁM]" data-track="call" data-location="service-final-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> [TELEFONSZÁM]</a>
+      <div class="cta-band__actions">
+        <a class="btn btn--onlight" href="tel:[TELEFONSZÁM]" data-track="call" data-location="service-final-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> [TELEFONSZÁM]</a>
+        <a class="btn btn--outline" href="/kapcsolat/" data-track="quote-cta" data-location="service-final-cta">Ajánlatot kérek</a>
       </div>
     </div>
   </div>
@@ -365,59 +346,59 @@
     <div class="container footer-grid">
       <div class="footer-col footer-brand">
         <a class="brand" href="/">
-          <span class="brand__mark"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="10" fill="#111315" stroke="#F28C28" stroke-width="1.5"/><circle cx="20" cy="20" r="10.5" stroke="#F28C28" stroke-width="2"/><circle cx="20" cy="20" r="5.5" stroke="#F28C28" stroke-width="2"/><circle cx="20" cy="20" r="1.6" fill="#F28C28"/></svg></span>
+          <span class="brand__mark">K</span>
           <span class="brand__name">[CÉGNÉV]</span>
         </a>
         <p>Szakszerű kártevőirtás magánszemélyeknek és cégeknek. Felmérés, célzott kezelés, érthető visszajelzés — a probléma tényleges megoldásáig.</p>
-        <ul style="margin-top:1.1rem;gap:.5rem">
-          <li class="cluster"><span style="color:var(--c-accent)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg></span> [SZOLGÁLTATÁSI TERÜLET]</li>
-          <li class="cluster"><span style="color:var(--c-accent)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span> [NYITVATARTÁS / ELÉRHETŐSÉG]</li>
-        </ul>
+        <p class="footer-brand__meta">[SZOLGÁLTATÁSI TERÜLET]<br>[NYITVATARTÁS / ELÉRHETŐSÉG]</p>
       </div>
       <div class="footer-col">
         <h4>Szolgáltatások</h4>
-        <ul>
-          <li><a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a></li>
-            <li><a href="/csotanyirtas/">Csótányirtás</a></li>
-            <li><a href="/darazsirtas/">Darázsirtás</a></li>
-            <li><a href="/hangyairtas/">Hangyairtás</a></li>
-            <li><a href="/patkanyirtas/">Patkányirtás</a></li>
-            <li><a href="/egerirtas/">Egérirtás</a></li>
-            <li><a href="/bolhairtas/">Bolhairtás</a></li>
-            <li><a href="/egyeb-kartevok/">Egyéb kártevők</a></li>
-        </ul>
+        <div>
+          <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
+            <a href="/csotanyirtas/">Csótányirtás</a>
+            <a href="/darazsirtas/">Darázsirtás</a>
+            <a href="/hangyairtas/">Hangyairtás</a>
+            <a href="/patkanyirtas/">Patkányirtás</a>
+            <a href="/egerirtas/">Egérirtás</a>
+            <a href="/bolhairtas/">Bolhairtás</a>
+            <a href="/egyeb-kartevok/">Egyéb kártevők</a>
+        </div>
       </div>
       <div class="footer-col">
         <h4>Vállalkozás</h4>
-        <ul>
-          <li><a href="/arak/">Árak</a></li>
-          <li><a href="/rolunk/">Rólunk</a></li>
-          <li><a href="/gyik/">GYIK</a></li>
-          <li><a href="/kapcsolat/">Kapcsolat</a></li>
-        </ul>
+        <div>
+          <a href="/">Főoldal</a>
+            <a href="/#szolgaltatasok">Szolgáltatások</a>
+            <a href="/arak/">Árak</a>
+            <a href="/rolunk/">Rólunk</a>
+            <a href="/gyik/">GYIK</a>
+            <a href="/kapcsolat/">Kapcsolat</a>
+        </div>
       </div>
       <div class="footer-col">
         <h4>Elérhetőség</h4>
-        <ul>
-          <li><a href="tel:[TELEFONSZÁM]" data-track="call" data-location="footer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> [TELEFONSZÁM]</a></li>
-          <li><a href="mailto:[E-MAIL CÍM]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg> [E-MAIL CÍM]</a></li>
-        </ul>
-        <h4 style="margin-top:1.5rem">Jogi</h4>
-        <ul>
-          <li><a href="/adatkezelesi-tajekoztato/">Adatkezelési tájékoztató</a></li>
-          <li><a href="/cookie-tajekoztato/">Cookie tájékoztató</a></li>
-          <li><a href="/jogi-informaciok/">Jogi / üzemeltetői információk</a></li>
-        </ul>
+        <a class="footer-col__phone" href="tel:[TELEFONSZÁM]" data-track="call" data-location="footer">[TELEFONSZÁM]</a>
+        <a href="mailto:[E-MAIL CÍM]" style="padding-top:8px">[E-MAIL CÍM]</a>
+        <h4 class="footer-col__legal-head">Jogi</h4>
+        <div class="footer-col__legal">
+          <a href="/adatkezelesi-tajekoztato/">Adatkezelési tájékoztató</a>
+          <a href="/cookie-tajekoztato/">Cookie tájékoztató</a>
+          <a href="/jogi-informaciok/">Jogi / üzemeltetői információk</a>
+        </div>
       </div>
     </div>
-    <div class="container footer-bottom">
+    <div class="footer-bottom">
       <span>&copy; 2026 [CÉGNÉV]. Minden jog fenntartva.</span>
-      <button class="cookie-settings-link" type="button" data-consent-open-settings>Cookie-beállítások</button>
+      <span class="cluster">
+        <span>[CÉGJEGYZÉKSZÁM] &middot; [ADÓSZÁM]</span>
+        <button type="button" data-consent-open-settings>Cookie-beállítások</button>
+      </span>
     </div>
   </footer>
 <div class="sticky-cta" role="region" aria-label="Gyors kapcsolatfelvétel">
-    <a class="sticky-cta__call" href="tel:[TELEFONSZÁM]" data-track="call" data-location="sticky-bar" aria-label="Hívás: [TELEFONSZÁM]">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg>
+    <a class="sticky-cta__call" href="tel:[TELEFONSZÁM]" data-track="call" data-location="sticky-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívás
     </a>
     <a class="sticky-cta__quote" href="/kapcsolat/" data-track="quote-cta" data-location="sticky-bar">Ajánlatkérés</a>
   </div>
