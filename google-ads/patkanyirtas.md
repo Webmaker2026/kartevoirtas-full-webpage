@@ -6,7 +6,7 @@
 
 - Szolgáltatás: Patkányirtás
 - Cél URL: `[DOMAIN]/patkanyirtas/`
-- Landing H1: „Patkányirtás lakóingatlanban, telephelyen és gazdasági épületben”
+- Landing H1: „Patkányirtás lakóházban és telephelyen”
 - Elsődleges konverzió: sikeresen elküldött és szerveroldalon feldolgozott ajánlatkérés (`/koszonjuk/`)
 - Másodlagos konverzió: telefon CTA kattintás (`data-track="call"`)
 

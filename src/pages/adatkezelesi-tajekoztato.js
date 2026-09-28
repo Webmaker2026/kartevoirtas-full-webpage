@@ -1,25 +1,19 @@
 'use strict';
 const { SITE } = require('../config');
-const { renderBreadcrumb } = require('../partials/breadcrumb');
+const { renderPageHero } = require('../partials/components');
 
-function render() {
+function render({ path }) {
   return `
-  <section class="section--dark">
-    <div class="container">
-      ${renderBreadcrumb([{ label: 'Főoldal', path: '/' }, { label: 'Adatkezelési tájékoztató' }])}
-      <span class="eyebrow">Jogi tájékoztató</span>
-      <h1 style="margin-top:.6rem">Adatkezelési tájékoztató</h1>
-      <p class="lead" style="margin-top:1rem;max-width:44rem">
-        Ez a tájékoztató a weboldal üzemeltetése és az ajánlatkérő űrlap használata során megvalósuló adatkezelést
-        mutatja be. A dokumentum végleges tartalmát a tényleges adatkezelési gyakorlat és a jogi felülvizsgálat
-        alapján kell véglegesíteni — a jelenleg placeholderrel jelölt részek élesítés előtt pótlandók.
-      </p>
-    </div>
-  </section>
+  ${renderPageHero({
+    label: 'Adatkezelési tájékoztató',
+    path,
+    h1: 'Adatkezelési tájékoztató',
+    lead: 'Ez a tájékoztató a weboldal üzemeltetése és az ajánlatkérő űrlap használata során megvalósuló adatkezelést mutatja be. A végleges szöveget a tényleges adatkezelési gyakorlat és jogi felülvizsgálat alapján kell véglegesíteni — a placeholderrel jelölt részek élesítés előtt pótlandók.',
+  })}
 
-  <section class="section--light">
-    <div class="container legal-content" style="max-width:52rem">
-      <div class="table-of-contents">
+  <section class="section section--white">
+    <div class="container legal-content">
+      <nav class="toc" aria-label="Tartalomjegyzék">
         <a href="#adatkezelo">1. Adatkezelő</a>
         <a href="#kezelt-adatok">2. Kezelt adatok</a>
         <a href="#celok">3. Cél és jogalap</a>
@@ -27,7 +21,7 @@ function render() {
         <a href="#feldolgozok">5. Adatfeldolgozók</a>
         <a href="#jogok">6. Érintetti jogok</a>
         <a href="#panasz">7. Jogorvoslat</a>
-      </div>
+      </nav>
 
       <h2 id="adatkezelo">1. Adatkezelő</h2>
       <p><strong>Adatkezelő neve:</strong> ${SITE.companyName}</p>
@@ -42,12 +36,14 @@ function render() {
       <ul>
         <li>Név</li>
         <li>Telefonszám</li>
-        <li>E-mail cím</li>
-        <li>Település (opcionális)</li>
-        <li>A megjelölt kártevő típusa</li>
-        <li>Az űrlapon megadott, szabadon írt üzenet</li>
+        <li>Település / kerület</li>
+        <li>E-mail cím (ha megadja)</li>
+        <li>A megjelölt szolgáltatás, kártevő típusa</li>
+        <li>Az üzenet mezőben megadott szöveg (ha megadja)</li>
+        <li>Az oldal címe, ahonnan az ajánlatkérést elküldte, és a beküldés időpontja</li>
       </ul>
-      <p>A weboldal böngészése során, hozzájárulás esetén, analitikai és hirdetési célú cookie-k útján további
+      <p>Az űrlapon megadott adatokat a weboldal nem tárolja adatbázisban: a beküldés után e-mailben továbbítjuk az adatkezelő részére.</p>
+      <p>A weboldal böngészése során, hozzájárulás esetén, analitikai és hirdetési célú sütik útján további
         adatkezelés valósulhat meg — ennek részletei a <a href="/cookie-tajekoztato/">cookie tájékoztatóban</a>
         találhatók.</p>
 
@@ -63,10 +59,10 @@ function render() {
         vonatkozó jogszabályi előírásokhoz igazodva kell meghatározni.</p>
 
       <h2 id="feldolgozok">5. Adatfeldolgozók, címzettek</h2>
-      <p>A weboldal üzemeltetéséhez és az űrlap feldolgozásához az alábbi adatfeldolgozó(ka)t vesszük igénybe:</p>
+      <p>A weboldal üzemeltetéséhez és az űrlap feldolgozásához az alábbi adatfeldolgozókat vesszük igénybe:</p>
       <ul>
-        <li>Tárhelyszolgáltató: [TÁRHELYSZOLGÁLTATÓ NEVE ÉS ELÉRHETŐSÉGE MEGADÁSA SZÜKSÉGES]</li>
-        <li>E-mail küldés / SMTP szolgáltató: [SZOLGÁLTATÓ MEGADÁSA SZÜKSÉGES]</li>
+        <li>Tárhely, űrlapfeldolgozás és spamvédelem (Cloudflare Workers, Cloudflare Turnstile): [TÁRHELYSZOLGÁLTATÓ NEVE ÉS ELÉRHETŐSÉGE MEGADÁSA SZÜKSÉGES]</li>
+        <li>E-mail továbbítás: [E-MAIL KÜLDŐ SZOLGÁLTATÓ NEVE ÉS ELÉRHETŐSÉGE MEGADÁSA SZÜKSÉGES]</li>
       </ul>
 
       <h2 id="jogok">6. Érintetti jogok</h2>

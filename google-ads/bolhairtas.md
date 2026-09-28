@@ -6,7 +6,7 @@
 
 - Szolgáltatás: Bolhairtás
 - Cél URL: `[DOMAIN]/bolhairtas/`
-- Landing H1: „Bolhairtás — lakástextilben és kertben megtelepedő bolhák ellen”
+- Landing H1: „Bolhairtás lakásban és kertben”
 - Elsődleges konverzió: sikeresen elküldött és szerveroldalon feldolgozott ajánlatkérés (`/koszonjuk/`)
 - Másodlagos konverzió: telefon CTA kattintás (`data-track="call"`)
 

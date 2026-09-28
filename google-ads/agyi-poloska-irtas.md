@@ -6,7 +6,7 @@
 
 - Szolgáltatás: Ágyi poloska irtás
 - Cél URL: `[DOMAIN]/agyi-poloska-irtas/`
-- Landing H1: „Ágyi poloska irtás — gyors fellépés az éjszakai csípések ellen”
+- Landing H1: „Ágyi poloska irtás lakásban és szálláshelyen”
 - Elsődleges konverzió: sikeresen elküldött és szerveroldalon feldolgozott ajánlatkérés (`/koszonjuk/`)
 - Másodlagos konverzió: telefon CTA kattintás (`data-track="call"`)
 

@@ -1,29 +1,53 @@
 'use strict';
+const { SITE } = require('../config');
 const { icons } = require('./icons');
 
 function num(i) {
   return (i < 9 ? '0' : '') + (i + 1);
 }
 
-function renderPriceTable({ headers, rows, note, ctaLabel = 'Ajánlatot kérek', ctaHref = '/kapcsolat/', ctaLocation = 'price-table' }) {
-  const head = `<div class="price-rows__head" role="row">${headers.map((h) => `<span role="columnheader">${h}</span>`).join('')}</div>`;
+/** Szekciófej: eyebrow + H2 + opcionális bevezető. */
+function renderSectionHead({ eyebrow, title, intro }) {
+  return `<header class="section-head">
+      ${eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : ''}
+      <h2>${title}</h2>
+      ${intro ? `<p class="section-head__intro">${intro}</p>` : ''}
+    </header>`;
+}
+
+/**
+ * Árlista valódi <table>-ként. Mobilon soronként blokká törik, a cellák
+ * előtt a data-label mutatja az oszlop nevét (CSS).
+ */
+function renderPriceTable({ headers, rows, note, ctaLabel = 'Ajánlatot kérek', ctaHref = '#ajanlatkeres', ctaLocation = 'price-table' }) {
   const body = rows
     .map(
-      (row) => `<div class="price-row" role="row">${row
+      (row) => `<tr>${row
         .map((cell, i) => {
-          if (i === 0) return `<span class="price-row__name" role="cell">${cell}</span>`;
-          if (i === row.length - 1) return `<span class="price-row__price" role="cell">${cell}</span>`;
-          return `<span class="price-row__incl" role="cell">${cell}</span>`;
+          const cls = i === 0 ? 'price-table__name' : i === row.length - 1 ? 'price-table__price' : 'price-table__desc';
+          const tag = i === 0 ? 'th scope="row"' : 'td';
+          return `<${tag} class="${cls}" data-label="${headers[i]}">${cell}</${tag.split(' ')[0]}>`;
         })
-        .join('')}</div>`
+        .join('')}</tr>`
     )
-    .join('\n        ');
-  return `<div class="price-rows" role="table">
-      ${head}
-      ${body}
+    .join('\n          ');
+  return `<div class="price-table-wrap">
+      <table class="price-table">
+        <thead><tr>${headers.map((h) => `<th scope="col">${h}</th>`).join('')}</tr></thead>
+        <tbody>
+          ${body}
+        </tbody>
+      </table>
     </div>
     ${note ? `<p class="price-note">${note}</p>` : ''}
-    <a class="btn btn--primary" style="margin-top:26px" href="${ctaHref}" data-track="quote-cta" data-location="${ctaLocation}">${ctaLabel}</a>`;
+    <div class="price-cta">
+      <a class="btn btn--call" href="${SITE.phoneHref}" data-track="call" data-location="${ctaLocation}">${icons.phone} Árajánlat telefonon</a>
+      <a class="btn btn--outline" href="${ctaHref}" data-track="quote-cta" data-location="${ctaLocation}">${ctaLabel}</a>
+    </div>`;
+}
+
+function stripTags(html) {
+  return html.replace(/<[^>]+>/g, '');
 }
 
 function renderFaq(items, idPrefix = 'faq') {
@@ -31,8 +55,8 @@ function renderFaq(items, idPrefix = 'faq') {
     ${items
       .map(
         (item, i) => `<details class="faq-item" id="${idPrefix}-${i + 1}">
-      <summary>${item.q}<i class="faq-item__icon" aria-hidden="true"></i></summary>
-      <p class="faq-item__body">${item.a}</p>
+      <summary><span>${item.q}</span><i class="faq-item__icon" aria-hidden="true"></i></summary>
+      <div class="faq-item__body"><p>${item.a}</p></div>
     </details>`
       )
       .join('\n    ')}
@@ -46,75 +70,102 @@ function renderFaqJsonLd(items) {
     mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.q,
-      acceptedAnswer: { '@type': 'Answer', text: item.aPlain || item.a },
+      acceptedAnswer: { '@type': 'Answer', text: stripTags(item.a) },
     })),
   };
   return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 
 function renderSteps(steps) {
-  return `<div class="ruled-grid ruled-grid--4">
+  return `<ol class="steps">
     ${steps
       .map(
-        (s, i) => `<div class="step-cell">
-      <div class="step-cell__n">${num(i)}</div>
+        (s, i) => `<li class="step">
+      <span class="step__n" aria-hidden="true">${num(i)}</span>
       <h3>${s.title}</h3>
       <p>${s.body}</p>
-    </div>`
+    </li>`
       )
       .join('\n    ')}
-  </div>`;
+  </ol>`;
 }
 
-function renderSigns(signs) {
-  return signs
-    .map(
-      (s) => `<div class="sign-row">
-      <h3>${s.title}</h3>
-      <p>${s.body}</p>
-    </div>`
-    )
-    .join('\n    ');
+/**
+ * "Miért minket?" tények — kizárólag a config.js `trust` és elérhetőségi
+ * adataiból. Üres config-érték esetén a sor nem jelenik meg, így nem kerül
+ * ki az oldalra kitalált vagy nem vállalt ígéret.
+ *
+ * @param {Object} [opts]
+ * @param {string} [opts.scope] - szolgáltatásspecifikus munkaterület (pl. "lakás, társasház, étterem")
+ */
+function renderTrustFacts(opts = {}) {
+  const t = SITE.trust || {};
+  const facts = [
+    { label: 'Szakképesítés, engedély', value: t.qualification },
+    { label: 'Tapasztalat', value: t.experience },
+    { label: 'Alkalmazott módszerek', value: t.methods },
+    { label: 'Munkaterület', value: opts.scope ? `${opts.scope} — ${SITE.serviceArea}` : SITE.serviceArea },
+    { label: 'Elérhetőség', value: SITE.openingHours },
+    { label: 'Számla', value: t.invoice },
+    { label: 'Garancia', value: t.guarantee },
+  ].filter((f) => f.value);
+
+  return `<dl class="facts">
+      ${facts
+        .map(
+          (f) => `<div class="facts__item">
+        <dt>${f.label}</dt>
+        <dd>${f.value}</dd>
+      </div>`
+        )
+        .join('\n      ')}
+    </dl>`;
 }
 
-function renderTrustGrid(items) {
-  return items
-    .map(
-      (t, i) => `<div class="trust-row">
-      <span class="trust-row__n">${num(i)}</span>
-      <div>
-        <h3>${t.title}</h3>
-        <p>${t.body}</p>
-      </div>
-    </div>`
-    )
-    .join('\n    ');
-}
-
-function renderCtaBand({ eyebrow, title, body, primaryLabel = 'Ajánlatot kérek', primaryHref = '/kapcsolat/', location = 'cta-band' }) {
-  const { SITE } = require('../config');
-  return `<div class="container">
-    <div class="cta-band">
-      <div class="cta-band__text">
-        ${eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : ''}
-        <h2 style="margin-top:16px">${title}</h2>
-        ${body ? `<p class="lead" style="margin-top:18px;font-size:17px">${body}</p>` : ''}
-      </div>
-      <div class="cta-band__actions">
-        <a class="btn btn--onlight" href="${SITE.phoneHref}" data-track="call" data-location="${location}">${icons.phone} ${SITE.phoneDisplay}</a>
-        <a class="btn btn--outline" href="${primaryHref}" data-track="quote-cta" data-location="${location}">${primaryLabel}</a>
-      </div>
+function renderCtaBand({ title, body, location = 'cta-band', quoteHref = '/kapcsolat/' }) {
+  return `<div class="container cta-band">
+    <div class="cta-band__text">
+      <h2>${title}</h2>
+      ${body ? `<p>${body}</p>` : ''}
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--call btn--lg" href="${SITE.phoneHref}" data-track="call" data-location="${location}">${icons.phone} ${SITE.phoneDisplay}</a>
+      <a class="btn btn--outline-light" href="${quoteHref}" data-track="quote-cta" data-location="${location}">Ajánlatkérés űrlapon</a>
     </div>
   </div>`;
 }
 
+/**
+ * Egyszerű (kép nélküli) oldalfejléc az al-oldalakhoz (árak, GYIK, kapcsolat, jogi oldalak).
+ * @param {Object} o
+ * @param {string} o.label - morzsamenü címke
+ * @param {string} o.path - az oldal útvonala
+ * @param {string} o.h1
+ * @param {string} [o.lead]
+ * @param {boolean} [o.callCta] - telefonos CTA megjelenítése
+ */
+function renderPageHero({ label, path, h1, lead, callCta }) {
+  const { renderBreadcrumb } = require('./breadcrumb');
+  return `<section class="hero hero--page">
+    <div class="container">
+      ${renderBreadcrumb([{ label: 'Főoldal', path: '/' }, { label }], path)}
+      <h1>${h1}</h1>
+      ${lead ? `<p class="hero__lead">${lead}</p>` : ''}
+      ${callCta ? `<div class="hero__actions">
+        <a class="btn btn--call btn--lg" href="${SITE.phoneHref}" data-track="call" data-location="page-hero">${icons.phone} Hívás: ${SITE.phoneDisplay}</a>
+      </div>` : ''}
+    </div>
+  </section>`;
+}
+
 module.exports = {
   num,
+  renderPageHero,
+  renderSectionHead,
   renderPriceTable,
   renderFaq,
   renderFaqJsonLd,
   renderSteps,
-  renderSigns,
-  renderTrustGrid,
+  renderTrustFacts,
   renderCtaBand,
 };

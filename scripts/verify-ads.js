@@ -62,7 +62,8 @@ function extractTableColumn(content, sectionTitle, columnIndex) {
 }
 
 for (const file of files) {
-  const content = fs.readFileSync(path.join(DIR, file), 'utf8');
+  // CRLF (Windows checkout) → LF, különben a sor-alapú regexek nem illeszkednek
+  const content = fs.readFileSync(path.join(DIR, file), 'utf8').replace(/\r\n/g, '\n');
   console.log(`\n=== ${file} ===`);
 
   const headlines = extractNumberedList(content, 'RSA Címsorok \\(15 db, max\\. 30 karakter\\)');

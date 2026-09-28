@@ -3,144 +3,131 @@ const { SITE } = require('../config');
 const { icons } = require('../partials/icons');
 const { SERVICES } = require('../data/services');
 const { renderMedia } = require('../partials/media');
-const { renderSteps, renderTrustGrid, renderCtaBand, num } = require('../partials/components');
+const { renderSectionHead, renderSteps, renderTrustFacts, renderCtaBand } = require('../partials/components');
 
 function render() {
-  const serviceTiles = SERVICES.map(
-    (s, i) => `<a class="service-tile" href="${s.path}">
-        <span class="service-tile__n">${num(i)}</span>
-        <span class="service-tile__label">${s.label}</span>
-        <span class="service-tile__desc">${s.shortDesc}</span>
-        <span class="service-tile__link">Részletek és árak ${icons.arrowRight}</span>
-      </a>`
+  const serviceItems = SERVICES.map(
+    (s) => `<li>
+          <a class="service-link" href="${s.path}">
+            <span class="service-link__text">
+              <span class="service-link__title">${s.label}</span>
+              <span class="service-link__desc">${s.shortDesc}</span>
+            </span>
+            <span class="service-link__arrow" aria-hidden="true">${icons.arrowRight}</span>
+          </a>
+        </li>`
   ).join('\n        ');
 
-  const proof = [
-    { big: SITE.dispatchTime, small: 'kiszállás sürgős bejelentés esetén' },
-    { big: 'Nincs rejtett költség', small: 'a felmérés után kap pontos árajánlatot' },
-    { big: 'Lakossági és üzleti', small: 'ügyfeleknek egyaránt dolgozunk' },
-    { big: SITE.serviceArea, small: 'kártevőirtás a szolgáltatási területünkön' },
-  ];
-
-  const trustItems = [
-    { title: 'Célzott, nem sablon kezelés', body: 'A kártevő fajtájához és a helyszín adottságaihoz igazított módszert alkalmazunk, nem egy általános eljárást mindenre.' },
-    { title: 'Érthető ajánlat, világos folyamat', body: 'Felmérés után pontosan tudja, mi történik, mennyi idő alatt és mi a teendője a kezelés előtt és után.' },
-    { title: 'Lakossági és üzleti ügyfeleknek', body: 'Magánlakástól a társasházon át a vendéglátóipari egységig kezeljük a jellemző kártevőproblémákat.' },
-    { title: 'Rugalmas időpontok', body: 'A bejelentett probléma sürgősségéhez igazodó időpontot egyeztetünk telefonos vagy online ajánlatkérés után.' },
-  ];
-
   const steps = [
-    { title: 'Bejelentés és rövid egyeztetés', body: 'Telefonon vagy az online űrlapon elmondja, milyen kártevőt észlelt, hol és mióta — ez alapján tudjuk beazonosítani a valószínű okot.' },
-    { title: 'Felmérés és árajánlat', body: 'Helyszíni vagy fotó/leírás alapú felmérés után pontos, a konkrét helyzetre szabott árajánlatot adunk, rejtett költség nélkül.' },
-    { title: 'Szakszerű kezelés', body: 'A kártevőnek és a helyszínnek megfelelő módszerrel végezzük el az irtást, a szükséges óvintézkedések betartásával.' },
-    { title: 'Visszajelzés és utókövetés', body: 'Elmondjuk, mire figyeljen a kezelés után, és mikor érdemes esetleges kontrollt vagy ismételt kezelést fontolóra venni.' },
+    { title: 'Telefon vagy ajánlatkérés', body: 'Elmondja, milyen kártevőt látott, hol és mióta. Ebből sokszor már kiderül, mire lesz szükség.' },
+    { title: 'Felmérés és ár', body: 'A helyzettől függően a helyszínen vagy a kapott információk alapján megmondjuk, mit javaslunk, és mennyibe kerül.' },
+    { title: 'Kezelés', body: 'Egyeztetett időpontban elvégezzük a kezelést. Előtte elmondjuk, mit kell előkészíteni.' },
+    { title: 'Utána', body: 'Elmondjuk, mire figyeljen a kezelés után, és mikor jelezzen, ha újra kártevőt lát.' },
   ];
 
   return `
-  <section class="hero">
-    ${renderMedia('homepage', { eager: true, className: 'hero__bg grayscale' })}
-    <div class="hero__scrim"></div>
-    <div class="container hero__inner">
+  <section class="hero hero--home">
+    <div class="container hero__grid">
       <div class="hero__content">
-        <span class="tag" style="margin-bottom:22px;border:0;padding:7px 12px;background:var(--color-accent);color:var(--color-bg)">Kártevőirtás magánszemélyeknek és cégeknek</span>
-        <h1>Kártevőprobléma?<br>Felmérés, célzott kezelés, tartós megoldás.</h1>
-        <p class="lead hero__lead">Ágyi poloska, csótány, rágcsáló, darázs és más kártevők kezelése ${SITE.serviceArea} — célzott módszerrel, a probléma tényleges okára, nem csak a tünetére fókuszálva.</p>
+        <span class="hero__eyebrow">Lakossági és céges megrendelőknek</span>
+        <h1>Kártevőirtás magánszemélyeknek és cégeknek</h1>
+        <p class="hero__lead">Csótány, ágyi poloska, egér, patkány, darázs, hangya és bolha irtása ${SITE.serviceArea} területén. Hívjon, és telefonon megbeszéljük, mi a teendő, mennyibe kerül, és mikor tudunk menni.</p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="${SITE.phoneHref}" data-track="call" data-location="hero">${icons.phone} Hívás: ${SITE.phoneDisplay}</a>
-          <a class="btn btn--outline" href="/kapcsolat/" data-track="quote-cta" data-location="hero">Ingyenes ajánlatot kérek</a>
+          <a class="btn btn--call btn--lg" href="${SITE.phoneHref}" data-track="call" data-location="hero">${icons.phone} Hívás: ${SITE.phoneDisplay}</a>
+          <a class="btn btn--outline-light" href="/kapcsolat/" data-track="quote-cta" data-location="hero">Ajánlatkérés űrlapon</a>
         </div>
-        <p class="hero__note">Válasz ${SITE.dispatchTime} &middot; Nincs rejtett költség &middot; A felmérés után kap pontos árat</p>
+        <p class="hero__meta">${icons.clock} ${SITE.openingHours}</p>
+      </div>
+      <div class="hero__media hero__media--photo">
+        ${renderMedia('homepage', { eager: true, desktopOnly: true, className: 'hero__img' })}
       </div>
     </div>
   </section>
 
-  <section class="proof-strip">
+  <section class="section section--white" id="szolgaltatasok">
     <div class="container">
-      <div class="grid">
-        ${proof.map((p) => `<div class="proof-strip__item"><div class="proof-strip__big">${p.big}</div><div class="proof-strip__small">${p.small}</div></div>`).join('\n        ')}
-      </div>
+      ${renderSectionHead({
+        eyebrow: 'Szolgáltatások',
+        title: 'Milyen kártevővel van gondja?',
+        intro: 'Minden kártevőhöz külön oldalt készítettünk a jelekről, a kezelés menetéről és az árakról.',
+      })}
+      <ul class="service-list">
+        ${serviceItems}
+      </ul>
     </div>
   </section>
 
-  <section class="section--light" id="szolgaltatasok" style="padding-top:clamp(56px,7vw,104px)">
+  <section class="section section--tint">
     <div class="container">
-      <div class="grid grid--2" style="align-items:end;padding-bottom:34px">
-        <div>
-          <span class="eyebrow">Szolgáltatások</span>
-          <h2 style="margin-top:14px">Melyik kártevővel van gondja?</h2>
-        </div>
-        <p class="lead" style="margin:0">Válassza ki a problémának megfelelő oldalt — mindegyikhez saját tájékoztatót és árlistát készítettünk.</p>
-      </div>
-      <div class="ruled-grid ruled-grid--services">
-        ${serviceTiles}
-      </div>
-    </div>
-  </section>
-
-  <section class="section--dark">
-    <div class="container grid grid--2" style="gap:clamp(32px,4vw,64px)">
-      <div>
-        <span class="eyebrow">Miért minket válasszon</span>
-        <h2 style="margin-top:14px">Szakértelem a tünetkezelés helyett</h2>
-        <div class="media-photo" style="aspect-ratio:4/3;margin-top:32px">${renderMedia('home-why-us', { className: 'grayscale' })}</div>
-      </div>
-      <div class="trust-row-grid">
-        ${renderTrustGrid(trustItems)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section--light">
-    <div class="container">
-      <span class="eyebrow">Folyamat</span>
-      <h2 style="margin:14px 0 34px">Hogyan zajlik egy kártevőirtás?</h2>
+      ${renderSectionHead({ eyebrow: 'Hogyan dolgozunk?', title: 'A bejelentéstől a kezelésig' })}
       ${renderSteps(steps)}
     </div>
   </section>
 
-  <section class="section--surface">
-    <div class="container grid grid--2" style="gap:clamp(32px,4vw,64px);align-items:center">
-      <div>
-        <span class="eyebrow">Üzleti ügyfeleknek</span>
-        <h2 style="margin-top:14px">Társasházak, éttermek, üzletek, raktárak</h2>
-        <p class="lead" style="margin-top:18px;font-size:16px">Kereskedelmi és intézményi ügyfeleink számára is vállalunk kártevőirtást — a felmerülő igényt egyedi felmérés alapján, a helyszín adottságaihoz igazodva mérjük fel és árazzuk be.</p>
-        <ul class="b2b-grid" style="margin-top:26px">
-          <li>Társasházak, lépcsőházak</li>
-          <li>Éttermek, vendéglátóipari egységek</li>
-          <li>Üzletek, irodák</li>
-          <li>Raktárak, gazdasági épületek</li>
-        </ul>
-        <a class="btn btn--frame" style="margin-top:26px" href="/kapcsolat/" data-track="quote-cta" data-location="b2b-teaser">Üzleti ajánlatot kérek</a>
+  <section class="section section--navy">
+    <div class="container split split--top split--facts">
+      <div class="split__main">
+        ${renderSectionHead({
+          eyebrow: 'Miért minket?',
+          title: 'Amit rólunk tudni érdemes',
+          intro: `${SITE.companyName} kártevőirtással foglalkozik ${SITE.serviceArea} területén. Lakásban, családi házban, társasházban és üzleti ingatlanban is dolgozunk.`,
+        })}
+        <a class="btn btn--outline-light" href="/rolunk/">Bemutatkozás</a>
       </div>
-      <div class="media-photo media-photo--tall" style="max-height:560px">${renderMedia('commercial', { className: 'grayscale' })}</div>
+      <div class="split__side">
+        ${renderTrustFacts()}
+      </div>
     </div>
   </section>
 
-  <section class="section--light">
-    <div class="container grid grid--2" style="gap:clamp(32px,4vw,64px)">
-      <div>
-        <span class="eyebrow">Árak</span>
-        <h2 style="margin-top:14px">Átlátható árazás, szolgáltatásonként</h2>
-        <p class="lead" style="margin-top:18px;font-size:16px">Minden szolgáltatásunkhoz külön, a konkrét kártevőhöz igazított árlistát vezetünk. Az összesített áttekintő az Árak oldalon érhető el, a részletek pedig az adott szolgáltatás aloldalán.</p>
-        <a class="btn btn--primary" style="margin-top:26px" href="/arak/">Árak megtekintése</a>
+  <section class="section section--white">
+    <div class="container split">
+      <div class="split__main">
+        ${renderSectionHead({
+          eyebrow: 'Cégeknek',
+          title: 'Társasházaknak, vendéglátóhelyeknek, üzleteknek',
+          intro: 'Közös képviselők, üzemeltetők és cégek részére is dolgozunk. Az ajánlatot a helyszín, a kezelendő terület és a szükséges kezelések száma alapján állítjuk össze.',
+        })}
+        <ul class="checklist checklist--cols">
+          <li>${icons.check}<span>Társasházak, lépcsőházak, pincék</span></li>
+          <li>${icons.check}<span>Éttermek, konyhák, élelmiszerüzletek</span></li>
+          <li>${icons.check}<span>Irodák, üzlethelyiségek</span></li>
+          <li>${icons.check}<span>Raktárak, telephelyek, gazdasági épületek</span></li>
+        </ul>
+        <a class="btn btn--primary" href="/kapcsolat/" data-track="quote-cta" data-location="b2b">Céges ajánlatkérés</a>
       </div>
-      <div>
-        <h3 style="margin-bottom:4px">Mitől függ a végleges ár?</h3>
+      <div class="split__side split__side--media hide-mobile">
+        <div class="media-frame media-frame--wide">${renderMedia('commercial')}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container split">
+      <div class="split__main">
+        ${renderSectionHead({
+          eyebrow: 'Árak',
+          title: 'Mennyibe kerül a kártevőirtás?',
+          intro: 'Az ár kártevőnként eltér, ezért minden szolgáltatásoldalon külön árlistát talál. A végleges árat a felmérés után mondjuk meg.',
+        })}
+        <a class="btn btn--primary" href="/arak/">Árak megtekintése</a>
+      </div>
+      <div class="split__side">
+        <h3 class="side-list__title">Mitől függ az ár?</h3>
         <ul class="checklist">
-          <li>${icons.check} A kártevő típusa és a fertőzöttség mértéke</li>
-          <li>${icons.check} A kezelendő terület mérete, típusa</li>
-          <li>${icons.check} A szükséges kezelések, kontrollok száma</li>
-          <li>${icons.check} A helyszín megközelíthetősége</li>
+          <li>${icons.check}<span>A kártevő fajtája és a fertőzöttség mértéke</span></li>
+          <li>${icons.check}<span>A kezelendő terület mérete és típusa</span></li>
+          <li>${icons.check}<span>Hány kezelésre van szükség</span></li>
+          <li>${icons.check}<span>A helyszín távolsága és megközelíthetősége</span></li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section class="section--accent">
+  <section class="section section--navy section--cta">
     ${renderCtaBand({
-      eyebrow: 'Következő lépés',
-      title: 'Írja le a problémát, mi visszajelzünk',
-      body: 'Küldjön ajánlatkérést, vagy hívjon minket közvetlenül — mindkét esetben rövid időn belül válaszolunk.',
+      title: 'Kártevőt észlelt? Hívjon, és megbeszéljük a teendőket.',
+      body: 'Ha most nem tud beszélni, küldjön ajánlatkérést, és visszahívjuk.',
       location: 'home-final-cta',
     })}
   </section>

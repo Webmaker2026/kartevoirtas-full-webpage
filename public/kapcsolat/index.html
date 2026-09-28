@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kapcsolat és ajánlatkérés | [CÉGNÉV]</title>
-<meta name="description" content="Kérjen ajánlatot online űrlapon, vagy hívjon minket közvetlenül. Elérhetőségeink és az ajánlatkérő űrlap egy helyen.">
+<meta name="description" content="Hívjon minket, vagy kérjen ajánlatot az űrlapon. Elérhetőség, szolgáltatási terület és ajánlatkérés egy helyen.">
 <link rel="canonical" href="https://[DOMAIN]/kapcsolat/">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#201e1d">
+<meta name="theme-color" content="#0e2240">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/assets/img/icons/favicon.svg">
@@ -17,41 +17,41 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="[CÉGNÉV]">
 <meta property="og:title" content="Kapcsolat és ajánlatkérés | [CÉGNÉV]">
-<meta property="og:description" content="Kérjen ajánlatot online űrlapon, vagy hívjon minket közvetlenül. Elérhetőségeink és az ajánlatkérő űrlap egy helyen.">
+<meta property="og:description" content="Hívjon minket, vagy kérjen ajánlatot az űrlapon. Elérhetőség, szolgáltatási terület és ajánlatkérés egy helyen.">
 <meta property="og:url" content="https://[DOMAIN]/kapcsolat/">
 <meta property="og:image" content="https://[DOMAIN]/assets/img/social/og-cover.png">
 <meta property="og:locale" content="hu_HU">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kapcsolat és ajánlatkérés | [CÉGNÉV]">
-<meta name="twitter:description" content="Kérjen ajánlatot online űrlapon, vagy hívjon minket közvetlenül. Elérhetőségeink és az ajánlatkérő űrlap egy helyen.">
+<meta name="twitter:description" content="Hívjon minket, vagy kérjen ajánlatot az űrlapon. Elérhetőség, szolgáltatási terület és ajánlatkérés egy helyen.">
 <meta name="twitter:image" content="https://[DOMAIN]/assets/img/social/og-cover.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/style.css?v=0c2f766e15">
 
 <!-- GTM / GA4 / Google Ads: a mérési azonosítók megérkezésekor ide kerül a
      Consent Mode v2-t tiszteletben tartó GTM snippet. A consent alapállapotot
      és a felhasználói döntés kezelését a /assets/js/main.js már biztosítja. -->
 
 </head>
-<body>
+<body class="has-sticky-cta">
 <a class="skip-link" href="#main">Ugrás a tartalomhoz</a>
 
   <div class="topbar">
-    <div class="container">
+    <div class="container topbar__inner">
       <span class="topbar__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg> [SZOLGÁLTATÁSI TERÜLET]</span>
       <span class="topbar__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> [NYITVATARTÁS / ELÉRHETŐSÉG]</span>
-      <span class="topbar__dispatch">Kiszállás: [KISZÁLLÁSI IDŐ]</span>
+      <a class="topbar__item topbar__mail" href="mailto:[EMAIL]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg> [EMAIL]</a>
     </div>
   </div>
 
   <header class="site-header">
     <div class="container site-header__bar">
-      <a class="brand" href="/">
-        <span class="brand__mark">K</span>
-        <span class="brand__name-wrap">
+      <a class="brand" href="/" aria-label="[CÉGNÉV] – főoldal">
+        <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.4 3.2 7.6 7.5 9 4.3-1.4 7.5-4.6 7.5-9V6L12 3Z"/><path d="m8.8 12.2 2.3 2.3 4.3-4.8"/></svg></span>
+        <span class="brand__text">
           <span class="brand__name">[CÉGNÉV]</span>
           <span class="brand__sub">Kártevőirtás</span>
         </span>
@@ -59,25 +59,35 @@
 
       <nav class="nav-desktop" aria-label="Fő navigáció">
         <a class="navlink" href="/">Főoldal</a>
-          <a class="navlink" href="/#szolgaltatasok">Szolgáltatások</a>
-          <a class="navlink" href="/arak/">Árak</a>
-          <a class="navlink" href="/rolunk/">Rólunk</a>
-          <a class="navlink" href="/gyik/">GYIK</a>
-          <a class="navlink" href="/kapcsolat/" aria-current="page">Kapcsolat</a>
+        <div class="has-dropdown">
+          <a class="navlink" href="/#szolgaltatasok" data-dropdown-trigger aria-haspopup="true" aria-expanded="false">Szolgáltatások <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="dropdown">
+            <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
+            <a href="/csotanyirtas/">Csótányirtás</a>
+            <a href="/darazsirtas/">Darázsirtás</a>
+            <a href="/hangyairtas/">Hangyairtás</a>
+            <a href="/patkanyirtas/">Patkányirtás</a>
+            <a href="/egerirtas/">Egérirtás</a>
+            <a href="/bolhairtas/">Bolhairtás</a>
+            <a href="/egyeb-kartevok/">Egyéb kártevők</a>
+          </div>
+        </div>
+        <a class="navlink" href="/arak/">Árak</a>
+        <a class="navlink" href="/rolunk/">Rólunk</a>
+        <a class="navlink" href="/gyik/">GYIK</a>
+        <a class="navlink" href="/kapcsolat/" aria-current="page">Kapcsolat</a>
       </nav>
 
       <div class="header-cta">
-        <a class="header-phone" href="tel:[TELEFONSZÁM]" data-track="call" data-location="header">
-          <span class="header-phone__label">Hívjon most</span>
-          <span class="header-phone__num">[TELEFONSZÁM]</span>
-        </a>
-        <a class="btn btn--primary btn--sm" href="/kapcsolat/" data-track="quote-cta" data-location="header">Ajánlatkérés</a>
+        <a class="btn btn--call btn--sm" href="tel:[TELEFONSZÁM]" data-track="call" data-location="header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> [TELEFONSZÁM]</a>
+        <a class="header-quote" href="/kapcsolat/" data-track="quote-cta" data-location="header">Ajánlatkérés</a>
       </div>
 
       <div class="header-mobile-actions">
         <a class="icon-btn icon-btn--call" href="tel:[TELEFONSZÁM]" data-track="call" data-location="header-mobile" aria-label="Hívás: [TELEFONSZÁM]"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg></a>
-        <button class="icon-btn icon-btn--menu" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü megnyitása">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <button class="icon-btn icon-btn--menu" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü">
+          <span class="icon-btn__open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+          <span class="icon-btn__close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></span>
         </button>
       </div>
     </div>
@@ -85,121 +95,131 @@
 
   <div class="mobile-nav" id="mobile-nav" data-mobile-nav data-open="false">
     <nav class="mobile-nav__panel" aria-label="Mobil navigáció">
-      <a class="navlink" href="/">Főoldal</a>
-        <a class="navlink" href="/#szolgaltatasok">Szolgáltatások</a>
-        <a class="navlink" href="/arak/">Árak</a>
-        <a class="navlink" href="/rolunk/">Rólunk</a>
-        <a class="navlink" href="/gyik/">GYIK</a>
-        <a class="navlink" href="/kapcsolat/" aria-current="page">Kapcsolat</a>
-      <div class="mobile-nav__sub">
-        <span class="eyebrow">Szolgáltatások</span>
+      <a class="mobile-nav__link" href="/">Főoldal</a>
+      <a class="mobile-nav__link" href="/arak/">Árak</a>
+      <a class="mobile-nav__link" href="/rolunk/">Rólunk</a>
+      <a class="mobile-nav__link" href="/gyik/">GYIK</a>
+      <a class="mobile-nav__link" href="/kapcsolat/" aria-current="page">Kapcsolat</a>
+      <div class="mobile-nav__services">
+        <span class="mobile-nav__heading">Szolgáltatások</span>
         <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
-          <a href="/csotanyirtas/">Csótányirtás</a>
-          <a href="/darazsirtas/">Darázsirtás</a>
-          <a href="/hangyairtas/">Hangyairtás</a>
-          <a href="/patkanyirtas/">Patkányirtás</a>
-          <a href="/egerirtas/">Egérirtás</a>
-          <a href="/bolhairtas/">Bolhairtás</a>
-          <a href="/egyeb-kartevok/">Egyéb kártevők</a>
+        <a href="/csotanyirtas/">Csótányirtás</a>
+        <a href="/darazsirtas/">Darázsirtás</a>
+        <a href="/hangyairtas/">Hangyairtás</a>
+        <a href="/patkanyirtas/">Patkányirtás</a>
+        <a href="/egerirtas/">Egérirtás</a>
+        <a href="/bolhairtas/">Bolhairtás</a>
+        <a href="/egyeb-kartevok/">Egyéb kártevők</a>
       </div>
       <div class="mobile-nav__actions">
-        <a class="btn btn--primary" href="tel:[TELEFONSZÁM]" data-track="call" data-location="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívás: [TELEFONSZÁM]</a>
-        <a class="btn btn--outline" href="/kapcsolat/" data-track="quote-cta" data-location="mobile-menu">Ajánlatkérés</a>
+        <a class="btn btn--call btn--block" href="tel:[TELEFONSZÁM]" data-track="call" data-location="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívás: [TELEFONSZÁM]</a>
+        <a class="btn btn--ghost-light btn--block" href="/kapcsolat/" data-track="quote-cta" data-location="mobile-menu">Ajánlatkérés</a>
       </div>
     </nav>
   </div>
 <main id="main">
 
-  <section class="hero hero--page" style="background:var(--color-text)">
-    <div class="container hero__inner">
-      <nav class="breadcrumb" aria-label="Morzsamenü"><a href="/">Főoldal</a><span aria-hidden="true">/</span><span aria-current="page">Kapcsolat</span></nav>
-      <span class="eyebrow">Kapcsolat</span>
-      <h1 style="margin-top:16px;max-width:880px">Kérjen ajánlatot, vagy hívjon minket közvetlenül</h1>
-      <p class="lead hero__lead">Írja le, milyen kártevővel áll szemben, és rövid időn belül visszajelzünk. Sürgős esetben a leggyorsabb, ha telefonon keres minket.</p>
+  <section class="hero hero--page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Morzsamenü"><a href="/">Főoldal</a><span class="breadcrumb__sep" aria-hidden="true">/</span><span aria-current="page">Kapcsolat</span></nav><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://[DOMAIN]/"},{"@type":"ListItem","position":2,"name":"Kapcsolat","item":"https://[DOMAIN]/kapcsolat/"}]}</script>
+      <h1>Kapcsolat és ajánlatkérés</h1>
+      <p class="hero__lead">A leggyorsabb, ha felhív minket. Ha most nem alkalmas, töltse ki az űrlapot, és visszahívjuk.</p>
+      
     </div>
   </section>
 
-  <section class="section--light">
-    <div class="container grid grid--2" style="gap:clamp(32px,4vw,64px);align-items:start">
-      <div>
-        <div class="info-card">
-          <span class="info-card__label">Telefon — leggyorsabb út</span>
-          <div class="info-card__value">[TELEFONSZÁM]</div>
-          <p class="info-card__note">[NYITVATARTÁS / ELÉRHETŐSÉG]</p>
-          <a class="btn btn--primary" style="margin-top:18px" href="tel:[TELEFONSZÁM]" data-track="call" data-location="kapcsolat-oldal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívás indítása</a>
-        </div>
-        <div class="info-card">
-          <span class="info-card__label">E-mail</span>
-          <div class="info-card__value--sm"><a href="mailto:[E-MAIL CÍM]">[E-MAIL CÍM]</a></div>
-          <p class="info-card__note">Írjon nekünk, ha nem sürgős vagy részletesebben szeretné leírni a problémát.</p>
-        </div>
-        <div class="info-card">
-          <span class="info-card__label">Szolgáltatási terület</span>
-          <p class="info-card__value--body">[SZOLGÁLTATÁSI TERÜLET]</p>
-        </div>
-        <div class="info-card">
-          <span class="info-card__label">Székhely</span>
-          <p class="info-card__value--body">[SZÉKHELY CÍME]</p>
-        </div>
+  <section class="section section--tint">
+    <div class="container contact">
+      <div class="contact__intro">
+        <dl class="contact-list">
+          <div>
+            <dt>Telefon</dt>
+            <dd><a class="contact-list__phone" href="tel:[TELEFONSZÁM]" data-track="call" data-location="kapcsolat-oldal">[TELEFONSZÁM]</a></dd>
+          </div>
+          <div>
+            <dt>Elérhetőség</dt>
+            <dd>[NYITVATARTÁS / ELÉRHETŐSÉG]</dd>
+          </div>
+          <div>
+            <dt>E-mail</dt>
+            <dd><a href="mailto:[EMAIL]">[EMAIL]</a></dd>
+          </div>
+          <div>
+            <dt>Szolgáltatási terület</dt>
+            <dd>[SZOLGÁLTATÁSI TERÜLET]</dd>
+          </div>
+          <div>
+            <dt>Székhely</dt>
+            <dd>[SZÉKHELY CÍME]</dd>
+          </div>
+        </dl>
+        <a class="btn btn--call btn--lg" href="tel:[TELEFONSZÁM]" data-track="call" data-location="kapcsolat-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívás: [TELEFONSZÁM]</a>
       </div>
 
-      <div class="form-panel form-panel--onlight" id="ajanlatkeres">
-        <h2>Ajánlatkérő űrlap</h2>
-        <p class="form-panel__hint">Négy mező kötelező — a többi segít pontosabb árat adnunk.</p>
-        <form class="form" id="kapcsolat" action="/send-form.php" method="POST" novalidate data-quote-form data-success-url="/koszonjuk/">
-        <div class="field">
-          <label for="field-nev-kapcsolat">Teljes név <span class="req">*</span></label>
-          <input type="text" id="field-nev-kapcsolat" name="nev" autocomplete="name" maxlength="80" required>
+      <div class="form-panel" id="ajanlatkeres">
+        <h2 class="form-panel__title">Ajánlatkérő űrlap</h2>
+        <form class="form" id="ajanlat-kapcsolat" action="/api/ajanlatkeres" method="POST" data-quote-form data-success-url="/koszonjuk/" novalidate>
+        <div class="form__row">
+          <div class="field">
+            <label for="ajanlat-kapcsolat-nev">Név <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="ajanlat-kapcsolat-nev" name="nev" autocomplete="name" maxlength="100" required>
+          </div>
+          <div class="field">
+            <label for="ajanlat-kapcsolat-telefon">Telefonszám <span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="ajanlat-kapcsolat-telefon" name="telefonszam" autocomplete="tel" inputmode="tel" maxlength="30" required>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="ajanlat-kapcsolat-telepules">Település / kerület <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="ajanlat-kapcsolat-telepules" name="telepules" autocomplete="address-level2" maxlength="100" required>
+          </div>
+          <div class="field">
+            <label for="ajanlat-kapcsolat-email">E-mail cím <span class="field__opt">(nem kötelező)</span></label>
+            <input type="email" id="ajanlat-kapcsolat-email" name="email" autocomplete="email" maxlength="150">
+          </div>
         </div>
 
         <div class="field">
-          <label for="field-telefon-kapcsolat">Telefonszám <span class="req">*</span></label>
-          <input type="tel" id="field-telefon-kapcsolat" name="telefonszam" autocomplete="tel" maxlength="30" required>
-        </div>
-
-        <div class="field">
-          <label for="field-email">E-mail cím <span class="req">*</span></label>
-          <input type="email" id="field-email" name="email" autocomplete="email" maxlength="120" required>
-        </div>
-
-        <div class="field">
-          <label for="field-telepules-kapcsolat">Település</label>
-          <input type="text" id="field-telepules-kapcsolat" name="telepules" autocomplete="address-level2" maxlength="80">
-        </div>
-
-        <div class="field">
-          <label for="field-kartevo-kapcsolat">Kártevő típusa <span class="req">*</span></label>
-          <select id="field-kartevo-kapcsolat" name="kartevo_tipusa" required>
-            <option value="">Válasszon...</option>
-            <option value="Ágyi poloska irtás">Ágyi poloska irtás</option>
-            <option value="Csótányirtás">Csótányirtás</option>
-            <option value="Darázsirtás">Darázsirtás</option>
-            <option value="Hangyairtás">Hangyairtás</option>
-            <option value="Patkányirtás">Patkányirtás</option>
-            <option value="Egérirtás">Egérirtás</option>
-            <option value="Bolhairtás">Bolhairtás</option>
-            <option value="Egyéb kártevők">Egyéb kártevők</option>
+          <label for="ajanlat-kapcsolat-szolgaltatas">Milyen kártevővel van gondja? <span class="field__opt">(nem kötelező)</span></label>
+          <select id="ajanlat-kapcsolat-szolgaltatas" name="szolgaltatas">
+            <option value="">Nem tudom / válasszon…</option>
+            <option value="agyi-poloska-irtas">Ágyi poloska irtás</option>
+            <option value="csotanyirtas">Csótányirtás</option>
+            <option value="darazsirtas">Darázsirtás</option>
+            <option value="hangyairtas">Hangyairtás</option>
+            <option value="patkanyirtas">Patkányirtás</option>
+            <option value="egerirtas">Egérirtás</option>
+            <option value="bolhairtas">Bolhairtás</option>
+            <option value="egyeb-kartevok">Egyéb kártevők</option>
           </select>
         </div>
 
         <div class="field">
-          <label for="field-uzenet-kapcsolat">Üzenet</label>
-          <textarea id="field-uzenet-kapcsolat" name="uzenet" maxlength="2000" placeholder="Röviden írja le, mit észlelt, hol és mióta."></textarea>
+          <label for="ajanlat-kapcsolat-uzenet">Mit tapasztalt? <span class="field__opt">(nem kötelező)</span></label>
+          <textarea id="ajanlat-kapcsolat-uzenet" name="uzenet" rows="4" maxlength="2000" placeholder="Pl. hol és mióta látja a kártevőt, lakás vagy üzlet, sürgős-e."></textarea>
         </div>
 
+        <input type="hidden" name="forras_oldal" value="/kapcsolat/" data-source-field>
+
         <div class="hp-field" aria-hidden="true">
-          <label for="website-kapcsolat">Weboldal (hagyja üresen)</label>
-          <input type="text" id="website-kapcsolat" name="website" tabindex="-1" autocomplete="off">
+          <label for="ajanlat-kapcsolat-hp">Ezt a mezőt hagyja üresen</label>
+          <input type="text" id="ajanlat-kapcsolat-hp" name="kv_hp" tabindex="-1" autocomplete="off">
         </div>
 
         <div class="checkbox-field">
-          <input type="checkbox" id="field-adatkezeles-kapcsolat" name="adatkezeles_elfogadva" value="elfogadva" required>
-          <label for="field-adatkezeles-kapcsolat">Elolvastam és tudomásul vettem az <a href="/adatkezelesi-tajekoztato/" target="_blank" rel="noopener">adatkezelési tájékoztatót</a>. <span class="req">*</span></label>
+          <input type="checkbox" id="ajanlat-kapcsolat-adatkezeles" name="adatkezeles_elfogadva" value="igen" required>
+          <label for="ajanlat-kapcsolat-adatkezeles">Elolvastam és tudomásul vettem az <a href="/adatkezelesi-tajekoztato/" target="_blank" rel="noopener">adatkezelési tájékoztatót</a>. <span class="req" aria-hidden="true">*</span></label>
         </div>
 
-        <div class="form-status" data-form-status role="alert"></div>
+        <div class="turnstile-slot" data-turnstile></div>
+
+        <div class="form-status" data-form-status role="alert" aria-live="assertive"></div>
 
         <button class="btn btn--primary btn--block" type="submit" data-form-submit>Ajánlatkérés elküldése</button>
+        <p class="form__note">A <span class="req" aria-hidden="true">*</span> jelölt mezők kitöltése szükséges. Sürgős esetben hívjon: <a href="tel:[TELEFONSZÁM]" data-track="call" data-location="form-note">[TELEFONSZÁM]</a></p>
+        <noscript><p class="form__note">Az űrlap küldéséhez engedélyezett JavaScript szükséges. Kérjük, hívjon minket telefonon.</p></noscript>
       </form>
       </div>
     </div>
@@ -208,83 +228,84 @@
 </main>
 <footer class="site-footer">
     <div class="container footer-grid">
-      <div class="footer-col footer-brand">
-        <a class="brand" href="/">
-          <span class="brand__mark">K</span>
-          <span class="brand__name">[CÉGNÉV]</span>
+      <div class="footer-brand">
+        <a class="brand brand--light" href="/" aria-label="[CÉGNÉV] – főoldal">
+          <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.4 3.2 7.6 7.5 9 4.3-1.4 7.5-4.6 7.5-9V6L12 3Z"/><path d="m8.8 12.2 2.3 2.3 4.3-4.8"/></svg></span>
+          <span class="brand__text">
+            <span class="brand__name">[CÉGNÉV]</span>
+            <span class="brand__sub">Kártevőirtás</span>
+          </span>
         </a>
-        <p>Szakszerű kártevőirtás magánszemélyeknek és cégeknek. Felmérés, célzott kezelés, érthető visszajelzés — a probléma tényleges megoldásáig.</p>
-        <p class="footer-brand__meta">[SZOLGÁLTATÁSI TERÜLET]<br>[NYITVATARTÁS / ELÉRHETŐSÉG]</p>
+        <p>Kártevőirtás magánszemélyeknek, társasházaknak és cégeknek.</p>
+        <a class="footer-phone" href="tel:[TELEFONSZÁM]" data-track="call" data-location="footer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> [TELEFONSZÁM]</a>
+        <p class="footer-meta">[NYITVATARTÁS / ELÉRHETŐSÉG]</p>
       </div>
       <div class="footer-col">
-        <h4>Szolgáltatások</h4>
-        <div>
-          <a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a>
-            <a href="/csotanyirtas/">Csótányirtás</a>
-            <a href="/darazsirtas/">Darázsirtás</a>
-            <a href="/hangyairtas/">Hangyairtás</a>
-            <a href="/patkanyirtas/">Patkányirtás</a>
-            <a href="/egerirtas/">Egérirtás</a>
-            <a href="/bolhairtas/">Bolhairtás</a>
-            <a href="/egyeb-kartevok/">Egyéb kártevők</a>
-        </div>
+        <h2 class="footer-col__title">Szolgáltatások</h2>
+        <ul>
+            <li><a href="/agyi-poloska-irtas/">Ágyi poloska irtás</a></li>
+            <li><a href="/csotanyirtas/">Csótányirtás</a></li>
+            <li><a href="/darazsirtas/">Darázsirtás</a></li>
+            <li><a href="/hangyairtas/">Hangyairtás</a></li>
+            <li><a href="/patkanyirtas/">Patkányirtás</a></li>
+            <li><a href="/egerirtas/">Egérirtás</a></li>
+            <li><a href="/bolhairtas/">Bolhairtás</a></li>
+            <li><a href="/egyeb-kartevok/">Egyéb kártevők</a></li>
+        </ul>
       </div>
       <div class="footer-col">
-        <h4>Vállalkozás</h4>
-        <div>
-          <a href="/">Főoldal</a>
-            <a href="/#szolgaltatasok">Szolgáltatások</a>
-            <a href="/arak/">Árak</a>
-            <a href="/rolunk/">Rólunk</a>
-            <a href="/gyik/">GYIK</a>
-            <a href="/kapcsolat/">Kapcsolat</a>
-        </div>
+        <h2 class="footer-col__title">Információk</h2>
+        <ul>
+            <li><a href="/">Főoldal</a></li>
+            <li><a href="/arak/">Árak</a></li>
+            <li><a href="/rolunk/">Rólunk</a></li>
+            <li><a href="/gyik/">GYIK</a></li>
+            <li><a href="/kapcsolat/">Kapcsolat</a></li>
+        </ul>
       </div>
       <div class="footer-col">
-        <h4>Elérhetőség</h4>
-        <a class="footer-col__phone" href="tel:[TELEFONSZÁM]" data-track="call" data-location="footer">[TELEFONSZÁM]</a>
-        <a href="mailto:[E-MAIL CÍM]" style="padding-top:8px">[E-MAIL CÍM]</a>
-        <h4 class="footer-col__legal-head">Jogi</h4>
-        <div class="footer-col__legal">
-          <a href="/adatkezelesi-tajekoztato/">Adatkezelési tájékoztató</a>
-          <a href="/cookie-tajekoztato/">Cookie tájékoztató</a>
-          <a href="/jogi-informaciok/">Jogi / üzemeltetői információk</a>
-        </div>
+        <h2 class="footer-col__title">Elérhetőség</h2>
+        <ul>
+          <li><a href="mailto:[EMAIL]">[EMAIL]</a></li>
+          <li class="footer-col__text">[SZOLGÁLTATÁSI TERÜLET]</li>
+        </ul>
+        <h2 class="footer-col__title footer-col__title--spaced">Jogi információk</h2>
+        <ul>
+          <li><a href="/adatkezelesi-tajekoztato/">Adatkezelési tájékoztató</a></li>
+          <li><a href="/cookie-tajekoztato/">Cookie tájékoztató</a></li>
+          <li><a href="/jogi-informaciok/">Jogi / üzemeltetői információk</a></li>
+        </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 [CÉGNÉV]. Minden jog fenntartva.</span>
-      <span class="cluster">
-        <span>[CÉGJEGYZÉKSZÁM] &middot; [ADÓSZÁM]</span>
-        <button type="button" data-consent-open-settings>Cookie-beállítások</button>
-      </span>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 [CÉGNÉV]</span>
+      <span>[CÉGJEGYZÉKSZÁM] &middot; [ADÓSZÁM]</span>
+      <button type="button" class="footer-bottom__btn" data-consent-open-settings>Cookie-beállítások</button>
     </div>
   </footer>
 <div class="sticky-cta" role="region" aria-label="Gyors kapcsolatfelvétel">
-    <a class="sticky-cta__call" href="tel:[TELEFONSZÁM]" data-track="call" data-location="sticky-bar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívás
-    </a>
-    <a class="sticky-cta__quote" href="/kapcsolat/" data-track="quote-cta" data-location="sticky-bar">Ajánlatkérés</a>
+    <a class="sticky-cta__call" href="tel:[TELEFONSZÁM]" data-track="call" data-location="sticky-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg> Hívás</a>
+    <a class="sticky-cta__quote" href="#ajanlatkeres" data-track="quote-cta" data-location="sticky-bar">Ajánlatkérés</a>
   </div>
 <div class="consent-banner" data-consent-banner data-visible="false" role="region" aria-label="Cookie tájékoztatás">
-    <p>Weboldalunkon a működéshez szükséges sütiket mindig használjuk. Az analitikai és hirdetési célú sütiket csak
-      az Ön hozzájárulása alapján aktiváljuk. Részletek a <a href="/cookie-tajekoztato/">cookie tájékoztatóban</a>.</p>
+    <p>A weboldal működéséhez szükséges sütiket mindig használjuk. Analitikai és hirdetési sütiket csak az Ön
+      hozzájárulásával kapcsolunk be. Részletek a <a href="/cookie-tajekoztato/">cookie tájékoztatóban</a>.</p>
     <div class="consent-banner__actions">
-      <button class="btn btn--primary btn--sm" type="button" data-consent-accept-all>Mindet elfogadom</button>
-      <button class="btn btn--outline btn--sm" type="button" data-consent-reject>Csak a szükséges</button>
-      <button class="btn btn--ghost btn--sm" type="button" data-consent-open-settings>Beállítások</button>
+      <button class="btn btn--light btn--sm" type="button" data-consent-accept-all>Mindet elfogadom</button>
+      <button class="btn btn--light btn--sm" type="button" data-consent-reject>Csak a szükséges</button>
+      <button class="btn btn--text-light btn--sm" type="button" data-consent-open-settings>Beállítások</button>
     </div>
   </div>
 
   <div class="consent-modal" data-consent-modal data-visible="false" role="dialog" aria-modal="true" aria-labelledby="consent-modal-title">
     <div class="consent-modal__scrim" data-consent-close-modal></div>
     <div class="consent-modal__panel">
-      <h3 id="consent-modal-title">Cookie-beállítások</h3>
-      <p class="muted" style="margin-top:.5rem">Válassza ki, mely kategóriákat engedélyezi. A döntését bármikor módosíthatja a lábléc "Cookie-beállítások" gombjával.</p>
+      <h2 id="consent-modal-title" class="consent-modal__title">Cookie-beállítások</h2>
+      <p class="consent-modal__intro">Válassza ki, mely kategóriákat engedélyezi. A döntését bármikor módosíthatja a lábléc „Cookie-beállítások” gombjával.</p>
 
       <div class="consent-row">
         <div>
-          <h4>Szükséges</h4>
+          <h3>Szükséges</h3>
           <p>A weboldal alapműködéséhez (pl. navigáció, cookie-döntés megjegyzése) elengedhetetlen. Nem kapcsolható ki.</p>
         </div>
         <span class="switch"><input type="checkbox" checked disabled aria-label="Szükséges sütik, mindig aktív"><span class="switch__track"></span></span>
@@ -292,18 +313,18 @@
 
       <div class="consent-row">
         <div>
-          <h4>Analitika</h4>
+          <h3 id="consent-analytics-label">Analitika</h3>
           <p>Segít megérteni, hogyan használják a látogatók az oldalt (pl. GA4). Csak hozzájárulással aktiválódik.</p>
         </div>
-        <span class="switch"><input type="checkbox" id="consent-analytics"><span class="switch__track"></span></span>
+        <span class="switch"><input type="checkbox" id="consent-analytics" aria-labelledby="consent-analytics-label"><span class="switch__track"></span></span>
       </div>
 
       <div class="consent-row">
         <div>
-          <h4>Hirdetés / mérés</h4>
+          <h3 id="consent-ads-label">Hirdetés / mérés</h3>
           <p>Google Ads konverziómérés és hirdetési személyre szabás. Csak hozzájárulással aktiválódik.</p>
         </div>
-        <span class="switch"><input type="checkbox" id="consent-ads"><span class="switch__track"></span></span>
+        <span class="switch"><input type="checkbox" id="consent-ads" aria-labelledby="consent-ads-label"><span class="switch__track"></span></span>
       </div>
 
       <div class="consent-modal__actions">
@@ -312,6 +333,6 @@
       </div>
     </div>
   </div>
-<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/main.js?v=e9fc102efb" defer></script>
 </body>
 </html>

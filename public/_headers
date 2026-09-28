@@ -1,0 +1,15 @@
+# Cloudflare (Workers Static Assets) válaszfejlécek — a korábbi .htaccess utódja.
+# CSP és HSTS szándékosan nincs beállítva: a végleges mérőkódok (GTM/GA4/Ads)
+# és a stabil HTTPS/domain beállítás ismeretében érdemes felvenni.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/assets/*
+  Cache-Control: public, max-age=2592000
+
+/koszonjuk/
+  X-Robots-Tag: noindex

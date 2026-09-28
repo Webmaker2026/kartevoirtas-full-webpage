@@ -1,14 +1,14 @@
 <svg viewBox="0 0 480 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="">
   <defs>
     <linearGradient id="bg-general" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1d2126"/>
-      <stop offset="60%" stop-color="#141619"/>
-      <stop offset="100%" stop-color="#0c0d0f"/>
+      <stop offset="0%" stop-color="#17325a"/>
+      <stop offset="60%" stop-color="#0e2240"/>
+      <stop offset="100%" stop-color="#07162b"/>
     </linearGradient>
     <radialGradient id="glow-general" cx="50%" cy="45%" r="65%">
-      <stop offset="0%" stop-color="#F28C28" stop-opacity=".28"/>
-      <stop offset="55%" stop-color="#F28C28" stop-opacity=".07"/>
-      <stop offset="100%" stop-color="#F28C28" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#FFC629" stop-opacity=".28"/>
+      <stop offset="55%" stop-color="#FFC629" stop-opacity=".07"/>
+      <stop offset="100%" stop-color="#FFC629" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="vig-general" cx="50%" cy="46%" r="75%">
       <stop offset="55%" stop-color="#000" stop-opacity="0"/>
@@ -21,14 +21,14 @@
   </defs>
   <rect width="480" height="600" fill="url(#bg-general)"/>
   <rect width="480" height="600" fill="url(#glow-general)"/>
-  <circle cx="240" cy="276" r="205" fill="none" stroke="#F28C28" stroke-width="1.5" stroke-dasharray="3 11" opacity=".35"/>
+  <circle cx="240" cy="276" r="205" fill="none" stroke="#FFC629" stroke-width="1.5" stroke-dasharray="3 11" opacity=".35"/>
   <g>
       <g transform="translate(140,180)">
-        <circle cx="90" cy="90" r="88" fill="rgba(242,140,40,.05)" stroke="#F28C28" stroke-width="5"/>
-        <circle cx="90" cy="90" r="46" fill="none" stroke="#F28C28" stroke-width="2.5" stroke-dasharray="2 9" opacity=".7"/>
-        <circle cx="90" cy="90" r="10" fill="#F28C28"/>
-        <path d="M90 30v28M90 122v28M30 90h28M122 90h28" stroke="#F3F1EA" stroke-width="3" opacity=".6"/>
-        <rect x="150" y="150" width="20" height="76" rx="9" transform="rotate(45 150 150)" fill="#F28C28"/>
+        <circle cx="90" cy="90" r="88" fill="rgba(255,198,41,.05)" stroke="#FFC629" stroke-width="5"/>
+        <circle cx="90" cy="90" r="46" fill="none" stroke="#FFC629" stroke-width="2.5" stroke-dasharray="2 9" opacity=".7"/>
+        <circle cx="90" cy="90" r="10" fill="#FFC629"/>
+        <path d="M90 30v28M90 122v28M30 90h28M122 90h28" stroke="#EAF1FA" stroke-width="3" opacity=".6"/>
+        <rect x="150" y="150" width="20" height="76" rx="9" transform="rotate(45 150 150)" fill="#FFC629"/>
       </g>
     </g>
   <rect width="480" height="600" fill="url(#vig-general)"/>

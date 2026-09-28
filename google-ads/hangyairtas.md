@@ -6,7 +6,7 @@
 
 - Szolgáltatás: Hangyairtás
 - Cél URL: `[DOMAIN]/hangyairtas/`
-- Landing H1: „Hangyairtás — beltéri és kültéri fészkek felszámolása”
+- Landing H1: „Hangyairtás lakásban és kertben”
 - Elsődleges konverzió: sikeresen elküldött és szerveroldalon feldolgozott ajánlatkérés (`/koszonjuk/`)
 - Másodlagos konverzió: telefon CTA kattintás (`data-track="call"`)
 

@@ -6,7 +6,7 @@
 
 - Szolgáltatás: Egérirtás
 - Cél URL: `[DOMAIN]/egerirtas/`
-- Landing H1: „Egérirtás — fertőzöttség felszámolása és megelőzés”
+- Landing H1: „Egérirtás lakásban, házban és üzletben”
 - Elsődleges konverzió: sikeresen elküldött és szerveroldalon feldolgozott ajánlatkérés (`/koszonjuk/`)
 - Másodlagos konverzió: telefon CTA kattintás (`data-track="call"`)
 

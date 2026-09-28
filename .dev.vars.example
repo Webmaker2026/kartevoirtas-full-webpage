@@ -1,0 +1,16 @@
+# Helyi fejlesztéshez (`npx wrangler dev`): másold `.dev.vars` néven.
+# A `.dev.vars` a .gitignore-ban van — soha ne commitold!
+#
+# Turnstile TESZT kulcsok (a Cloudflare dokumentációjában közzétett dummy
+# kulcsok, mindig sikeres ellenőrzést adnak) — élesben NE ezeket használd:
+TURNSTILE_SITE_KEY=1x00000000000000000000AA
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+
+# Resend API kulcs (https://resend.com → API Keys). Helyben is valódi
+# kulcs kell, ha tényleges e-mailt akarsz küldeni.
+RESEND_API_KEY=re_IDE_JON_A_KULCS
+MAIL_FROM=Weboldal <onboarding@resend.dev>
+LEAD_RECIPIENT_EMAIL=teszt@example.com
+
+# Csak ha kifejezetten Turnstile nélkül akarsz tesztelni:
+# TURNSTILE_DISABLED=true

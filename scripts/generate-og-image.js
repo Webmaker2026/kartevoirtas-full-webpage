@@ -15,9 +15,9 @@ const OUT_DIR = path.join(__dirname, '..', 'public', 'assets', 'img', 'social');
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
 const W = 1200, H = 630;
-const BG = [0x11, 0x13, 0x15];
-const BG_ALT = [0x1a, 0x1d, 0x21];
-const ACCENT = [0xf2, 0x8c, 0x28];
+const BG = [0x0e, 0x22, 0x40];
+const BG_ALT = [0x17, 0x32, 0x5a];
+const ACCENT = [0xff, 0xc6, 0x29];
 
 const buf = Buffer.alloc(W * H * 4);
 function setPx(x, y, c, a = 255) {
@@ -39,7 +39,7 @@ for (let y = 0; y < H; y++) {
 const cx = Math.round(W * 0.82);
 const cy = Math.round(H * 0.5);
 const rings = [
-  { r: 190, w: 2, color: [0x2a, 0x2e, 0x33] },
+  { r: 190, w: 2, color: [0x23, 0x46, 0x7a] },
   { r: 140, w: 3, color: ACCENT },
   { r: 90, w: 0, color: BG, fill: true },
   { r: 46, w: 3, color: ACCENT },
@@ -59,7 +59,7 @@ for (let y = 0; y < H; y++) {
   }
 }
 
-// Alsó borostyán csík (brand kontraszt)
+// Alsó sárga csík (brand kontraszt)
 for (let y = H - 10; y < H; y++) {
   for (let x = 0; x < W; x++) setPx(x, y, ACCENT);
 }

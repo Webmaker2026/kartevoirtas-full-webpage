@@ -1,14 +1,14 @@
 <svg viewBox="0 0 480 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="">
   <defs>
     <linearGradient id="bg-hangyairtas" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1d2126"/>
-      <stop offset="60%" stop-color="#141619"/>
-      <stop offset="100%" stop-color="#0c0d0f"/>
+      <stop offset="0%" stop-color="#17325a"/>
+      <stop offset="60%" stop-color="#0e2240"/>
+      <stop offset="100%" stop-color="#07162b"/>
     </linearGradient>
     <radialGradient id="glow-hangyairtas" cx="40%" cy="65%" r="65%">
-      <stop offset="0%" stop-color="#F28C28" stop-opacity=".28"/>
-      <stop offset="55%" stop-color="#F28C28" stop-opacity=".07"/>
-      <stop offset="100%" stop-color="#F28C28" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#FFC629" stop-opacity=".28"/>
+      <stop offset="55%" stop-color="#FFC629" stop-opacity=".07"/>
+      <stop offset="100%" stop-color="#FFC629" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="vig-hangyairtas" cx="50%" cy="46%" r="75%">
       <stop offset="55%" stop-color="#000" stop-opacity="0"/>
@@ -21,19 +21,19 @@
   </defs>
   <rect width="480" height="600" fill="url(#bg-hangyairtas)"/>
   <rect width="480" height="600" fill="url(#glow-hangyairtas)"/>
-  <circle cx="240" cy="276" r="205" fill="none" stroke="#F28C28" stroke-width="1.5" stroke-dasharray="3 11" opacity=".35"/>
+  <circle cx="240" cy="276" r="205" fill="none" stroke="#FFC629" stroke-width="1.5" stroke-dasharray="3 11" opacity=".35"/>
   <g>
-      <path d="M40 520 C120 460 160 430 190 400 C230 360 260 330 300 300" fill="none" stroke="#F28C28" stroke-width="2.5" stroke-dasharray="1 16" stroke-linecap="round" opacity=".7"/>
-      <path d="M20 560 L90 500 L-10 500 Z" fill="#20242a" stroke="#F3F1EA" stroke-width="4" stroke-linejoin="round"/>
-      <g stroke="#F3F1EA" stroke-width="2.5" opacity=".5">
+      <path d="M40 520 C120 460 160 430 190 400 C230 360 260 330 300 300" fill="none" stroke="#FFC629" stroke-width="2.5" stroke-dasharray="1 16" stroke-linecap="round" opacity=".7"/>
+      <path d="M20 560 L90 500 L-10 500 Z" fill="#1b3a66" stroke="#EAF1FA" stroke-width="4" stroke-linejoin="round"/>
+      <g stroke="#EAF1FA" stroke-width="2.5" opacity=".5">
         <path d="M30 540h50M40 555h30"/>
       </g>
       <g transform="translate(260,230) rotate(18)">
-        <circle cx="0" cy="0" r="20" fill="#241b12" stroke="#F28C28" stroke-width="5"/>
-        <ellipse cx="4" cy="40" rx="24" ry="20" fill="#241b12" stroke="#F28C28" stroke-width="5"/>
-        <ellipse cx="10" cy="92" rx="34" ry="42" fill="#241b12" stroke="#F28C28" stroke-width="5"/>
-        <path d="M-16 -10 -44 -26M16 -10l28-16" stroke="#F3F1EA" stroke-width="4" stroke-linecap="round"/>
-        <g stroke="#F3F1EA" stroke-width="4" stroke-linecap="round">
+        <circle cx="0" cy="0" r="20" fill="#241b12" stroke="#FFC629" stroke-width="5"/>
+        <ellipse cx="4" cy="40" rx="24" ry="20" fill="#241b12" stroke="#FFC629" stroke-width="5"/>
+        <ellipse cx="10" cy="92" rx="34" ry="42" fill="#241b12" stroke="#FFC629" stroke-width="5"/>
+        <path d="M-16 -10 -44 -26M16 -10l28-16" stroke="#EAF1FA" stroke-width="4" stroke-linecap="round"/>
+        <g stroke="#EAF1FA" stroke-width="4" stroke-linecap="round">
           <path d="M-14 30 -46 18M18 30l32-12"/>
           <path d="M-18 48 -50 48M22 48l32 0"/>
           <path d="M-14 66 -46 78M18 66l32 12"/>

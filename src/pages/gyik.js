@@ -1,38 +1,36 @@
 'use strict';
 const { SITE } = require('../config');
 const { icons } = require('../partials/icons');
-const { renderBreadcrumb } = require('../partials/breadcrumb');
-const { renderFaq, renderFaqJsonLd } = require('../partials/components');
+const { renderPageHero, renderFaq, renderFaqJsonLd } = require('../partials/components');
 const { SERVICES } = require('../data/services');
 
-function render() {
+function render({ path }) {
+  const serviceNames = SERVICES.filter((s) => s.slug !== 'egyeb-kartevok').map((s) => s.label.toLowerCase()).join(', ');
+
   const generalFaq = [
-    { q: 'Hogyan kérhetek árajánlatot?', a: 'Töltse ki az online ajánlatkérő űrlapot a Kapcsolat oldalon vagy bármelyik szolgáltatási aloldalon, vagy hívjon minket közvetlenül telefonon. A bejelentés alapján javaslatot teszünk a felmérés módjára.' },
-    { q: 'Otthon kell lennem a felmérés és a kezelés idején?', a: 'A helyszíni felméréshez és a kezeléshez jellemzően szükséges, hogy valaki beengedjen minket az ingatlanba, illetve tájékoztatást tudjon adni a tapasztalt jelekről.' },
-    { q: 'Mennyi idő alatt érnek ki a bejelentés után?', a: `A kiszállási idő a probléma sürgősségétől és a helyszíntől függ: ${SITE.dispatchTime}.` },
-    { q: 'Milyen fizetési módokat fogadnak el?', a: '[FIZETÉSI MÓDOK MEGADÁSA SZÜKSÉGES] — a fizetési lehetőségekről az ajánlatadáskor adunk pontos tájékoztatást.' },
-    { q: 'Társasházban ki rendeli meg a kezelést?', a: 'Egyéni lakás esetén a lakó, közös terület érintettsége esetén jellemzően a közös képviselő vagy a lakóközösség — mindkét esetben tudunk ajánlatot adni, a megrendelőt előzetesen egyeztetjük.' },
-    { q: 'Mi történik, ha a kezelés után is jelentkezik a probléma?', a: 'Ha a kezelés után a megbeszélt időn belül továbbra is aktivitást tapasztal, jelezze felénk — a felmérés alapján javaslatot teszünk a további teendőkre, szükség esetén kontroll látogatásra.' },
-    { q: 'Melyik kártevőkkel foglalkoznak?', a: `Az oldalon a leggyakoribb kártevőkhöz (${SERVICES.filter((s) => s.slug !== 'egyeb-kartevok').map((s) => s.label.toLowerCase()).join(', ')}) külön tájékoztatót és árlistát találhat, egyéb kártevő esetén az Egyéb kártevők oldalon kérhet ajánlatot.` },
-    { q: 'Vállalnak üzleti ügyfeleket, például éttermeket vagy társasházakat is?', a: 'Igen, magánszemélyek mellett üzleti és intézményi ügyfeleket (társasházak, éttermek, üzletek, raktárak) is kiszolgálunk, egyedi felmérés és ajánlat alapján.' },
+    { q: 'Hogyan kérhetek árajánlatot?', a: 'Hívjon minket telefonon, vagy töltse ki az ajánlatkérő űrlapot a Kapcsolat oldalon vagy bármelyik szolgáltatásoldal alján. Elmondja, mit tapasztal, és megmondjuk, szükség van-e helyszíni felmérésre.' },
+    { q: 'Mennyi idő alatt tudnak kijönni?', a: `Ez a helyszíntől, a munka sürgősségétől és az aktuális beosztásunktól függ. Általában: ${SITE.dispatchTime}. Telefonon megmondjuk a legkorábbi időpontot.` },
+    { q: 'Otthon kell lennem a kezelés idején?', a: 'A felméréshez és a kezeléshez valakinek be kell engednie minket, és jó, ha el tudja mondani, hol és mit tapasztalt. A kezelés utáni teendőket is ekkor beszéljük meg.' },
+    { q: 'Hogyan készüljek fel a kezelésre?', a: 'Ez kártevőnként eltér. Az adott szolgáltatás oldalán, a „Tudnivalók” részben összefoglaltuk a legfontosabbakat, a pontos teendőket pedig az időpont egyeztetésekor mondjuk el.' },
+    { q: 'Milyen fizetési módokat fogadnak el?', a: '[FIZETÉSI MÓDOK MEGADÁSA SZÜKSÉGES]' },
+    { q: 'Társasházban ki rendeli meg a kezelést?', a: 'Ha csak egy lakás érintett, a lakó vagy a tulajdonos. Ha a közös terek is érintettek, jellemzően a közös képviselő. Mindkét esetben tudunk ajánlatot adni, és szükség esetén egyeztetünk a közös képviselővel.' },
+    { q: 'Mi történik, ha a kezelés után is látok kártevőt?', a: 'Az első napokban ez sok kártevőnél természetes. Ha a megbeszélt idő után is aktivitást tapasztal, jelezze nekünk, és megbeszéljük a további teendőket.' },
+    { q: 'Milyen kártevőkkel foglalkoznak?', a: `Külön oldalt talál a következőkről: ${serviceNames}. Ha más kártevővel van gondja (például moly, pincebogár), nézze meg az Egyéb kártevők oldalt, vagy hívjon minket.` },
+    { q: 'Cégeknek is dolgoznak?', a: 'Igen. Társasházaknak, éttermeknek, üzleteknek, irodáknak és raktáraknak is adunk ajánlatot, a helyszín felmérése alapján.' },
   ];
 
   return `
-  <section class="hero hero--page" style="background:var(--color-text)">
-    <div class="container hero__inner">
-      ${renderBreadcrumb([{ label: 'Főoldal', path: '/' }, { label: 'GYIK' }])}
-      <span class="eyebrow">Gyakori kérdések</span>
-      <h1 style="margin-top:16px;max-width:840px">Amit a kártevőirtásról tudni érdemes</h1>
-    </div>
-  </section>
+  ${renderPageHero({ label: 'GYIK', path, h1: 'Gyakori kérdések a kártevőirtásról' })}
 
-  <section class="section--light">
+  <section class="section section--white">
     <div class="container container--narrow">
       ${renderFaq(generalFaq, 'gyik')}
-      <div class="faq-callout">
-        <h2>Nem találta a választ?</h2>
-        <p>Hívjon minket, és elmondjuk, mire számítson a konkrét helyzetében.</p>
-        <a class="btn btn--primary" style="margin-top:20px" href="${SITE.phoneHref}" data-track="call" data-location="gyik-final-cta">${SITE.phoneDisplay}</a>
+      <div class="callout">
+        <div>
+          <h2>Nem találta a választ?</h2>
+          <p>Hívjon minket, és elmondjuk, mire számíthat az Ön esetében.</p>
+        </div>
+        <a class="btn btn--call" href="${SITE.phoneHref}" data-track="call" data-location="gyik-final-cta">${icons.phone} ${SITE.phoneDisplay}</a>
       </div>
     </div>
   </section>

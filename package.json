@@ -1,11 +1,15 @@
 {
   "name": "kartevoirtas-full-webpage",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "Kártevőirtó vállalkozás weboldala — statikus HTML/CSS/JS + PHP ajánlatkérő űrlap. A src/ mappa a fejlesztési (build-time) forrás, a public/ a végleges, FTP-re tölthető és Vercelen previewzhető statikus kimenet.",
+  "description": "Kártevőirtó vállalkozás weboldala (MASTER sablon) — statikus HTML/CSS/JS + Cloudflare Worker ajánlatkérő backend. A src/ a build-time forrás, a public/ a generált statikus kimenet, a worker/ az űrlap-endpoint.",
   "scripts": {
     "build": "node src/build.js && node scripts/generate-icons.js && node scripts/generate-og-image.js && node scripts/generate-service-art.js",
-    "build:pages": "node src/build.js"
+    "build:pages": "node src/build.js",
+    "check": "node scripts/check-links.js && node scripts/verify-ads.js && node scripts/test-worker.mjs",
+    "test:worker": "node scripts/test-worker.mjs",
+    "cf:dev": "npm run build && npx wrangler dev",
+    "cf:deploy": "npm run build && npx wrangler deploy"
   },
   "engines": {
     "node": ">=18"

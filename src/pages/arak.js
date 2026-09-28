@@ -1,55 +1,61 @@
 'use strict';
-const { SITE } = require('../config');
 const { icons } = require('../partials/icons');
 const { SERVICES } = require('../data/services');
-const { renderBreadcrumb } = require('../partials/breadcrumb');
+const { renderPageHero, renderSectionHead, renderCtaBand } = require('../partials/components');
 
-function render() {
+function render({ path }) {
   const rows = SERVICES.map(
-    (s) => `<div class="price-row price-row--summary" role="row">
-      <span class="price-row__name" role="cell">${s.label}</span>
-      <span class="price-row__incl" role="cell">${s.shortDesc}</span>
-      <span class="price-row__price" role="cell">[ÁR MEGADÁSA SZÜKSÉGES]</span>
-      <a class="btn btn--frame btn--sm price-row__cta" role="cell" href="${s.path}#arak">Részletes árlista →</a>
-    </div>`
-  ).join('\n      ');
+    (s) => `<tr>
+            <th scope="row" class="price-table__name" data-label="Szolgáltatás"><a href="${s.path}">${s.label}</a></th>
+            <td class="price-table__desc" data-label="Mire vonatkozik">${s.shortDesc}</td>
+            <td class="price-table__price" data-label="Induló ár">[ÁR MEGADÁSA SZÜKSÉGES]</td>
+            <td class="price-table__link" data-label="Részletek"><a href="${s.path}#arak">Részletes árlista ${icons.arrowRight}</a></td>
+          </tr>`
+  ).join('\n          ');
 
   return `
-  <section class="hero hero--page" style="background:var(--color-text)">
-    <div class="container hero__inner">
-      ${renderBreadcrumb([{ label: 'Főoldal', path: '/' }, { label: 'Árak' }])}
-      <span class="eyebrow">Árak</span>
-      <h1 style="margin-top:16px;max-width:900px">Kártevőirtási árak — összesített áttekintő</h1>
-      <p class="lead hero__lead">Minden szolgáltatásunkhoz külön, a konkrét kártevőhöz igazított árlista tartozik, mert a munka menete és időigénye kártevőnként eltérő. Alább az egyes szolgáltatások áttekintése található.</p>
-    </div>
-  </section>
+  ${renderPageHero({
+    label: 'Árak',
+    path,
+    h1: 'Kártevőirtás árak',
+    lead: 'A munka menete és időigénye kártevőnként eltér, ezért minden szolgáltatáshoz külön árlista tartozik. Alább az induló árakat látja; a részletes árlistát az adott szolgáltatás oldalán találja.',
+  })}
 
-  <section class="section--light">
+  <section class="section section--white">
     <div class="container">
-      <div class="price-rows">
-        <div class="price-rows__head" role="row"><span role="columnheader">Szolgáltatás</span><span role="columnheader">Mire való</span><span role="columnheader">Induló ár</span><span role="columnheader"></span></div>
-        ${rows}
+      <div class="price-table-wrap">
+        <table class="price-table price-table--summary">
+          <thead><tr><th scope="col">Szolgáltatás</th><th scope="col">Mire vonatkozik</th><th scope="col">Induló ár</th><th scope="col"><span class="visually-hidden">Részletek</span></th></tr></thead>
+          <tbody>
+          ${rows}
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <section class="section--surface">
-    <div class="container grid grid--2" style="gap:clamp(32px,4vw,64px)">
+  <section class="section section--tint">
+    <div class="container two-col">
       <div>
-        <h2 style="font-size:clamp(23px,2.6vw,32px);padding-bottom:14px;border-bottom:2px solid var(--color-text)">Mitől függ a végleges ár?</h2>
-        <ul class="checklist" style="margin-top:0">
-          <li>${icons.check} A kártevő típusa és a fertőzöttség mértéke</li>
-          <li>${icons.check} A kezelendő terület mérete, típusa (lakás, üzlet, telephely)</li>
-          <li>${icons.check} A szükséges kezelések, kontrollok száma</li>
-          <li>${icons.check} A helyszín megközelíthetősége, sürgőssége</li>
+        ${renderSectionHead({ title: 'Mitől függ a végleges ár?' })}
+        <ul class="checklist">
+          <li>${icons.check}<span>A kártevő fajtája és a fertőzöttség mértéke</span></li>
+          <li>${icons.check}<span>A kezelendő terület mérete és típusa (lakás, üzlet, telephely)</span></li>
+          <li>${icons.check}<span>Hány kezelésre van szükség</span></li>
+          <li>${icons.check}<span>A helyszín távolsága, megközelíthetősége és a munka sürgőssége</span></li>
         </ul>
       </div>
       <div>
-        <h2 style="font-size:clamp(23px,2.6vw,32px);padding-bottom:14px;border-bottom:2px solid var(--color-text)">Hogyan kapok pontos árajánlatot?</h2>
-        <p style="margin-top:20px;line-height:1.68">Töltse ki az ajánlatkérő űrlapot, vagy hívjon minket telefonon. A bejelentés alapján javaslatot teszünk helyszíni vagy fotó/leírás alapú felmérésre, ami után pontos, rejtett költség nélküli árajánlatot adunk.</p>
-        <a class="btn btn--primary" style="margin-top:26px" href="/kapcsolat/">Ajánlatot kérek</a>
+        ${renderSectionHead({ title: 'Hogyan kap pontos árat?' })}
+        <div class="prose">
+          <p>Hívjon minket, vagy töltse ki az ajánlatkérő űrlapot. Elmondja, mit tapasztal, mi pedig megmondjuk, szükség van-e helyszíni felmérésre, és ez alapján adunk pontos árat.</p>
+        </div>
       </div>
     </div>
+  </section>
+
+  <section class="section section--navy section--cta">
+    ${renderCtaBand({ title: 'Kérdése van az árakkal kapcsolatban?', body: 'Hívjon, és telefonon elmondjuk, mire számíthat.', location: 'arak-final-cta' })}
   </section>
   `;
 }

@@ -1,19 +1,13 @@
 'use strict';
 const { SITE } = require('../config');
-const { renderBreadcrumb } = require('../partials/breadcrumb');
+const { renderPageHero } = require('../partials/components');
 
-function render() {
+function render({ path }) {
   return `
-  <section class="section--dark">
-    <div class="container">
-      ${renderBreadcrumb([{ label: 'Főoldal', path: '/' }, { label: 'Jogi / üzemeltetői információk' }])}
-      <span class="eyebrow">Jogi tájékoztató</span>
-      <h1 style="margin-top:.6rem">Jogi és üzemeltetői információk</h1>
-    </div>
-  </section>
+  ${renderPageHero({ label: 'Jogi / üzemeltetői információk', path, h1: 'Jogi és üzemeltetői információk' })}
 
-  <section class="section--light">
-    <div class="container legal-content" style="max-width:52rem">
+  <section class="section section--white">
+    <div class="container legal-content">
       <h2>Üzemeltető</h2>
       <p><strong>Cégnév:</strong> ${SITE.companyFormalName}</p>
       <p><strong>Székhely:</strong> ${SITE.companySeat}</p>

@@ -1,5 +1,5 @@
 'use strict';
-const { renderHead } = require('./head');
+const { renderHead, assetUrl } = require('./head');
 const { renderHeader } = require('./header');
 const { renderFooter } = require('./footer');
 const { renderConsent } = require('./consent');
@@ -16,20 +16,22 @@ const { renderStickyCta } = require('./stickyCta');
  */
 function renderPage(opts) {
   const sticky = opts.sticky !== false;
+  // Ha az oldalon van ajánlatkérő űrlap, a sticky "Ajánlatkérés" gomb oda ugrik.
+  const quoteHref = opts.content.includes('id="ajanlatkeres"') ? '#ajanlatkeres' : '/kapcsolat/';
   return `<!doctype html>
 <html lang="hu">
 <head>
 ${renderHead({ title: opts.title, description: opts.description, path: opts.path, noindex: opts.noindex })}
 </head>
-<body>
+<body${sticky ? ' class="has-sticky-cta"' : ''}>
 ${renderHeader(opts.path)}
 <main id="main">
 ${opts.content}
 </main>
 ${renderFooter()}
-${sticky ? renderStickyCta() : ''}
+${sticky ? renderStickyCta(quoteHref) : ''}
 ${renderConsent()}
-<script src="/assets/js/main.js" defer></script>
+<script src="${assetUrl('/assets/js/main.js')}" defer></script>
 </body>
 </html>
 `;

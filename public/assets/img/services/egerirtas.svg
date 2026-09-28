@@ -1,14 +1,14 @@
 <svg viewBox="0 0 480 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="">
   <defs>
     <linearGradient id="bg-egerirtas" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1d2126"/>
-      <stop offset="60%" stop-color="#141619"/>
-      <stop offset="100%" stop-color="#0c0d0f"/>
+      <stop offset="0%" stop-color="#17325a"/>
+      <stop offset="60%" stop-color="#0e2240"/>
+      <stop offset="100%" stop-color="#07162b"/>
     </linearGradient>
     <radialGradient id="glow-egerirtas" cx="42%" cy="68%" r="65%">
-      <stop offset="0%" stop-color="#F28C28" stop-opacity=".28"/>
-      <stop offset="55%" stop-color="#F28C28" stop-opacity=".07"/>
-      <stop offset="100%" stop-color="#F28C28" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#FFC629" stop-opacity=".28"/>
+      <stop offset="55%" stop-color="#FFC629" stop-opacity=".07"/>
+      <stop offset="100%" stop-color="#FFC629" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="vig-egerirtas" cx="50%" cy="46%" r="75%">
       <stop offset="55%" stop-color="#000" stop-opacity="0"/>
@@ -21,24 +21,24 @@
   </defs>
   <rect width="480" height="600" fill="url(#bg-egerirtas)"/>
   <rect width="480" height="600" fill="url(#glow-egerirtas)"/>
-  <circle cx="240" cy="276" r="205" fill="none" stroke="#F28C28" stroke-width="1.5" stroke-dasharray="3 11" opacity=".35"/>
+  <circle cx="240" cy="276" r="205" fill="none" stroke="#FFC629" stroke-width="1.5" stroke-dasharray="3 11" opacity=".35"/>
   <g>
-      <rect x="0" y="450" width="480" height="40" fill="#191c20"/>
-      <rect x="-20" y="410" width="520" height="46" fill="#22262c" stroke="#F3F1EA" stroke-width="4"/>
-      <path d="M175 456 225 456 210 410 190 410Z" fill="#0c0d0f"/>
-      <g stroke="#F28C28" stroke-width="5" stroke-linecap="round">
+      <rect x="0" y="450" width="480" height="40" fill="#163258"/>
+      <rect x="-20" y="410" width="520" height="46" fill="#1d3f70" stroke="#EAF1FA" stroke-width="4"/>
+      <path d="M175 456 225 456 210 410 190 410Z" fill="#07162b"/>
+      <g stroke="#FFC629" stroke-width="5" stroke-linecap="round">
         <path d="M180 432 220 432"/>
         <path d="M186 415 214 449"/>
       </g>
       <g transform="translate(230,300)">
-        <ellipse cx="60" cy="90" rx="52" ry="34" fill="#241b12" stroke="#F28C28" stroke-width="5"/>
-        <circle cx="8" cy="66" r="22" fill="#241b12" stroke="#F28C28" stroke-width="5"/>
-        <circle cx="-8" cy="46" r="13" fill="#241b12" stroke="#F28C28" stroke-width="4"/>
-        <circle cx="16" cy="42" r="13" fill="#241b12" stroke="#F28C28" stroke-width="4"/>
-        <circle cx="-2" cy="60" r="3" fill="#F3F1EA"/>
-        <path d="M110 100 C150 104 175 88 182 60" fill="none" stroke="#F28C28" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="60" cy="90" rx="52" ry="34" fill="#241b12" stroke="#FFC629" stroke-width="5"/>
+        <circle cx="8" cy="66" r="22" fill="#241b12" stroke="#FFC629" stroke-width="5"/>
+        <circle cx="-8" cy="46" r="13" fill="#241b12" stroke="#FFC629" stroke-width="4"/>
+        <circle cx="16" cy="42" r="13" fill="#241b12" stroke="#FFC629" stroke-width="4"/>
+        <circle cx="-2" cy="60" r="3" fill="#EAF1FA"/>
+        <path d="M110 100 C150 104 175 88 182 60" fill="none" stroke="#FFC629" stroke-width="5" stroke-linecap="round"/>
       </g>
-      <g fill="#F3F1EA" opacity=".5">
+      <g fill="#EAF1FA" opacity=".5">
         <circle cx="150" cy="470" r="4"/><circle cx="170" cy="465" r="4"/><circle cx="190" cy="472" r="4"/>
       </g>
     </g>

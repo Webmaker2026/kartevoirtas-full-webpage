@@ -1,22 +1,17 @@
 'use strict';
-const { renderBreadcrumb } = require('../partials/breadcrumb');
+const { renderPageHero } = require('../partials/components');
 
-function render() {
+function render({ path }) {
   return `
-  <section class="section--dark">
-    <div class="container">
-      ${renderBreadcrumb([{ label: 'Főoldal', path: '/' }, { label: 'Cookie tájékoztató' }])}
-      <span class="eyebrow">Jogi tájékoztató</span>
-      <h1 style="margin-top:.6rem">Cookie (süti) tájékoztató</h1>
-      <p class="lead" style="margin-top:1rem;max-width:44rem">
-        A weboldal sütiket (cookie-kat) használ. Az alábbiakban bemutatjuk a süti-kategóriákat, és azt, hogyan
-        módosíthatja a hozzájárulását bármikor.
-      </p>
-    </div>
-  </section>
+  ${renderPageHero({
+    label: 'Cookie tájékoztató',
+    path,
+    h1: 'Cookie (süti) tájékoztató',
+    lead: 'A weboldal sütiket (cookie-kat) használ. Az alábbiakban bemutatjuk a süti-kategóriákat, és azt, hogyan módosíthatja a hozzájárulását bármikor.',
+  })}
 
-  <section class="section--light">
-    <div class="container legal-content" style="max-width:52rem">
+  <section class="section section--white">
+    <div class="container legal-content">
       <h2>Mik azok a sütik?</h2>
       <p>A sütik kisméretű szövegfájlok, amelyeket a böngészője tárol a weboldal működéséhez, illetve a látogatottság
         méréséhez és a hirdetések hatékonyságának méréséhez.</p>
@@ -36,10 +31,14 @@ function render() {
         A weboldalon jelenleg nincs éles Google Analytics, Google Tag Manager vagy Google Ads mérőkód beállítva —
         ezek hozzáadása után ez a tájékoztató a tényleges mérőkódok és sütik listájával egészítendő ki.</p>
 
+      <h2>Az ajánlatkérő űrlap spamvédelme</h2>
+      <p>Az ajánlatkérő űrlapot a Cloudflare Turnstile védi az automatizált (robot) beküldések ellen. A Turnstile csak
+        az űrlapot tartalmazó oldalakon töltődik be. [ELLENŐRIZENDŐ: a Turnstile aktuális adatkezelési feltételei.]</p>
+
       <h2>Konkrét sütik listája</h2>
-      <div class="price-table-wrap">
-        <table class="price-table">
-          <thead><tr><th>Süti neve</th><th>Kategória</th><th>Cél</th><th>Élettartam</th></tr></thead>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr><th scope="col">Süti neve</th><th scope="col">Kategória</th><th scope="col">Cél</th><th scope="col">Élettartam</th></tr></thead>
           <tbody>
             <tr><td>kv_consent_v1</td><td>Szükséges</td><td>A cookie-döntés megjegyzése</td><td>Böngésző local storage, visszavonásig</td></tr>
             <tr><td>[SÜTINÉV MEGADÁSA SZÜKSÉGES]</td><td>Analitikai</td><td>[CÉL MEGADÁSA SZÜKSÉGES]</td><td>[ÉLETTARTAM MEGADÁSA SZÜKSÉGES]</td></tr>

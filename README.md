@@ -1,88 +1,70 @@
-# Kártevőirtás — weboldal + Google Ads landing rendszer
+# Kártevőirtás — MASTER weboldal sablon
 
-Teljes, Google Ads kampányokra optimalizált kártevőirtó weboldal. Statikus HTML/CSS/JS + egyetlen PHP
-végpont (`send-form.php`) — hagyományos FTP/PHP tárhelyen build nélkül üzemképes, fejlesztés közben pedig
-Vercelen previewzhető.
+Többoldalas, magyar nyelvű kártevőirtó weboldal, Google Ads forgalomra optimalizálva (elsődleges cél: telefonhívás,
+másodlagos: ajánlatkérő űrlap, harmadlagos: organikus SEO). Statikus HTML/CSS/JS, függőség nélküli Node build,
+és egy Cloudflare Worker, amely kiszolgálja az oldalt és fogadja az ajánlatkéréseket.
+
+Új ügyfélnél a teendők listája: `MISSING-DATA.md`. Az űrlap-backend beállítása: `CLOUDFLARE-FORM-SETUP.md`.
 
 ## Mappastruktúra
 
 ```
 /src            — fejlesztési forrás (Node, függőség nélkül)
-  build.js      — statikus oldalgenerátor: src/pages/*.js → public/*.html
-  config.js     — EGYETLEN hely a domain/telefon/e-mail stb. placeholderekhez
-  data/         — szolgáltatás-lista (nav, footer, /arak/, sitemap forrása)
-  partials/     — fejléc, lábléc, cookie consent, ajánlatkérő form, landing-építő
+  build.js      — statikus oldalgenerátor: src/pages/*.js → public/**/index.html, sitemap, robots
+  config.js     — EGYETLEN hely a cégadatok / placeholderek számára ([CÉGNÉV], [TELEFONSZÁM] …)
+  data/         — szolgáltatáslista (nav, footer, űrlap, Worker-validáció), kép-leltár
+  partials/     — fejléc, lábléc, sticky CTA, űrlap, szolgáltatásoldal-sablon (landing.js), komponensek
   pages/        — oldalankénti tartalom (egy .js fájl = egy oldal)
-/public         — GENERÁLT + statikus kimenet. Ez a tényleges FTP/Vercel deploy gyökér.
-  send-form.php — kézzel írt, nem generált
-  .htaccess, robots.txt, sitemap.xml, site.webmanifest — generált/kézzel írt keverék
-/scripts        — dev-time segédszkriptek (ikon-, OG kép generátor, Ads karakterszám-ellenőrző)
-/google-ads     — Google Ads kampány-dokumentáció szolgáltatásonként (NEM kerül FTP-re)
-MISSING-DATA.md — élesítés előtt pótlandó adatok listája (NEM kerül FTP-re)
+/public         — GENERÁLT + statikus kimenet, ezt szolgálja ki a Worker
+  assets/css/style.css, assets/js/main.js — kézzel írt (nem generált)
+  _headers      — Cloudflare válaszfejlécek
+/worker         — Cloudflare Worker (index.mjs): /api/ajanlatkeres, /api/form-config, statikus assetek
+wrangler.toml   — Worker konfiguráció (titok nélkül)
+/scripts        — ikon / OG kép / illusztráció generátor, linkellenőrző, Ads-ellenőrző, Worker-teszt
+/google-ads     — Google Ads kampány-dokumentáció szolgáltatásonként (belső, nem kerül ki)
 ```
 
-## Fejlesztői parancsok
+## Parancsok
 
 ```bash
-npm run build          # legenerálja a public/ alá az összes HTML-t, robots.txt-et, sitemap.xml-t
-node scripts/generate-icons.js      # favicon / app ikon készlet (csak ha változik a márkajel)
-node scripts/generate-og-image.js   # social share kép (1200x630)
-node scripts/verify-ads.js          # Google Ads karakterlimitek programozott ellenőrzése
+npm run build          # oldalak + ikonok + OG kép + illusztrációk generálása a public/ alá
+npm run check          # belső linkek, Ads karakterlimitek, Worker füstteszt
+npm run cf:dev         # helyi futtatás a Workers runtime-mal (npx wrangler dev)
+npm run cf:deploy      # build + npx wrangler deploy (csak ellenőrzés után!)
 ```
 
-A `public/` mappában semmi nincs kézzel írva, amit a build felülírna, KIVÉVE: `send-form.php`, `.htaccess`,
-és a `assets/css/style.css` / `assets/js/main.js` (ezek statikus assetek, nem generáltak).
+## Design rendszer
 
-## Domain beállítása
+- Színek (`style.css` `:root`): navy `#0e2240` (alap, sötét szekciók), mély navy `#07162b` (topbar, footer),
+  kék `#1d5cb8` (linkek, eyebrow), világos háttér `#f3f6fa`, fehér, sárga `#ffc629` — kizárólag hívás-CTA-hoz és
+  apró kiemelésekhez.
+- Tipográfia: Archivo 400/600/700 (Google Fonts). Mobil H1: 26 px-től, `clamp()`-pel skálázva.
+- Töréspontok: 560 / 640 / 900 / 1080 px. 1080 px alatt: hamburger menü, nincs topbar, látszik az alsó sticky CTA.
+- A telefonos linkek mindig `tel:` linkek, `data-track="call"` + `data-location` attribútummal (mérés).
 
-A végleges domain még nincs kiválasztva. Amíg ez nem történik meg, a `src/config.js`-ben a `domain: '[DOMAIN]'`
-placeholder szerepel, és minden canonical/og:url/sitemap URL ebből épül fel. **A végleges domain ismeretében:**
+## Placeholderek
 
-1. Módosítsd a `src/config.js` `domain` mezőjét a valós domainre.
-2. Futtasd: `npm run build`.
-3. A `public/` mappa ettől kezdve már a helyes abszolút URL-eket tartalmazza — nincs szükség kliensoldali
-   URL-generálásra, és a végleges FTP csomag build nélkül feltölthető.
+Minden ügyfélspecifikus adat szögletes zárójelben szerepel (`[CÉGNÉV]`, `[TELEFONSZÁM]`, `[EMAIL]`,
+`[SZOLGÁLTATÁSI TERÜLET]`, `[NYITVATARTÁS / ELÉRHETŐSÉG]`, `[KISZÁLLÁSI IDŐ]`, `[ÁR MEGADÁSA SZÜKSÉGES]` …).
+A legtöbb a `src/config.js`-ben állítható; az árak a `src/pages/*.js` fájlokban. Keresés:
 
-## Tipográfia
-
-- **Sora** (display/heading) — geometrikus, technikai karakterű, jól illeszkedik a grafit + borostyán
-  arculathoz, kiválóan skálázódik nagy H1 méretben is.
-- **Inter** (body/UI) — kiemelkedő olvashatóság kis méretben is, teljes magyar ékezet-támogatás, ipari
-  szabvány UI szövegekhez.
-
-Mindkettő Google Fonts-ról töltődik be (`src/partials/head.js`), nyílt licenc (SIL Open Font License / Apache).
-Ha a végleges tárhely CSP-je vagy adatvédelmi elvárása indokolja, mindkét font lokálisan is kiszolgálható —
-ehhez a `<link rel="stylesheet" href="https://fonts.googleapis.com/...">` sort kell lecserélni helyi
-`@font-face` deklarációkra a letöltött woff2 fájlokkal.
+```bash
+grep -rn "\[[A-ZÁÉÍÓÖŐÚÜŰ]" src
+```
 
 ## Google Ads ↔ landing rendszer
 
-Minden fő szolgáltatási landing (`/agyi-poloska-irtas/`, `/csotanyirtas/`, `/darazsirtas/`, `/hangyairtas/`,
-`/patkanyirtas/`, `/egerirtas/`, `/bolhairtas/`) rendelkezik:
+Minden fő szolgáltatásoldal stabil szekció-azonosítókkal rendelkezik (Ads sitelinkekhez):
+`#jelek`, `#kezeles`, `#arak`, `#tudnivalok`, `#gyik`, `#ajanlatkeres`. A szolgáltatásoldalakon az űrlap a
+szolgáltatást rejtett mezőben küldi, a mobil sticky „Ajánlatkérés” gomb az oldalon lévő űrlapra ugrik.
 
-- saját, stabil szekció-azonosítókkal: `#jelek`, `#kezeles`, `#arak`, `#tudnivalok`, `#gyik`, `#ajanlatkeres`
-- saját `/google-ads/<szolgáltatás>.md` kampány-dokumentációval (kulcsszavak, negatívok, 15 RSA címsor,
-  4 RSA leírás, sitelinkek, calloutok, UTM terv, landing↔ads audit)
+## Mérés, cookie consent
 
-Az `/egyeb-kartevok/` oldalnak van landingje, de — a fő nyolc kategóriától eltérően — nincs önálló Ads
-csomagja, mivel gyűjtő-kategória, nem önálló fő kulcsszócsoport.
+Az `assets/js/main.js` Google Consent Mode v2 alapállapotot állít be (minden nem-szükséges kategória elutasítva),
+a döntést `localStorage`-ban tárolja. Események: `call_click`, `quote_cta_click`, és a `generate_lead` — ez utóbbi
+csak sikeres szerveroldali feldolgozás után. GTM/GA4/Ads azonosító nincs beállítva (lásd `MISSING-DATA.md`).
 
-A karakterlimiteket a `scripts/verify-ads.js` programozottan ellenőrzi (nem becsléssel):
+## Hosting
 
-```bash
-node scripts/verify-ads.js
-```
-
-## Vercel preview vs. FTP production
-
-- **Vercel**: kizárólag fejlesztési/vizuális preview. A `vercel.json` a `public/` mappát szolgálja ki
-  statikusan (`npm run build` fut buildCommandként). A `send-form.php` Vercelen nem fut (nincs PHP runtime) —
-  ez elvárt; a frontend ilyenkor egyértelmű, magyar hibaüzenetet mutat, hamis sikert nem jelez.
-- **FTP/PHP tárhely**: a végleges production cél. A `public/` mappa tartalma közvetlenül feltölthető a domain
-  webgyökerébe, `npm install` / build lépés nélkül.
-
-## Cookie consent / Consent Mode v2
-
-Az `assets/js/main.js` a Google Consent Mode v2 elvárásainak megfelelő alapállapotot állít be (minden
-nem-szükséges kategória alapból elutasítva), és a felhasználó döntését `localStorage`-ban tárolja. Tényleges
-GTM/GA4/Ads mérőkód még nincs beillesztve — ehhez lásd `MISSING-DATA.md` 4. pontját.
+- **Production:** Cloudflare Worker + Static Assets (`wrangler.toml`). Lásd `CLOUDFLARE-FORM-SETUP.md`.
+- **Vercel:** csak statikus preview (`vercel.json`); ott az `/api/*` nem fut, az űrlap hibaüzenetet ad.

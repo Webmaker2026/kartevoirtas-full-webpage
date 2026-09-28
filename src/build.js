@@ -3,9 +3,8 @@
 
 /**
  * Dev-time statikus build.
- * Kimenet: /public — ez a mappa tölthető fel közvetlenül hagyományos
- * FTP/PHP tárhelyre, build lépés nélkül. A Vercel is ezt a mappát
- * szolgálja ki statikus preview-ként (lásd vercel.json).
+ * Kimenet: /public — ezt a mappát szolgálja ki a Cloudflare Worker statikus
+ * assetként (lásd wrangler.toml), illetve a Vercel preview (vercel.json).
  *
  * Futtatás: node src/build.js
  */
@@ -23,98 +22,98 @@ const PAGES = [
     outPath: 'index.html',
     urlPath: '/',
     title: 'Kártevőirtás | ' + SITE.companyName,
-    description: 'Szakszerű kártevőirtás magánszemélyeknek és cégeknek ' + SITE.serviceArea + '. Ágyi poloska, csótány, rágcsáló, darázs és más kártevők kezelése — kérjen ajánlatot.',
+    description: 'Kártevőirtás magánszemélyeknek, társasházaknak és cégeknek ' + SITE.serviceArea + ' területén. Csótány, ágyi poloska, egér, patkány, darázs, hangya és bolha irtása.',
     module: './pages/index.js',
   },
   {
     outPath: 'agyi-poloska-irtas/index.html',
     urlPath: '/agyi-poloska-irtas/',
-    title: 'Ágyi poloska irtás árak és időpont | ' + SITE.companyName,
-    description: 'Ágyi poloska irtás gyors, célzott kezeléssel. Fertőzöttség jelei, kezelés menete, árak és gyakori kérdések egy oldalon.',
+    title: 'Ágyi poloska irtás – jelek, kezelés, árak | ' + SITE.companyName,
+    description: 'Ágyi poloska irtás lakásban és szálláshelyen. A fertőzöttség jelei, a kezelés menete, teendők a kezelés előtt és után, árak.',
     module: './pages/agyi-poloska-irtas.js',
   },
   {
     outPath: 'csotanyirtas/index.html',
     urlPath: '/csotanyirtas/',
-    title: 'Csótányirtás lakásban és társasházban | ' + SITE.companyName,
-    description: 'Csótányirtás lakás, iroda és vendéglátóipari egység részére. Célzott kezelés, tartós eredmény — nézze meg az árakat és a folyamatot.',
+    title: 'Csótányirtás lakásban, társasházban, étteremben | ' + SITE.companyName,
+    description: 'Csótányirtás lakásban, társasházban, irodában és vendéglátóhelyen. A csótány jelei, a kezelés menete, előkészületek és árak.',
     module: './pages/csotanyirtas.js',
   },
   {
     outPath: 'darazsirtas/index.html',
     urlPath: '/darazsirtas/',
-    title: 'Darázsirtás — darázsfészek eltávolítása | ' + SITE.companyName,
-    description: 'Darázsfészek biztonságos, szakszerű eltávolítása kertben, tetőtérben, homlokzaton. Gyors kiszállás, védőfelszereléssel végzett beavatkozás.',
+    title: 'Darázsirtás, darázsfészek eltávolítása | ' + SITE.companyName,
+    description: 'Darázsfészek eltávolítása ereszről, tetőtérből, redőnytokból és kertből. Mikor sürgős, hogyan zajlik a beavatkozás, mennyibe kerül.',
     module: './pages/darazsirtas.js',
   },
   {
     outPath: 'hangyairtas/index.html',
     urlPath: '/hangyairtas/',
-    title: 'Hangyairtás beltérben és kertben | ' + SITE.companyName,
-    description: 'Hangyairtás lakásban és kertben, a fészek felszámolásával a tartós eredményért. Árak, kezelés menete, gyakori kérdések.',
+    title: 'Hangyairtás lakásban és kertben | ' + SITE.companyName,
+    description: 'Hangyairtás konyhában, lakásban, teraszon és kertben. Miért jönnek vissza a hangyák, hogyan zajlik a kezelés, mennyibe kerül.',
     module: './pages/hangyairtas.js',
   },
   {
     outPath: 'patkanyirtas/index.html',
     urlPath: '/patkanyirtas/',
-    title: 'Patkányirtás lakóingatlanban és telephelyen | ' + SITE.companyName,
-    description: 'Patkányirtás biztonságos csapdázással és irtószeres kezeléssel, a bejutási pontok felmérésével. Nézze meg az árakat és a folyamatot.',
+    title: 'Patkányirtás lakóházban és telephelyen | ' + SITE.companyName,
+    description: 'Patkányirtás családi háznál, társasházban, telephelyen és gazdasági épületben. A patkány jelei, a kezelés menete, előkészületek és árak.',
     module: './pages/patkanyirtas.js',
   },
   {
     outPath: 'egerirtas/index.html',
     urlPath: '/egerirtas/',
-    title: 'Egérirtás — fertőzöttség felszámolása | ' + SITE.companyName,
-    description: 'Egérirtás csapdázással és monitoringgal, a bejutási pontok lezárására vonatkozó javaslattal. Árak és gyakori kérdések.',
+    title: 'Egérirtás lakásban, házban és üzletben | ' + SITE.companyName,
+    description: 'Egérirtás lakásban, családi házban, irodában és üzletben. Az egér jelei, a kezelés menete, a visszatérés megelőzése és árak.',
     module: './pages/egerirtas.js',
   },
   {
     outPath: 'bolhairtas/index.html',
     urlPath: '/bolhairtas/',
     title: 'Bolhairtás lakásban és kertben | ' + SITE.companyName,
-    description: 'Bolhairtás lakástextilben és kertben megtelepedő bolhák ellen, háziállat-tartók számára. Árak, kezelés menete, gyakori kérdések.',
+    description: 'Bolhairtás lakásban, szőnyegben, kárpitban és kertben. A bolha jelei, miért nem elég az állatot kezelni, a kezelés menete és árak.',
     module: './pages/bolhairtas.js',
   },
   {
     outPath: 'egyeb-kartevok/index.html',
     urlPath: '/egyeb-kartevok/',
-    title: 'Egyéb kártevők irtása egyedi felmérés alapján | ' + SITE.companyName,
-    description: 'Molylepke, pincebogár, atka és más kártevők kezelése egyedi felmérés alapján. Kérjen ajánlatot, ha nem találja a problémájának megfelelő oldalt.',
+    title: 'Egyéb kártevők: moly, pincebogár és más rovarok | ' + SITE.companyName,
+    description: 'Molylepke, pincebogár, ezüstös pikkelyke és kamrai bogarak irtása. Írja le, mit tapasztal, és javaslatot adunk a kezelésre.',
     module: './pages/egyeb-kartevok.js',
   },
   {
     outPath: 'arak/index.html',
     urlPath: '/arak/',
-    title: 'Kártevőirtási árak | ' + SITE.companyName,
-    description: 'Kártevőirtási szolgáltatásaink összesített árlistája. Minden szolgáltatáshoz saját, részletes árlista tartozik a szolgáltatás oldalán.',
+    title: 'Kártevőirtás árak | ' + SITE.companyName,
+    description: 'Kártevőirtás árak szolgáltatásonként: ágyi poloska, csótány, darázs, hangya, patkány, egér, bolha. Mitől függ az ár, hogyan kap pontos ajánlatot.',
     module: './pages/arak.js',
   },
   {
     outPath: 'rolunk/index.html',
     urlPath: '/rolunk/',
     title: 'Rólunk | ' + SITE.companyName,
-    description: 'Ismerje meg, hogyan dolgozunk, és miért fontos a felmérés minden kártevőirtási munka elején.',
+    description: 'Bemutatkozás: kik vagyunk, hol dolgozunk, és hogyan zajlik nálunk egy kártevőirtás a bejelentéstől a kezelés utáni teendőkig.',
     module: './pages/rolunk.js',
   },
   {
     outPath: 'gyik/index.html',
     urlPath: '/gyik/',
-    title: 'Gyakori kérdések | ' + SITE.companyName,
-    description: 'Válaszok a kártevőirtással, árajánlattal és a kezelés menetével kapcsolatos leggyakoribb kérdésekre.',
+    title: 'Gyakori kérdések a kártevőirtásról | ' + SITE.companyName,
+    description: 'Válaszok a kártevőirtással kapcsolatos gyakori kérdésekre: ajánlatkérés, kiszállás, előkészületek, fizetés, társasházi kezelés.',
     module: './pages/gyik.js',
   },
   {
     outPath: 'kapcsolat/index.html',
     urlPath: '/kapcsolat/',
     title: 'Kapcsolat és ajánlatkérés | ' + SITE.companyName,
-    description: 'Kérjen ajánlatot online űrlapon, vagy hívjon minket közvetlenül. Elérhetőségeink és az ajánlatkérő űrlap egy helyen.',
+    description: 'Hívjon minket, vagy kérjen ajánlatot az űrlapon. Elérhetőség, szolgáltatási terület és ajánlatkérés egy helyen.',
     module: './pages/kapcsolat.js',
   },
   {
     outPath: 'koszonjuk/index.html',
     urlPath: '/koszonjuk/',
     title: 'Köszönjük! | ' + SITE.companyName,
-    description: 'Sikeresen elküldte ajánlatkérését, hamarosan felvesszük Önnel a kapcsolatot.',
+    description: 'Megkaptuk az ajánlatkérését.',
     module: './pages/koszonjuk.js',
     noindex: true,
     sticky: false,
@@ -164,7 +163,7 @@ function buildPages() {
       description: page.description,
       path: page.urlPath,
       noindex: !!page.noindex,
-      content: mod.render(),
+      content: mod.render({ path: page.urlPath }),
       sticky: page.sticky !== false,
     });
     const outFile = path.join(OUT_DIR, page.outPath);
@@ -178,6 +177,7 @@ function buildRobots() {
   const sitemapUrl = `${SITE.protocol}://${SITE.domain}/sitemap.xml`;
   const content = `User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: ${sitemapUrl}
 `;
@@ -202,8 +202,8 @@ function buildManifest() {
     short_name: SITE.companyName.length > 20 ? 'Kártevőirtás' : SITE.companyName,
     start_url: '/',
     display: 'standalone',
-    background_color: '#201e1d',
-    theme_color: '#201e1d',
+    background_color: '#ffffff',
+    theme_color: '#0e2240',
     icons: [
       { src: '/assets/img/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
       { src: '/assets/img/icons/icon-512.png', sizes: '512x512', type: 'image/png' },

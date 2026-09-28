@@ -1,225 +1,179 @@
 'use strict';
 const { SITE } = require('../config');
 const { icons } = require('./icons');
-const { SERVICES } = require('../data/services');
 const { renderBreadcrumb } = require('./breadcrumb');
 const { renderMedia } = require('./media');
-const { renderPriceTable, renderFaq, renderFaqJsonLd, renderSteps, renderSigns, renderTrustGrid, renderCtaBand, num } = require('./components');
+const { renderQuoteForm } = require('./quoteForm');
+const { renderSectionHead, renderPriceTable, renderFaq, renderFaqJsonLd, renderSteps, renderTrustFacts } = require('./components');
 
 /*
- * A háttérszín szekciótípusonként FIX (a jóváhagyott design ugyanazt a
- * sablont használja mind a 8 szolgáltatásra) — nem az egyes oldal-fájlok
- * (pl. egyeb-kartevok.js) régi, más vizuális rendszerhez tervezett `bg`
- * mezőjéből jön, azt szándékosan figyelmen kívül hagyjuk.
+ * Szolgáltatásoldal-sablon — mind a 8 kártevő-oldal ugyanezt használja.
+ * A szekciók háttere szekciótípusonként fix, hogy a világos és sötét
+ * blokkok ritmusa minden oldalon azonos legyen.
+ *
+ * Az Ads sitelinkek által használt szekció-azonosítók (#jelek, #kezeles,
+ * #arak, #tudnivalok, #gyik, #ajanlatkeres) az oldal-fájlokban vannak
+ * megadva — ezeket ne nevezd át.
  */
 const SECTION_BG = {
-  signs: 'section--light',
-  about: 'section--dark',
-  method: 'section--light',
-  pricing: 'section--surface',
-  twoList: 'section--light',
-  trust: 'section--dark',
-  faq: 'section--light',
-  contact: 'section--surface',
+  signs: 'section section--white',
+  about: 'section section--tint',
+  method: 'section section--white',
+  pricing: 'section section--tint',
+  twoList: 'section section--white',
+  trust: 'section section--navy',
+  faq: 'section section--white',
+  contact: 'section section--tint',
 };
 
-function renderHeroService(h) {
-  const badges = (h.badges || []).map((b) => `<span class="hero__badge">${b.text}</span>`).join('\n          ');
-  return `<section class="hero hero--page">
-    ${renderMedia(h.mediaKey, { alt: h.mediaAlt, eager: true, className: 'hero__bg grayscale' })}
-    <div class="hero__scrim"></div>
-    <div class="container hero__inner">
-      ${renderBreadcrumb([{ label: 'Főoldal', path: '/' }, { label: h.breadcrumbLabel }])}
+function renderHero(h, path) {
+  return `<section class="hero hero--service">
+    <div class="container hero__grid">
       <div class="hero__content">
-        ${h.tag ? `<span class="hero__tag">${icons.warn} ${h.tag}</span>` : ''}
+        ${renderBreadcrumb([{ label: 'Főoldal', path: '/' }, { label: h.breadcrumbLabel }], path)}
         <h1>${h.h1}</h1>
-        <p class="lead hero__lead">${h.intro}</p>
+        <p class="hero__lead">${h.intro}</p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="${SITE.phoneHref}" data-track="call" data-location="service-hero">${icons.phone} Hívás: ${SITE.phoneDisplay}</a>
-          <a class="btn btn--outline" href="#ajanlatkeres" data-track="quote-cta" data-location="service-hero">${h.primaryCtaLabel || 'Ingyenes ajánlatot kérek'}</a>
+          <a class="btn btn--call btn--lg" href="${SITE.phoneHref}" data-track="call" data-location="service-hero">${icons.phone} Hívás: ${SITE.phoneDisplay}</a>
+          <a class="btn btn--outline-light" href="#ajanlatkeres" data-track="quote-cta" data-location="service-hero">Ajánlatkérés</a>
         </div>
+        <p class="hero__meta">${icons.pin} ${SITE.serviceArea}</p>
       </div>
-    </div>
-    <div class="hero__badges">
-      <div class="container">
-        ${badges}
-      </div>
-    </div>
-  </section>`;
-}
-
-function renderOtherServices(currentLabel) {
-  const others = SERVICES.filter((s) => s.label !== currentLabel);
-  return `<section class="other-services">
-    <div class="container">
-      <span class="other-services__label">Másik kártevő?</span>
-      <div class="other-services__list">
-        ${others.map((s) => `<a href="${s.path}">${s.label}</a>`).join('\n        ')}
+      <div class="hero__media">
+        ${renderMedia(h.mediaKey, { eager: true, desktopOnly: true, className: 'hero__img' })}
       </div>
     </div>
   </section>`;
 }
 
-function renderSectionHead({ eyebrow, title, intro }) {
-  return `${eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : ''}
-    <h2 style="margin:14px 0 0">${title}</h2>
-    ${intro ? `<p class="lead" style="margin:16px 0 34px;max-width:680px;font-size:16px">${intro}</p>` : '<div style="margin-bottom:34px"></div>'}`;
-}
-
-function renderSigns_(s) {
+function renderSigns(s) {
   return `<div class="container">
     ${renderSectionHead(s)}
-    <div class="ruled-grid ruled-grid--2">
-      ${renderSigns(s.items)}
+    <div class="info-grid">
+      ${s.items.map((i) => `<div class="info-grid__item">
+        <h3>${i.title}</h3>
+        <p>${i.body}</p>
+      </div>`).join('\n      ')}
     </div>
   </div>`;
 }
 
-function renderAbout_(s, ctx) {
-  const sideItems = s.sideItems
-    ? `<div class="plain-list" style="margin-top:12px">${s.sideItems.map((i) => `<div>${i}</div>`).join('')}</div>`
-    : '';
-  return `<div class="container grid grid--2" style="gap:clamp(32px,4vw,64px)">
-    <div>
-      <span class="eyebrow">${s.eyebrow}</span>
-      <h2 style="margin-top:14px">${s.title}</h2>
-      ${(s.paragraphs || []).map((p) => `<p style="font-size:15.5px;line-height:1.68;color:var(--color-neutral-500);margin-top:20px">${p}</p>`).join('\n      ')}
+function renderAbout(s) {
+  return `<div class="container split">
+    <div class="split__main">
+      ${renderSectionHead({ eyebrow: s.eyebrow, title: s.title })}
+      <div class="prose">
+        ${s.paragraphs.map((p) => `<p>${p}</p>`).join('\n        ')}
+      </div>
     </div>
-    <div>
-      <div class="media-photo" style="aspect-ratio:16/10">${renderMedia(`${ctx.mediaKey}-about`, { className: 'grayscale' })}</div>
-      ${s.sideTitle ? `<h3 style="margin-top:28px;color:var(--color-bg)">${s.sideTitle}</h3>` : ''}
-      ${sideItems}
-    </div>
-  </div>`;
-}
-
-function renderMethod_(s) {
-  const cells = s.items
-    .map((i, idx) => `<div class="method-cell">
-      <div class="method-cell__n">${num(idx)}</div>
-      <h3>${i.title}</h3>
-      <p>${i.body}</p>
-    </div>`)
-    .join('\n      ');
-  return `<div class="container">
-    ${renderSectionHead(s)}
-    <div class="ruled-grid ruled-grid--3">
-      ${cells}
-    </div>
-  </div>`;
-}
-
-function renderPricing_(s) {
-  return `<div class="container">
-    ${renderSectionHead(s)}
-    ${renderPriceTable({ headers: s.headers, rows: s.rows, note: s.note, ctaLabel: s.ctaLabel, ctaLocation: 'service-pricing' })}
-  </div>`;
-}
-
-function renderTwoList_(s) {
-  const colA = `<div class="checklist-col">
-      <h3>${s.leftTitle}</h3>
+    <aside class="split__side">
+      <h3 class="side-list__title">${s.sideTitle}</h3>
       <ul class="checklist">
-        ${s.leftItems.map((i) => `<li>${icons.check} ${i}</li>`).join('\n        ')}
+        ${s.sideItems.map((i) => `<li>${icons.check}<span>${i}</span></li>`).join('\n        ')}
       </ul>
-    </div>`;
-  const colB = `<div class="checklist-col">
-      <h3>${s.rightTitle}</h3>
-      <ul class="checklist">
-        ${s.rightItems.map((i) => `<li>${icons.check} ${i}</li>`).join('\n        ')}
-      </ul>
-    </div>`;
+    </aside>
+  </div>`;
+}
+
+function renderMethod(s) {
   return `<div class="container">
-    <span class="eyebrow">${s.eyebrow}</span>
-    <h2 style="margin:14px 0 34px">${s.title}</h2>
-    <div class="grid grid--2" style="gap:clamp(28px,4vw,64px)">
-      ${colA}
-      ${colB}
+    ${renderSectionHead(s)}
+    ${renderSteps(s.items)}
+  </div>`;
+}
+
+function renderPricing(s) {
+  return `<div class="container">
+    ${renderSectionHead(s)}
+    ${renderPriceTable({ headers: s.headers, rows: s.rows, note: s.note, ctaLocation: 'service-pricing' })}
+  </div>`;
+}
+
+function renderTwoList(s) {
+  const col = (title, items) => `<div>
+        <h3 class="side-list__title">${title}</h3>
+        <ul class="checklist">
+          ${items.map((i) => `<li>${icons.check}<span>${i}</span></li>`).join('\n          ')}
+        </ul>
+      </div>`;
+  return `<div class="container">
+    ${renderSectionHead(s)}
+    <div class="two-col">
+      ${col(s.leftTitle, s.leftItems)}
+      ${col(s.rightTitle, s.rightItems)}
     </div>
   </div>`;
 }
 
-function renderTrust_(s) {
-  return `<div class="container">
-    <span class="eyebrow">Miért minket válasszon</span>
-    <h2 style="margin:14px 0 28px;color:var(--color-bg)">${s.title}</h2>
-    <div class="trust-row-grid trust-row-grid--2">
-      ${renderTrustGrid(s.items)}
+function renderTrust(s) {
+  return `<div class="container split split--top split--facts">
+    <div class="split__main">
+      ${renderSectionHead({ eyebrow: 'Kivel dolgozik?', title: s.title || 'Miért minket?', intro: s.intro })}
+      <a class="btn btn--call" href="${SITE.phoneHref}" data-track="call" data-location="service-trust">${icons.phone} ${SITE.phoneDisplay}</a>
+    </div>
+    <div class="split__side">
+      ${renderTrustFacts({ scope: s.scope })}
     </div>
   </div>`;
 }
 
-function renderFaq_(s) {
+function renderFaqSection(s) {
   return `<div class="container container--narrow">
-    <span class="eyebrow">Gyakori kérdések</span>
-    <h2 style="margin:14px 0 30px">${s.title}</h2>
+    ${renderSectionHead(s)}
     ${renderFaq(s.items, s.idPrefix)}
   </div>${renderFaqJsonLd(s.items)}`;
 }
 
-function renderContactForm_(s) {
-  const { renderQuoteForm } = require('./quoteForm');
-  return `<div class="container grid grid--2" style="gap:clamp(32px,4vw,64px);align-items:start">
-    <div>
-      <span class="eyebrow">Ajánlatkérés</span>
-      <h2 style="margin-top:14px">${s.title}</h2>
-      <p class="lead" style="margin-top:18px;font-size:16px">Sürgős esetben a leggyorsabb, ha telefonon keres minket — az űrlapra rövid időn belül visszajelzünk.</p>
-      <a class="btn btn--onlight" style="margin-top:24px" href="${SITE.phoneHref}" data-track="call" data-location="service-contact">${icons.phone} Hívom most: ${SITE.phoneDisplay}</a>
-      <div class="info-card" style="border-top:1px solid var(--color-divider);border-bottom:0;margin-top:24px;padding-top:16px">
-        <span class="info-card__label">Szolgáltatási terület</span>
-        <p class="info-card__value--body">${SITE.serviceArea}</p>
-      </div>
+function renderContact(s, ctx) {
+  return `<div class="container contact">
+    <div class="contact__intro">
+      ${renderSectionHead({ eyebrow: 'Ajánlatkérés', title: s.title })}
+      <p class="contact__text">A leggyorsabb, ha felhív minket: telefonon rögtön meg tudjuk beszélni, mire van szükség. Ha most nem alkalmas, hagyja meg az adatait, és visszahívjuk.</p>
+      <a class="btn btn--call btn--lg" href="${SITE.phoneHref}" data-track="call" data-location="service-contact">${icons.phone} ${SITE.phoneDisplay}</a>
+      <dl class="contact__meta">
+        <div><dt>Elérhetőség</dt><dd>${SITE.openingHours}</dd></div>
+        <div><dt>Szolgáltatási terület</dt><dd>${SITE.serviceArea}</dd></div>
+      </dl>
     </div>
     <div class="form-panel">
-      <h3>Ajánlatkérő űrlap</h3>
-      <p class="form-panel__hint">Négy mező kötelező — a többi segít pontosabb árat adnunk.</p>
-      ${renderQuoteForm({ presetPest: s.presetPest, formId: 'ajanlatkeres-' + (s.presetPest || 'altalanos') })}
+      <h3 class="form-panel__title">Ajánlatkérés — ${ctx.serviceLabel}</h3>
+      ${renderQuoteForm({ formId: 'ajanlat-' + s.presetService, presetService: s.presetService, sourcePath: ctx.path })}
     </div>
   </div>`;
 }
 
 const RENDERERS = {
-  signs: renderSigns_,
-  about: renderAbout_,
-  method: renderMethod_,
-  pricing: renderPricing_,
-  twoList: renderTwoList_,
-  trust: renderTrust_,
-  faq: renderFaq_,
-  contact: renderContactForm_,
+  signs: renderSigns,
+  about: renderAbout,
+  method: renderMethod,
+  pricing: renderPricing,
+  twoList: renderTwoList,
+  trust: renderTrust,
+  faq: renderFaqSection,
+  contact: renderContact,
 };
 
 /**
  * @param {Object} data
+ * @param {string} data.path - az oldal útvonala, pl. '/csotanyirtas/'
  * @param {Object} data.hero
- * @param {Array}  data.sections - [{ type, bg, ...opts }]
- * @param {Object} [data.finalCta]
+ * @param {Array}  data.sections - [{ type, id?, ...opts }]
  */
 function renderServiceLanding(data) {
-  const ctx = { mediaKey: data.hero.mediaKey };
+  const ctx = { path: data.path, serviceLabel: data.hero.breadcrumbLabel };
   const body = data.sections
     .map((s) => {
       const renderer = RENDERERS[s.type];
-      if (!renderer) return '';
-      return `<section class="${SECTION_BG[s.type] || 'section--light'}"${s.id ? ` id="${s.id}"` : ''}>
+      if (!renderer) throw new Error(`Ismeretlen szekciótípus: ${s.type}`);
+      return `<section class="${SECTION_BG[s.type]}"${s.id ? ` id="${s.id}"` : ''}>
     ${renderer(s, ctx)}
   </section>`;
     })
     .join('\n\n  ');
 
-  const finalCta = data.finalCta
-    ? `<section class="section--accent">
-    ${renderCtaBand({ ...data.finalCta, location: 'service-final-cta' })}
-  </section>`
-    : '';
+  return `${renderHero(data.hero, data.path)}
 
-  return `${renderHeroService(data.hero)}
-
-  ${renderOtherServices(data.hero.eyebrow)}
-
-  ${body}
-
-  ${finalCta}`;
+  ${body}`;
 }
 
 module.exports = { renderServiceLanding };

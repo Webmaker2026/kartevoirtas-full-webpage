@@ -64,10 +64,9 @@
   function initMobileNav() {
     var toggle = document.querySelector('[data-nav-toggle]');
     var panel = document.querySelector('[data-mobile-nav]');
-    var closeBtn = document.querySelector('[data-nav-close]');
-    var scrim = panel ? panel.querySelector('[data-nav-scrim]') : null;
     if (!toggle || !panel) return;
 
+    function isOpen() { return panel.getAttribute('data-open') === 'true'; }
     function open() {
       panel.setAttribute('data-open', 'true');
       toggle.setAttribute('aria-expanded', 'true');
@@ -75,20 +74,25 @@
       var firstLink = panel.querySelector('a,button');
       if (firstLink) firstLink.focus({ preventScroll: true });
     }
-    function close() {
+    function close(returnFocus) {
       panel.setAttribute('data-open', 'false');
       toggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
-      toggle.focus({ preventScroll: true });
+      if (returnFocus) toggle.focus({ preventScroll: true });
     }
     toggle.addEventListener('click', function () {
-      var isOpen = panel.getAttribute('data-open') === 'true';
-      isOpen ? close() : open();
+      isOpen() ? close(true) : open();
     });
-    if (closeBtn) closeBtn.addEventListener('click', close);
-    if (scrim) scrim.addEventListener('click', close);
+    // Linkre kattintva (pl. oldalon belüli horgony) a menü bezárul
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest('a')) close(false);
+    });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && panel.getAttribute('data-open') === 'true') close();
+      if (e.key === 'Escape' && isOpen()) close(true);
+    });
+    // Asztali szélességre váltáskor ne maradjon zárolva a görgetés
+    window.addEventListener('resize', function () {
+      if (isOpen() && window.innerWidth >= 1080) close(false);
     });
   }
 
@@ -203,19 +207,101 @@
   }
 
   /* ============================================================
-     Ajánlatkérő űrlap
+     Ajánlatkérő űrlap → Cloudflare Worker (POST /api/ajanlatkeres)
+     - kliensoldali előellenőrzés (a Worker szerveroldalon is validál)
      - honeypot + időzített kitöltés-ellenőrzés (bot-védelem)
-     - fetch a send-form.php felé, csak tényleges siker esetén
-       navigál a /koszonjuk/ oldalra
-     - Vercel previewn a PHP nem fut: ekkor barátságos hibaüzenet,
-       de NEM hamis siker
+     - Cloudflare Turnstile: csak akkor töltődik be, ha a Worker
+       (/api/form-config) visszaad site key-t, és csak amikor az űrlap
+       a képernyő közelébe ér — így nem lassítja az oldalbetöltést
+     - CSAK tényleges szerveroldali siker (validáció + spamszűrés +
+       e-mail továbbítás) után navigál a /koszonjuk/ oldalra
      ============================================================ */
-  function initQuoteForm() {
-    var form = document.querySelector('[data-quote-form]');
-    if (!form) return;
+  var MSG_SEND_FAILED = 'Az ajánlatkérés elküldése most nem sikerült. Kérjük, próbálja újra, vagy hívjon minket telefonon.';
+  var MSG_REQUIRED = 'Kérjük, töltse ki a csillaggal jelölt mezőket.';
+
+  var turnstileConfig = null; // Promise<{siteKey:string|null}>
+  var turnstileScript = null; // Promise<void>
+
+  function getFormConfig() {
+    if (!turnstileConfig) {
+      turnstileConfig = fetch('/api/form-config', { headers: { Accept: 'application/json' } })
+        .then(function (res) { return res.ok ? res.json() : {}; })
+        .then(function (data) { return { siteKey: (data && data.turnstileSiteKey) || null }; })
+        .catch(function () { return { siteKey: null }; });
+    }
+    return turnstileConfig;
+  }
+
+  function loadTurnstileScript() {
+    if (!turnstileScript) {
+      turnstileScript = new Promise(function (resolve, reject) {
+        var s = document.createElement('script');
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        s.async = true;
+        s.onload = function () { resolve(); };
+        s.onerror = function () { reject(new Error('turnstile-load')); };
+        document.head.appendChild(s);
+      });
+    }
+    return turnstileScript;
+  }
+
+  function setupTurnstile(form) {
+    var slot = form.querySelector('[data-turnstile]');
+    if (!slot) return;
+    var started = false;
+
+    function start() {
+      if (started) return;
+      started = true;
+      getFormConfig().then(function (cfg) {
+        if (!cfg.siteKey) return;
+        form.setAttribute('data-turnstile-required', 'true');
+        return loadTurnstileScript().then(function () {
+          if (!window.turnstile) return;
+          var widgetId = window.turnstile.render(slot, {
+            sitekey: cfg.siteKey,
+            language: 'hu',
+            // 300px alatti szélességen a kompakt widget fér ki vízszintes görgetés nélkül
+            size: slot.clientWidth && slot.clientWidth < 300 ? 'compact' : 'flexible',
+            'refresh-expired': 'auto'
+          });
+          form._turnstileWidgetId = widgetId;
+        });
+      }).catch(function () {
+        // A script nem töltődött be — a beküldéskor a Worker jelez hibát,
+        // a látogató pedig a telefonszámot kapja alternatívaként.
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); start(); }
+      }, { rootMargin: '600px 0px' });
+      io.observe(form);
+    } else {
+      start();
+    }
+    form.addEventListener('focusin', start);
+  }
+
+  function initQuoteForms() {
+    document.querySelectorAll('[data-quote-form]').forEach(initQuoteForm);
+  }
+
+  function initQuoteForm(form) {
     var loadedAt = Date.now();
     var statusEl = form.querySelector('[data-form-status]');
     var submitBtn = form.querySelector('[data-form-submit]');
+    var sourceField = form.querySelector('[data-source-field]');
+
+    // Forrásoldal: útvonal + query string (pl. utm_*, gclid) — az Ads
+    // kampányok visszakövetéséhez. A Worker hosszra vágja és ellenőrzi.
+    if (sourceField) {
+      sourceField.value = (window.location.pathname + window.location.search).slice(0, 300);
+    }
+
+    setupTurnstile(form);
 
     function setStatus(state, message) {
       if (!statusEl) return;
@@ -223,6 +309,26 @@
       if (state) statusEl.setAttribute('data-state', state);
       else statusEl.removeAttribute('data-state');
     }
+
+    function markInvalid(field, invalid) {
+      if (invalid) field.setAttribute('aria-invalid', 'true');
+      else field.removeAttribute('aria-invalid');
+    }
+
+    function resetTurnstile() {
+      if (window.turnstile && form._turnstileWidgetId !== undefined) {
+        try { window.turnstile.reset(form._turnstileWidgetId); } catch (e) { /* nem kritikus */ }
+      }
+    }
+
+    // JavaScript nélküli (vagy hibás) beküldés után a Worker ?hiba=1 paraméterrel irányít vissza
+    if (/[?&]hiba=1(&|$)/.test(window.location.search)) {
+      setStatus('error', MSG_SEND_FAILED);
+    }
+
+    form.addEventListener('input', function (e) {
+      if (e.target && e.target.getAttribute('aria-invalid') === 'true') markInvalid(e.target, false);
+    });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -233,50 +339,64 @@
         return;
       }
 
-      var required = form.querySelectorAll('[required]');
       var firstInvalid = null;
-      required.forEach(function (field) {
-        if (!field.value || (field.type === 'checkbox' && !field.checked)) {
-          if (!firstInvalid) firstInvalid = field;
-        }
+      form.querySelectorAll('[required]').forEach(function (field) {
+        var empty = field.type === 'checkbox' ? !field.checked : !field.value.trim();
+        markInvalid(field, empty);
+        if (empty && !firstInvalid) firstInvalid = field;
       });
       if (firstInvalid) {
-        setStatus('error', 'Kérjük, töltse ki a csillaggal jelölt kötelező mezőket.');
+        setStatus('error', MSG_REQUIRED);
         firstInvalid.focus();
         return;
       }
 
-      var emailField = form.querySelector('#field-email');
-      if (emailField && emailField.value) {
-        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value);
-        if (!emailOk) {
-          setStatus('error', 'Kérjük, adjon meg érvényes e-mail címet.');
-          emailField.focus();
-          return;
-        }
+      var phoneField = form.querySelector('[name="telefonszam"]');
+      if (phoneField && (phoneField.value.replace(/\D/g, '').length < 6 || !/^[0-9+()\/\-.\s]+$/.test(phoneField.value.trim()))) {
+        markInvalid(phoneField, true);
+        setStatus('error', 'Kérjük, adjon meg érvényes telefonszámot.');
+        phoneField.focus();
+        return;
+      }
+
+      var emailField = form.querySelector('[name="email"]');
+      if (emailField && emailField.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
+        markInvalid(emailField, true);
+        setStatus('error', 'Kérjük, ellenőrizze az e-mail címet, vagy hagyja üresen a mezőt.');
+        emailField.focus();
+        return;
+      }
+
+      var formData = new FormData(form);
+      if (form.getAttribute('data-turnstile-required') === 'true' && !formData.get('cf-turnstile-response')) {
+        setStatus('error', 'Kérjük, várja meg, amíg a biztonsági ellenőrzés lefut az űrlap alján, majd küldje el újra.');
+        return;
       }
 
       if (submitBtn) { submitBtn.disabled = true; submitBtn.setAttribute('aria-busy', 'true'); }
 
-      var formData = new FormData(form);
-
-      fetch(form.getAttribute('action') || 'send-form.php', {
+      fetch(form.getAttribute('action'), {
         method: 'POST',
         body: formData,
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        headers: { Accept: 'application/json' }
       }).then(function (res) {
-        if (!res.ok) throw new Error('server-error');
-        return res.json().catch(function () { throw new Error('bad-response'); });
+        return res.json().catch(function () { return { ok: false }; });
       }).then(function (data) {
-        if (data && data.success) {
+        if (data && data.ok) {
           gtag('event', 'generate_lead', { method: 'form', form_id: form.id || 'ajanlatkeres' });
           window.location.href = form.getAttribute('data-success-url') || '/koszonjuk/';
-        } else {
-          setStatus('error', (data && data.message) || 'A küldés sikertelen volt. Kérjük, próbálja meg telefonon felvenni velünk a kapcsolatot.');
+          return;
         }
+        if (data && data.field) {
+          var bad = form.querySelector('[name="' + data.field + '"]');
+          if (bad) { markInvalid(bad, true); bad.focus(); }
+        }
+        setStatus('error', (data && data.message) || MSG_SEND_FAILED);
+        resetTurnstile();
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); }
       }).catch(function () {
-        setStatus('error', 'A küldés jelenleg nem elérhető (pl. előnézeti környezetben a PHP nem fut). Éles tárhelyen a form működik — addig kérjük, hívjon minket telefonon.');
-      }).finally(function () {
+        setStatus('error', MSG_SEND_FAILED);
+        resetTurnstile();
         if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); }
       });
     });
@@ -298,18 +418,11 @@
     });
   }
 
-  function initStickyBodyPadding() {
-    if (document.querySelector('.sticky-cta')) {
-      document.body.classList.add('has-sticky-cta');
-    }
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
     initMobileNav();
     initDesktopDropdowns();
     initConsent();
-    initQuoteForm();
+    initQuoteForms();
     initMicroConversions();
-    initStickyBodyPadding();
   });
 })();

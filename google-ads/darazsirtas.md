@@ -6,7 +6,7 @@
 
 - Szolgáltatás: Darázsirtás
 - Cél URL: `[DOMAIN]/darazsirtas/`
-- Landing H1: „Darázsirtás — darázsfészek biztonságos eltávolítása”
+- Landing H1: „Darázsirtás, darázsfészek eltávolítása”
 - Elsődleges konverzió: sikeresen elküldött és szerveroldalon feldolgozott ajánlatkérés (`/koszonjuk/`)
 - Másodlagos konverzió: telefon CTA kattintás (`data-track="call"`) — ennél a szolgáltatásnál kiemelten
   fontos, mert a sürgős esetek jelentős része telefonon indul.

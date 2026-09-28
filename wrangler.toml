@@ -1,0 +1,53 @@
+# =====================================================================
+# Cloudflare Worker konfiguráció — statikus oldal + ajánlatkérő űrlap.
+# Részletes beállítási útmutató: CLOUDFLARE-FORM-SETUP.md
+#
+# FONTOS: ebben a fájlban NINCS és NEM IS LEHET titkos adat.
+# A titkos értékeket (RESEND_API_KEY, TURNSTILE_SECRET_KEY) kizárólag
+# `npx wrangler secret put <NÉV>` paranccsal vagy a Cloudflare
+# dashboardon kell megadni. Account ID-t sem kell ide írni: a wrangler
+# a bejelentkezett fiókot használja (vagy CLOUDFLARE_ACCOUNT_ID env).
+# =====================================================================
+
+# Ügyfelenként egyedi név (ez lesz a *.workers.dev aldomain is).
+name = "kartevoirtas-master"
+main = "worker/index.mjs"
+compatibility_date = "2025-09-01"
+
+# A statikus oldal (npm run build kimenete). A Worker csak azokra a
+# kérésekre fut le, amelyekhez nincs statikus fájl (pl. /api/*).
+[assets]
+directory = "./public"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
+
+# Nem titkos, ügyfelenként módosítandó beállítások.
+[vars]
+# Megjelenik a lead e-mailben. Üresen hagyva a src/config.js companyName értéke.
+COMPANY_NAME = ""
+# Címzett(ek), vesszővel elválasztva. PL.: "ajanlat@ugyfeldomain.hu"
+LEAD_RECIPIENT_EMAIL = ""
+# Feladó — a Resendben hitelesített domainről! PL.: "Weboldal <ajanlat@ugyfeldomain.hu>"
+MAIL_FROM = ""
+# Turnstile SITE key (nyilvános). A SECRET key secretként megy!
+TURNSTILE_SITE_KEY = ""
+# Sikeres beküldés utáni oldal
+SUCCESS_URL = "/koszonjuk/"
+# Opcionális: további engedélyezett Origin-ek, vesszővel (pl. www + non-www).
+ALLOWED_ORIGINS = ""
+
+# Opcionális IP-alapú korlátozás (Workers Rate Limiting). A namespace_id egy
+# tetszőleges, a fiókon belül egyedi egész szám — bekapcsoláshoz vedd ki a kommentet.
+# [[ratelimits]]
+# name = "RATE_LIMITER"
+# namespace_id = "1001"
+#   [ratelimits.simple]
+#   limit = 5
+#   period = 60
+
+# Egyedi domain (ügyfelenként, élesítéskor):
+# routes = [
+#   { pattern = "ugyfeldomain.hu", custom_domain = true },
+#   { pattern = "www.ugyfeldomain.hu", custom_domain = true },
+# ]

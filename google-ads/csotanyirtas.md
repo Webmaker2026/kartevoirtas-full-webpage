@@ -6,7 +6,7 @@
 
 - Szolgáltatás: Csótányirtás
 - Cél URL: `[DOMAIN]/csotanyirtas/`
-- Landing H1: „Csótányirtás lakásban, társasházban és vendéglátóipari egységben”
+- Landing H1: „Csótányirtás lakásban, társasházban és étteremben”
 - Elsődleges konverzió: sikeresen elküldött és szerveroldalon feldolgozott ajánlatkérés (`/koszonjuk/`)
 - Másodlagos konverzió: telefon CTA kattintás (`data-track="call"`)
 
